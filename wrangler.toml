@@ -1,0 +1,5 @@
+name = "bonario-report"
+compatibility_date = "2025-05-15"
+
+[site]
+bucket = "."
