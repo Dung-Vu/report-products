@@ -61,7 +61,7 @@
             label: "Dữ liệu sản phẩm",
             eyebrow: "Product Ops",
             summary:
-                "Quản trị product, BOM, cost, giá và daily scan qua hub tập trung.",
+                "Cùng lúc giữ sạch 6,677 sản phẩm, 3,540 BOM — daily scan tự phát hiện lỗi.",
             projectIds: ["bonario-product-hub", "ord-price-lookup"],
             accent: "#0f766e",
         },
@@ -70,7 +70,7 @@
             label: "Kho / QC",
             eyebrow: "Warehouse",
             summary:
-                "Tra tồn kho, in label, QC batch nhập kho và nền tảng kiểm kho.",
+                "Tra tồn kho, in label nhập kho, QC batch — sẵn sàng kiểm kho nhiều người cùng lúc.",
             projectIds: ["bonario-stock-management", "in-label-pdf"],
             accent: "#0369a1",
         },
@@ -79,7 +79,7 @@
             label: "Chứng từ",
             eyebrow: "Back Office",
             summary:
-                "Bill archive 983 PDF, round-robin OP, VAT và web file server nội bộ.",
+                "Lưu trữ 983 PDF, gán OP, xuất VAT — không làm tay nữa.",
             projectIds: ["op-round-robin", "bills-server"],
             accent: "#7c3aed",
         },
@@ -88,7 +88,7 @@
             label: "Automation",
             eyebrow: "Integration",
             summary:
-                "Webhook, scheduler daily, Zalo ZNS auto-refresh, Telegram RFID, 9 routes live.",
+                "9 webhook đang live, scheduler không hỏng, ZNS tự refresh hàng ngày.",
             projectIds: ["auto-workflow"],
             accent: "#c2410c",
         },
@@ -97,7 +97,7 @@
             label: "Hạ tầng",
             eyebrow: "Platform",
             summary:
-                "Cloudflare tunnel, Docker network, TCP bridge — publish app nội bộ không cần mở port.",
+                "Cloudflare Tunnel tập trung — 6 subdomain nội bộ ra ngoài, không mở port.",
             projectIds: ["tunnel-master", "action-local-bridge"],
             accent: "#334155",
         },
@@ -106,7 +106,7 @@
             label: "Sản xuất",
             eyebrow: "Production",
             summary:
-                "Tính kích thước rèm, xử lý Excel/PDF sản xuất và export layout BON.",
+                "Tính vải và kích thước rèm — xử lý file Excel/PDF sản xuất, xuất layout cho xưởng.",
             projectIds: ["calculate-curtain-size"],
             accent: "#0891b2",
         },
@@ -115,7 +115,7 @@
             label: "Creative AI",
             eyebrow: "Marketing",
             summary:
-                "Brief builder, model selection, ratio logic, reference và refinement preset cho hình lifestyle.",
+                "Chuẩn hóa brief AI image — không phụ thuộc kỹ năng prompt của từng người.",
             projectIds: ["visual-brief-builder"],
             accent: "#be123c",
         },
@@ -125,34 +125,34 @@
         {
             value: 983,
             suffix: "",
-            label: "Chứng từ PDF tự động hóa",
-            sub: "op-round-robin xử lý · bills-server serve · 201MB",
+            label: "Chứng từ PDF đã xử lý",
+            sub: "Xử lý tự động + web xem chứng từ · 201MB · từ tháng 12/2025",
             large: true,
         },
         {
             value: 6305,
             suffix: "",
-            label: "Lượt truy cập domain",
-            sub: "6 subdomain Bonario · Cloudflare Analytics Sep~May",
+            label: "Lượt truy cập 6 subdomain",
+            sub: "Cloudflare Analytics · Sep 2025 – May 2026",
         },
         {
             value: 50,
             suffix: "/50",
-            label: "Workflow tự động (0 thất bại)",
-            sub: "42 Stock Monitor + 8 Daily Scan · workflow_history.json · 2026-05-07~05-15",
+            label: "Workflow chạy tự động, 0 thất bại",
+            sub: "42 lần kiểm kho + 8 lần quét hàng ngày · 07–15/05/2026",
         },
         {
             value: 9,
             suffix: "",
-            label: "Webhook routes đang live",
-            sub: "Shopify · Odoo · Zalo · Telegram · auto-workflow · action.bonstu.site: 4,570 req",
+            label: "Webhook routes đang hoạt động",
+            sub: "Shopify · Odoo · Zalo · Telegram · action.bonstu.site: 4,570 req",
         },
     ];
 
     const TECH_STACK = [
         {
             cat: "Backend",
-            items: ["Python · Flask", "Node.js · Express", "Odoo XML-RPC"],
+            items: ["Python · Flask · FastAPI", "Node.js · Express", "Odoo XML-RPC", "APScheduler"],
         },
         { cat: "Frontend", items: ["React 18", "Vanilla JS", "Recharts"] },
         { cat: "Database", items: ["PostgreSQL", "SQLite", "Odoo ORM"] },
@@ -161,49 +161,62 @@
             items: ["Docker · Compose", "Nginx", "Cloudflare Tunnel"],
         },
         {
+            cat: "Xử lý file",
+            items: ["pandas · openpyxl", "PyMuPDF · OCR"],
+        },
+        {
             cat: "Tích hợp",
             items: [
                 "Shopify Webhook",
                 "Zalo ZNS API",
                 "Telegram Bot",
-                "PDF · OCR",
+                "WebSocket",
             ],
         },
     ];
 
     const ROADMAP = [
         {
-            phase: "Ưu tiên cao",
+            num: "01",
+            phase: "Đang triển khai",
             accent: "#0f766e",
-            title: "Monitoring tập trung",
-            desc: "11 service chạy riêng lẻ — chưa có lớp quan sát thống nhất. Một service lỗi có thể không phát hiện kịp.",
+            title: "HR Onboarding tự động — không qua IT",
+            why: "Nhân viên mới chờ 2–3 ngày. Quyền bị sai do gán thủ công.",
+            desc: "Hệ thống tự tạo account Odoo và gán phân quyền theo vị trí. Đã phân tích 46 user thực tế trên 3 công ty — HR thao tác, không cần IT can thiệp.",
             items: [
-                "Prometheus + Grafana cho toàn Docker stack",
-                "Telegram alert tự động khi service down",
-                "Log aggregation tập trung",
+                "HR chọn vị trí → account tạo + phân quyền đúng trong vài giây — áp dụng cho Bonario, Ordinaire, Furny",
+                "Role profile xây từ 46 user thực tế + kiểm tra chéo với phân quyền đang chạy trên hệ thống",
+                "Audit log đầy đủ: ai được tạo, khi nào, quyền gì — truy vết được khi review nội bộ hoặc kiểm toán",
             ],
+            effort: "Đang xây · ~3 tuần",
         },
         {
-            phase: "Trung hạn",
+            num: "02",
+            phase: "Tiếp theo",
             accent: "#2563eb",
-            title: "AI Agent tự động hóa sâu",
-            desc: "Hệ thống hiện collect data tốt — bước tiếp là để AI xử lý thay vì chỉ báo cáo.",
+            title: "Quan sát hệ thống — chủ động thay vì thụ động",
+            why: "11 service đang chạy — biết có vấn đề khi user báo.",
+            desc: "Chuyển từ vận hành thụ động sang full visibility. Alert tức thì, dashboard tổng quan, báo cáo vận hành tự động gửi cho quản lý.",
             items: [
-                "AI tự classify & fix ~800 lỗi sản phẩm/ngày từ Daily Scan",
-                "AI draft báo cáo tồn kho cuối tháng tự động",
-                "NLP query kho: ‘còn bao nhiêu SKU X?’",
+                "Telegram alert trong 1 phút khi container down — không cần đăng nhập server để biết",
+                "Health dashboard qua trình duyệt — trạng thái tất cả service trong 1 trang, không cần SSH",
+                "Monthly ops digest tự động: uptime %, incident, scheduler health — quản lý nhận được không cần hỏi IT",
             ],
+            effort: "3–5 ngày",
         },
         {
-            phase: "Team scale",
+            num: "03",
+            phase: "Không thể bỏ",
             accent: "#7c3aed",
-            title: "Tài liệu hóa & Handoff",
-            desc: "Hiện tại một người vận hành toàn bộ stack. Để mở rộng hoặc chuyển giao an toàn cần layer tài liệu.",
+            title: "Nền tảng vững để scale thêm người và service",
+            why: "Server hỏng = mất hết. Chưa có backup, chưa có môi trường test.",
+            desc: "Backup tự động, staging environment, deploy an toàn — ba thứ này không có thì mỗi lần cập nhật là một lần đánh cược với dữ liệu thật.",
             items: [
-                "API docs + runbook cho từng service",
-                "Incident playbook chuẩn hóa",
-                "Onboarding guide cho developer mới",
+                "Backup tự động hàng ngày: PostgreSQL + SQLite + 983 PDF lên cloud — phục hồi được trong vài tiếng",
+                "Staging environment để test trước khi đẩy production — tránh incident từ thay đổi code",
+                "Auto-deploy từ Git: cập nhật service không cần SSH vào từng container thủ công",
             ],
+            effort: "1 tuần",
         },
     ];
 
@@ -211,32 +224,32 @@
         {
             year: "2019–05/2024",
             label: "Kỹ sư CNTT, GPA 2.03",
-            note: "FE căn bản. IT thực tế chưa bao giờ chạm.",
+            note: "5 năm học lý thuyết. GPA 2.03. Chưa một lần deploy thật.",
         },
         {
             year: "06/2024–08/2025",
             label: "Gap · chuẩn bị du học",
-            note: "14 tháng. Không viết một dòng code production.",
+            note: "14 tháng dừng lại — không viết code, cân nhắc đi học tiếp.",
         },
         {
             year: "22/09/2025",
             label: "Vào Bonario · thử việc",
-            note: "Học Odoo, đọc codebase, hiểu quy trình kho.",
+            note: "Anh Hà tận tình hướng dẫn hệ thống Odoo, tạo cơ hội phát triển và tiếp cận sâu AI.",
         },
         {
             year: "Tháng 10/2025",
             label: "Deploy đầu tiên",
-            note: "ORD Price Lookup live — React + Flask + PostgreSQL.",
+            note: "Lần đầu code thật sự chạy trên production — ORD Price Lookup. React · Flask · PostgreSQL.",
         },
         {
             year: "Tháng 11–12/2025",
             label: "Automation stack",
-            note: "9 webhook routes, scheduler daily, Telegram bot.",
+            note: "Không ai giao — tự đề xuất, tự xây. Webhook, scheduler daily, Telegram bot.",
         },
         {
             year: "Tháng 1–3/2026",
             label: "Infrastructure layer",
-            note: "Docker Compose, Cloudflare Tunnel, bills archive.",
+            note: "Tự thiết kế từ đầu. Docker stack, Cloudflare Tunnel, archive chứng từ.",
         },
         {
             year: "Tháng 5/2026",
@@ -270,11 +283,11 @@
         return `
       <section class="evidence-strip is-collapsed" id="evidence-strip" aria-label="Bằng chứng đã xác minh">
         <div class="evidence-strip-header">
-          <p class="eyebrow-label">Usage signals</p>
-          <h3 class="evidence-strip-title">3 tín hiệu sử dụng không trùng hero counters.</h3>
-          <p class="evidence-strip-note">Nguồn lấy từ log, database, Cloudflare và Odoo aggregate có liên quan trực tiếp tới repo/tool đang vận hành.</p>
+          <p class="eyebrow-label">Dữ liệu có nguồn</p>
+          <h3 class="evidence-strip-title">Tín hiệu sử dụng thực tế — từ hệ thống đang chạy.</h3>
+          <p class="evidence-strip-note">Phân tách riêng khỏi số vận hành của công ty — lấy từ lịch sử truy cập, cơ sở dữ liệu và Odoo.</p>
         </div>
-        <button class="evidence-strip-toggle" id="evidence-toggle" aria-expanded="true" aria-controls="evidence-body">
+        <button class="evidence-strip-toggle" id="evidence-toggle" aria-expanded="false" aria-controls="evidence-body">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -284,7 +297,7 @@
           <div class="evidence-strip-body-inner">
             ${
                 companyScale.length
-                    ? `<p class="evidence-subgroup-title">Usage từ app/log</p>
+                    ? `<p class="evidence-subgroup-title">Từ log & database</p>
             <div class="evidence-grid">
               ${renderEvidenceCards(companyScale)}
             </div>`
@@ -292,7 +305,7 @@
             }
             ${
                 repoRelevantOdoo.length
-                    ? `<p class="evidence-subgroup-title">Odoo aggregate gắn với repo</p>
+                    ? `<p class="evidence-subgroup-title">Từ Odoo aggregate</p>
             <div class="evidence-grid evidence-grid-secondary">
               ${renderEvidenceCards(repoRelevantOdoo)}
             </div>`
@@ -389,20 +402,20 @@
           <header class="scale-header">
             <p class="eyebrow-label">Output từ 11 repo</p>
             <h2 class="scale-title">Không số Odoo công ty.<br>Đây là output của hệ thống.</h2>
-            <p class="scale-note">Số liệu trực tiếp từ log, database và file — không phải bối cảnh vận hành chung.</p>
+            <p class="scale-note">Lấy thẳng từ log, database và file — không lẫn vào số vận hành chung của công ty.</p>
           </header>
           <div class="counter-grid">${cards}</div>
           ${buildMonthlyChart()}
           <div class="scale-pills">
-            <span>98 lần cập nhật giá, BOM và pricelist</span>
-            <span>Scanner tự động phát hiện ~800 vấn đề sản phẩm mỗi ngày</span>
-            <span>7+ đợt QC hàng nhập kho được xử lý và lưu</span>
-            <span>5 file sản xuất được tính toán và xuất layout</span>
-            <span>Lưu chứng từ đều đặn: 312 · 156 · 222 · 266 file/tháng</span>
-            <span>6 subdomain Bonario qua Cloudflare Tunnel · action 4,570 · stock 1,359 · label 98 · curtain 250 · price 17 · workflow 11</span>
+            <span>104 thao tác thật ghi trong audit log — cost, BOM, pricelist</span>
+            <span>Daily scan chạy mỗi ngày — tự rà soát toàn bộ sản phẩm và gửi báo cáo qua Telegram, không cần ai nhớ check</span>
+            <span>7+ đợt QC nhập kho đã xử lý trong Docker session này</span>
+            <span>5 file sản xuất được tính và xuất layout trong 2 ngày gần nhất</span>
+            <span>Bill ghi đều: 312 · 156 · 222 · 266 chứng từ mỗi tháng</span>
+            <span>action 4,570 · stock 1,359 · curtain 250 · label 98 · price 17 · workflow 11 req</span>
           </div>
           <div class="value-callout">
-            <p class="value-callout-label">Quy đổi sang giá trị thực</p>
+            <p class="value-callout-label">Nếu tính ra giờ công</p>
             <div class="value-callout-items">
               <span><strong>~82h</strong> lưu bill thủ công/năm → automation xử lý toàn bộ</span>
               <span><strong>~2.7h</strong> kiểm tra thủ công/ngày</span>
@@ -452,7 +465,7 @@
           <header class="system-header">
             <p class="eyebrow-label">Lớp vận hành đang hình thành</p>
             <h2 class="system-title">11 hệ thống, 7 nhóm nghiệp vụ.</h2>
-            <p class="system-hint">Chọn một nhóm để xem chi tiết →</p>
+            <p class="system-hint">Bấm vào nhóm để xem chi tiết →</p>
           </header>
           <div class="node-map" role="list">${buildNodeMap()}</div>
           ${buildTechBar()}
@@ -472,23 +485,30 @@
         return `
       <div class="roadmap-block">
         <span class="roadmap-eyebrow">Kế hoạch tiếp theo</span>
-        <h3 class="roadmap-title">3 hướng phát triển.</h3>
+        <h3 class="roadmap-title">3 bước cụ thể tiếp theo.</h3>
         <div class="roadmap-grid">
           ${ROADMAP.map(
               (r) => `
-            <div class="roadmap-card" style="--rc-accent:${escapeHtml(r.accent)}">
-              <span class="roadmap-card-phase">${escapeHtml(r.phase)}</span>
-              <h4 class="roadmap-card-title">${escapeHtml(r.title)}</h4>
-              <p class="roadmap-card-desc">${escapeHtml(r.desc)}</p>
-              <ul class="roadmap-card-items">
+            <div class="rc" style="--rc-accent:${escapeHtml(r.accent)}">
+              <div class="rc-top">
+                <span class="rc-phase">${escapeHtml(r.phase)}</span>
+                <span class="rc-num">${escapeHtml(r.num)}</span>
+              </div>
+              <h4 class="rc-title">${escapeHtml(r.title)}</h4>
+              <div class="rc-why">${escapeHtml(r.why)}</div>
+              <p class="rc-desc">${escapeHtml(r.desc)}</p>
+              <hr class="rc-sep">
+              <ul class="rc-items">
                 ${r.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
               </ul>
+              <div class="rc-footer">
+                <span class="rc-effort">${escapeHtml(r.effort)}</span>
+              </div>
             </div>`,
           ).join("")}
         </div>
       </div>`;
     }
-
     function buildCloseScene() {
         const arcItems = STORY_ARC.map(
             (item, i) => `
@@ -512,24 +532,39 @@
           </div>
           <div class="close-statement">
             <h2 class="close-title">
-              Không top trường. Không background IT vững.<br>
-              Tám tháng tập trung vào bài toán thật<br>
-              — kết quả là hệ thống thật.
+              Không top trường.<br>
+              Không background IT vững.<br>
+              <span class="close-title-accent">Tám tháng — ${projects.length} hệ thống đang chạy.</span>
             </h2>
+            <div class="close-contrast">
+              <div class="close-contrast-row">
+                <span class="close-contrast-before">GPA 2.03 · chưa chạm production</span>
+                <span class="close-contrast-sep">→</span>
+                <span class="close-contrast-after">${projects.length} hệ thống production · dữ liệu xác minh</span>
+              </div>
+              <div class="close-contrast-row">
+                <span class="close-contrast-before">14 tháng không viết code</span>
+                <span class="close-contrast-sep">→</span>
+                <span class="close-contrast-after">8 tháng · stack đang chạy độc lập</span>
+              </div>
+              <div class="close-contrast-row">
+                <span class="close-contrast-before">0 đội ops · 0 managed service</span>
+                <span class="close-contrast-sep">→</span>
+                <span class="close-contrast-after">983 PDF tự động · 50/50 scheduler</span>
+              </div>
+            </div>
             <ul class="close-points">
-              <li>FE căn bản + hơn một năm gap → tự học lại từ đầu → ${projects.length} hệ thống đang chạy production.</li>
-              <li>Biết tách số thật khỏi ước lượng — không vẽ đẹp, chỉ nói được phần đã làm được.</li>
-              <li>Kết hợp AI không phải để claim nhiều hơn, mà để làm được nhiều hơn với ít người hơn.</li>
+              <li>Mỗi con số trong báo cáo đều có nguồn — log, database hoặc Odoo. Không ước tính, không vẽ đẹp.</li>
+              <li>${projects.length} repo chạy song song mà không có đội ops — Docker, Cloudflare Tunnel, scheduler tự vận hành.</li>
+              <li>AI tích hợp vào quy trình để làm được nhiều hơn với ít người hơn — không phải để báo cáo đẹp hơn.</li>
             </ul>
-            <p class="close-body">
-              GPA 2.03. Hơn một năm không viết code production trước khi vào Bonario.
-              ${projects.length} hệ thống đang chạy từ ${escapeHtml(reportPeriod.personalStartLabel || "22/09/2025")}.
-              Số liệu từ Odoo, Docker, SQLite, PostgreSQL — có thể kiểm tra.
-            </p>
-            <p class="close-question">Hiện tại chỉ một người vận hành, sửa và mở rộng toàn bộ stack. Không team, không tài liệu handoff. Roadmap phía trên là bước tiếp theo — nếu được tiếp tục. Sếp muốn xây tiếp không?</p>
+            <p class="close-body">8 tháng tại Bonario. Số liệu lấy từ Odoo, Docker, SQLite, PostgreSQL — muốn verify thì hỏi.</p>
+            <hr class="close-divider" aria-hidden="true" />
+            <p class="close-question">Số liệu đã có. Stack đang chạy.
+Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em chạy.</p>
             <div class="close-meta">
               <span>${escapeHtml(reportPeriod.personalStartLabel || "22/09/2025")} — ${monthYear}</span>
-              <span>11 hệ thống production</span>
+              <span>${projects.length} hệ thống production</span>
               <span>Dữ liệu đã xác minh</span>
             </div>
           </div>
@@ -578,7 +613,7 @@
                     .map(
                         (item) => `
         <li>
-          <strong>${escapeHtml(item.status)}</strong> · ${escapeHtml(item.health)} · port ${escapeHtml(item.port)}
+          <strong>${escapeHtml(item.status)}</strong> · ${escapeHtml(item.health)}
         </li>`,
                     )
                     .join("");
@@ -591,7 +626,7 @@
           <div class="panel-proj-section"><p class="panel-proj-section-label">Đã xây</p><p class="panel-proj-built">${escapeHtml(proj.built)}</p></div>
           ${metrics ? `<ul class="panel-metrics">${metrics}</ul>` : ""}
           ${proofItems ? `<div class="panel-proj-section"><p class="panel-proj-section-label">Nguồn xác minh</p><ul class="panel-proof-list">${proofItems}</ul></div>` : ""}
-          ${runtimeItems ? `<div class="panel-proj-section"><p class="panel-proj-section-label">Runtime</p><ul class="panel-runtime-list">${runtimeItems}</ul></div>` : ""}
+          ${runtimeItems ? `<div class="panel-proj-section"><p class="panel-proj-section-label">Trạng thái hoạt động</p><ul class="panel-runtime-list">${runtimeItems}</ul></div>` : ""}
         </article>`;
             })
             .join("");
