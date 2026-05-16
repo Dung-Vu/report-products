@@ -1,29 +1,41 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#17201d" />
-    <meta name="description" content="8 tháng, 11 hệ thống production. Báo cáo tác động nội bộ Bonario — số liệu từ Odoo, Docker, PostgreSQL, SQLite." />
-    <meta property="og:title" content="Báo cáo tác động | Bonario" />
-    <meta property="og:description" content="8 tháng, 11 hệ thống production. Số liệu xác minh từ Odoo, Docker, PostgreSQL, SQLite." />
-    <meta property="og:type" content="website" />
-    <title>Báo cáo tác động | Bonario</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=20260514-13" />
-    <link rel="alternate icon" href="./favicon.ico?v=20260514-13" />
-    <link rel="stylesheet" href="./styles.css?v=20260517-4" />
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="./data/projects.js?v=20260515-1"></script>
-    <script src="./data/impact-evidence.js?v=20260515-1"></script>
-    <script src="./data/impact-projects.js?v=20260517-3"></script>
-    <script src="./app.js?v=20260517-9"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#17201d" />
+  <meta name="description"
+    content="8 tháng, 11 hệ thống production. Báo cáo tác động nội bộ Bonario — số liệu từ Odoo, Docker, PostgreSQL, SQLite." />
+  <meta property="og:title" content="Báo cáo tác động | Bonario" />
+  <meta property="og:description"
+    content="8 tháng, 11 hệ thống production. Số liệu xác minh từ Odoo, Docker, PostgreSQL, SQLite." />
+  <meta property="og:type" content="website" />
+  <title>Báo cáo tác động | Bonario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Preload critical Inter weights to reduce FOUT on large headlines -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=20260514-13" />
+  <link rel="alternate icon" href="./favicon.ico?v=20260514-13" />
+  <link rel="stylesheet" href="./styles.css?v=20260515-5" />
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="./data/projects.js?v=20260515-1"></script>
+  <script src="./data/impact-evidence.js?v=20260515-2"></script>
+  <script src="./data/impact-projects.js?v=20260515-2"></script>
+  <script src="./app.js?v=20260515-10"></script>
+</body>
+
 </html>

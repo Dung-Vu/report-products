@@ -35,19 +35,23 @@ Mỗi con số phải được gán nhãn rõ. Không viết số trần không 
 
 ## 3. Số liệu đã xác minh (Verified)
 
-Kỳ tính từ `22/09/2025`. Nguồn: Odoo read-only aggregate + Docker inspect + local DB.
+Kỳ tính từ `22/09/2025`. Nguồn: app logs, Cloudflare Analytics, local DB, Docker inspect và các aggregate Odoo chỉ khi số đó gắn trực tiếp với repo đang kể.
 
-### Quy mô vận hành công ty (bối cảnh, không phải thành tích cá nhân)
+### Usage signals trực tiếp từ repo/tool
 
 | Chỉ số | Số | Nguồn |
 |---|---|---|
-| Posted customer invoices | 31.96B VND | Odoo account.move read_group |
-| Confirmed/done sale orders | 33.54B VND | Odoo sale.order read_group |
-| Done stock pickings | 4,552 | Odoo stock.picking search_count |
-| Product templates tạo mới | 6,668 | Odoo product.template search_count |
+| Tra cứu giá & tồn kho | 1,837 | PostgreSQL search_audit + Cloudflare stock.bonstu.site |
+| Tính vải / SC production | 250 | Cloudflare curtain subdomain + app logs |
+| Runtime ổn định | 8 service | Docker runtime / health status |
+
+### Odoo aggregate còn giữ vì liên quan trực tiếp repo đang kể
+
+| Chỉ số | Số | Nguồn |
+|---|---|---|
+| Product templates tạo mới | 6,677 | Odoo product.template search_count |
 | BOM tạo mới | 3,539 | Odoo mrp.bom search_count |
-| Posted vendor bills | 2,707 | Odoo account.move read_group |
-| Purchase orders confirmed/done | 1,707 | Odoo purchase.order search_count |
+| Posted vendor bills | 2,709 | Odoo account.move read_group |
 
 ### Hệ thống đang chạy (Docker runtime)
 
@@ -59,7 +63,7 @@ Kỳ tính từ `22/09/2025`. Nguồn: Odoo read-only aggregate + Docker inspect
 | Hệ thống | Bằng chứng sử dụng | Ghi chú |
 |---|---|---|
 | ORD Price Lookup | **478 search audit** — queries có timestamp | Đây là số lần người khác (sales/SC) thật sự tra cứu — meaningful nhất |
-| Product Hub | 169 audit log, 50/50 workflow history success, daily_scan 801 issues | Automation đang chạy thật, không phải test |
+| Product Hub | 104 audit actions, 50/50 workflow history success, daily_scan ~800 issues | Automation đang chạy thật, không phải test |
 | Stock Management | **43 audit log** — operations thật | Bỏ "6 users" — tài khoản tạo không chứng minh gì. Audit log = hành động thật |
 | In Label PDF | 1 QC batch, 10 QC items | Nhỏ — chỉ dùng làm narrative, không claim adoption lớn |
 | Bills archive | **983 PDF + 13 JPG** trong `C:\Bills` | Volume chứng từ thật đang được phục vụ |
@@ -185,12 +189,12 @@ Không cần gì thêm. Scroll indicator xuống Scene 2.
 
 | Hiển thị | Nguồn |
 |---|---|
-| 31.96B VND — Posted invoices | Odoo account.move |
-| 6,668 sản phẩm mới | Odoo product.template |
-| 4,552 stock pickings | Odoo stock.picking |
+| 1,837 lượt tra cứu giá & onhand | PostgreSQL + Cloudflare |
+| 250 lượt truy cập repo tính vải | Cloudflare + app logs |
+| 8 service up khoảng 7 ngày | Docker runtime / health status |
 | 11 hệ thống đang chạy | Docker inspect |
 
-**Context text (2–3 câu):** Đây là quy mô vận hành công ty trong kỳ. Để phục vụ được quy mô đó, cần dữ liệu sạch, thao tác ít lỗi và không phụ thuộc người nhớ làm.
+**Context text (2–3 câu):** Đây là usage signal trực tiếp từ các repo/tool đang chạy, không phải số doanh thu hoặc quy mô chung của công ty. Mỗi số đại diện cho một lane khác nhau: tra cứu vận hành, giá trị cho SC và độ ổn định runtime.
 
 ### Scene 3 — 7 Node System Map
 
@@ -278,12 +282,12 @@ Cập nhật `data/impact-projects.js`.
 
 | Metric | Tại sao có giá trị |
 |---|---|
-| **ORD: 478 search audit** | Người khác đang dùng, không phải chỉ builder test |
-| **Odoo: 6,668 products, 3,539 BOM** | Quy mô dữ liệu mà Product Hub phải phục vụ |
+| **Lookup: 1,837 lượt tra cứu giá & onhand** | Gắn trực tiếp với nhu cầu phản hồi nhanh của sales/stock |
+| **Curtain: 250 lượt truy cập repo tính vải** | Gắn trực tiếp với giá trị cho team SC |
+| **Runtime: 8 service up khoảng 7 ngày** | Proof hệ thống đang ổn định dần, không chỉ chạy demo |
 | **Docker: 11 service up** | Proof hệ thống đang sống — không phải demo |
 | **Product Hub: 50/50 workflow success** | Automation chạy ổn định không cần can thiệp |
 | **Bills: 983 PDF** | Volume công việc thật đang được hệ thống phục vụ |
-| **Odoo: 4,552 stock pickings** | Quy mô vận hành kho mà Stock tools phải phục vụ |
 
 ### Không có giá trị / bỏ
 
@@ -297,7 +301,7 @@ Cập nhật `data/impact-projects.js`.
 ### Cần kiểm tra thêm (trước khi code)
 
 - [ ] **Auto Workflow:** Có log nào cho thấy webhook/scheduler đã fire bao nhiêu lần không? File log, database counter, hay stdout từ Docker?
-- [ ] **Product Hub:** `audit.db` có 169 entries — phân loại gì? (create, check, update, scan?) — biết được thì viết được "đã scan X lần" hoặc "đã check X product"
+- [ ] **Product Hub:** `audit.db` hiện cho thấy 104 real user actions và 98 data updates đã phân loại. Nếu muốn kể adoption sâu hơn thì cần map tiếp theo action type và actor.
 - [ ] **ORD Price Lookup:** 478 search audit có timestamp không? Nếu có, show được "đang được dùng đều đặn từ tháng X đến nay"
 - [ ] **Bills Server:** Có access log (Nginx/Flask) cho thấy request count không? Khác với số file trong folder
 
@@ -307,6 +311,6 @@ Cập nhật `data/impact-projects.js`.
 
 1. ~~Hook Scene 1~~ ✅ **Đã chốt Option A**
 2. **Auto Workflow log:** Có log execution count không? (file log, DB counter, hay Docker stdout?)
-3. **Product Hub audit.db:** 169 entries là các thao tác gì? (để viết "đã scan X lần" hay "đã check X product")
+3. **Product Hub audit.db:** 104 real user actions + 98 data updates cụ thể đang đại diện cho các thao tác nào? (để viết rõ adoption thay vì chỉ nói audit log)
 4. **ORD search_audit:** Có timestamp column không? (để show usage pattern theo thời gian)
 

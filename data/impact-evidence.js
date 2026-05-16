@@ -1,222 +1,400 @@
 window.impactEvidence = {
-  period: {
-    start: "2025-09-22",
-    endLabel: "May 2026",
-    personalStartLabel: "22/09/2025",
-    probationLabel: "2 tháng thử việc",
-    officialLabel: "Chính thức sau thử việc",
-  },
-  principles: [
-    "Chỉ dùng số liệu đã có nguồn hoặc ước lượng có công thức.",
-    "Doanh thu là bối cảnh quy mô vận hành, không claim là doanh thu cá nhân tạo ra.",
-    "Odoo được dùng read-only cho các aggregate: search_count, read_group, search_read, read.",
-  ],
-  companyScale: [
-    {
-      id: "posted-customer-invoices",
-      label: "Posted invoices",
-      value: 29975827993,
-      unit: "VND",
-      display: "29.97B",
-      count: 997,
-      description: "997 posted customer invoices từ 22/09/2025, tổng 29.97B VND.",
-      source: "Odoo account.move read_group — queried 2026-05-15",
-      confidence: "verified",
+    period: {
+        start: "2025-09-22",
+        endLabel: "May 2026",
+        personalStartLabel: "22/09/2025",
+        probationLabel: "2 tháng thử việc",
+        officialLabel: "Chính thức sau thử việc",
     },
-    {
-      id: "confirmed-sales",
-      label: "Confirmed sales",
-      value: 31416125977,
-      unit: "VND",
-      display: "31.4B",
-      count: 600,
-      description: "600 confirmed/done sales orders từ 22/09/2025, tổng 31.4B VND.",
-      source: "Odoo sale.order read_group — queried 2026-05-15",
-      confidence: "verified",
-    },
-    {
-      id: "products-created",
-      label: "Products created",
-      value: 6677,
-      unit: "records",
-      display: "6,677",
-      description: "Product templates được tạo từ 22/09/2025.",
-      source: "Odoo product.template search_count — queried 2026-05-15",
-      confidence: "verified",
-    },
-    {
-      id: "boms-created",
-      label: "BOM created",
-      value: 3539,
-      unit: "records",
-      display: "3,539",
-      description: "BOM được tạo từ 22/09/2025.",
-      source: "Odoo mrp.bom search_count — queried 2026-05-15",
-      confidence: "verified",
-    },
-    {
-      id: "stock-pickings",
-      label: "Done pickings",
-      value: 4811,
-      unit: "records",
-      display: "4,811",
-      description: "Stock pickings đã hoàn tất trong kỳ.",
-      source: "Odoo stock.picking search_count — queried 2026-05-15",
-      confidence: "verified",
-    },
-    {
-      id: "vendor-bills",
-      label: "Vendor bills",
-      value: 2709,
-      unit: "records",
-      display: "2,709",
-      description: "Posted vendor bills trong kỳ.",
-      source: "Odoo account.move search_count — queried 2026-05-15",
-      confidence: "verified",
-    },
-  ],
-  // queried 2026-05-15 via Odoo JSON-RPC
-  monthly: {
-    customerInvoices: [
-      ["Sep 2025", 58, 1414639589],
-      ["Oct 2025", 121, 2155168731],
-      ["Nov 2025", 168, 12241180981],
-      ["Dec 2025", 149, 3351716759],
-      ["Jan 2026", 167, 3817883965],
-      ["Feb 2026", 100, 2031529393],
-      ["Mar 2026", 102, 1941305202],
-      ["Apr 2026", 103, 2466776220],
-      ["May 2026", 29, 555627153],
+    principles: [
+        "Chỉ dùng số liệu đã có nguồn hoặc ước lượng có công thức.",
+        "Doanh thu là bối cảnh quy mô vận hành, không claim là doanh thu cá nhân tạo ra.",
+        "Odoo được dùng read-only cho các aggregate: search_count, read_group, search_read, read.",
     ],
-    productsCreated: [
-      ["Sep 2025", 99],
-      ["Oct 2025", 230],
-      ["Nov 2025", 230],
-      ["Dec 2025", 262],
-      ["Jan 2026", 574],
-      ["Feb 2026", 108],
-      ["Mar 2026", 237],
-      ["Apr 2026", 4864],
-      ["May 2026", 73],
+    companyScale: [
+        {
+            id: "price-stock-lookup",
+            label: "Tra cứu giá & tồn kho",
+            value: 1837,
+            unit: "interactions",
+            display: "1,837",
+            description:
+                "Lượt tra cứu phục vụ phản hồi giá và onhand: Price Lookup search audit + truy vấn stock.bonstu.site.",
+            source: "PostgreSQL search_audit + Cloudflare stock.bonstu.site — queried 2026-05-15",
+            confidence: "verified",
+        },
+        {
+            id: "fabric-calculator-usage",
+            label: "Tính vải / SC production",
+            value: 250,
+            unit: "requests",
+            display: "250",
+            description:
+                "Lượt truy cập repo tính vải và production calculator; trong đó có 5 POST xử lý production PDF.",
+            source: "Cloudflare curtain subdomain + app logs — queried 2026-05-15",
+            confidence: "verified",
+        },
+        {
+            id: "runtime-stability",
+            label: "Runtime ổn định",
+            value: 8,
+            unit: "services",
+            display: "8 service",
+            description:
+                "8 service đã chạy liên tục khoảng 7 ngày; các service còn lại cũng đang up/healthy tại thời điểm kiểm tra.",
+            source: "Docker runtime / health status — queried 2026-05-15",
+            confidence: "verified",
+        },
     ],
-    bomsCreated: [
-      ["Sep 2025", 14],
-      ["Oct 2025", 80],
-      ["Nov 2025", 18],
-      ["Dec 2025", 16],
-      ["Jan 2026", 103],
-      ["Feb 2026", 2902],
-      ["Mar 2026", 79],
-      ["Apr 2026", 292],
-      ["May 2026", 35],
+    repoRelevantOdoo: [
+        {
+            id: "products-created",
+            label: "Product templates tạo mới",
+            value: 6677,
+            unit: "records",
+            display: "6,677",
+            description: "Product templates được tạo từ 22/09/2025.",
+            source: "Odoo product.template search_count — queried 2026-05-15",
+            confidence: "verified",
+        },
+        {
+            id: "boms-created",
+            label: "BOM tạo mới",
+            value: 3539,
+            unit: "records",
+            display: "3,539",
+            description: "BOM được tạo từ 22/09/2025.",
+            source: "Odoo mrp.bom search_count — queried 2026-05-15",
+            confidence: "verified",
+        },
+        {
+            id: "vendor-bills",
+            label: "Posted vendor bills",
+            value: 2709,
+            unit: "records",
+            display: "2,709",
+            description: "Posted vendor bills trong kỳ.",
+            source: "Odoo account.move search_count — queried 2026-05-15",
+            confidence: "verified",
+        },
     ],
-  },
-  runtime: [
-    { service: "action-product", status: "Up 6 days", health: "healthy", port: "5004" },
-    { service: "bonario-stock", status: "Up", health: "healthy", port: "8080 / 4001 / 5432" },
-    { service: "ord-price-lookup", status: "Up 7 days", health: "healthy", port: "5173 / 5001 / 5433" },
-    { service: "in-label-pdf", status: "Up 7 days", health: "healthy", port: "5003" },
-    { service: "curtain-calculator", status: "Up", health: "healthy", port: "5000 / 8000" },
-    { service: "visual-brief-builder", status: "Up 7 days", health: "running", port: "9001" },
-    { service: "op-round-robin", status: "Up 7 days", health: "running", port: "worker" },
-    { service: "bills-server", status: "Up 7 days", health: "running", port: "8089" },
-    { service: "tunnel-master", status: "Up 7 days", health: "healthy", port: "Cloudflare" },
-    { service: "auto-workflow", status: "Up 7 days", health: "running", port: "5050" },
-  ],
-  adoption: {
-    "bonario-product-hub": [
-      // data/audit.db: 104 real user actions (2026-04-04 to 2026-05-11)
-      // Actions: checker.update_cost (34), bom.process (32), pricelist.update (32), ai.chat.request (4)
-      { label: "Audit log (user actions)", value: "104", source: "SQLite data/audit.db — queried 2026-05-15", confidence: "verified" },
-      // workflow_history.json: 50 entries, all success: Stock Monitor (42) + Daily Product Scan (8), 2026-05-07 to 2026-05-15
-      { label: "Workflow history", value: "50/50 success", source: "workflow_history.json — queried 2026-05-15", confidence: "verified" },
-      { label: "Daily scan", value: "~800 issues found", source: "workflow message (801/800/799)", confidence: "verified" },
-      { label: "Stock monitor", value: "20 variants watched", source: "workflow message", confidence: "verified" },
+    // queried 2026-05-15 via Odoo JSON-RPC
+    monthly: {},
+    runtime: [
+        {
+            service: "action-product",
+            status: "Up 6 days",
+            health: "healthy",
+            port: "5004",
+        },
+        {
+            service: "bonario-stock",
+            status: "Up",
+            health: "healthy",
+            port: "8080 / 4001 / 5432",
+        },
+        {
+            service: "ord-price-lookup",
+            status: "Up 7 days",
+            health: "healthy",
+            port: "5173 / 5001 / 5433",
+        },
+        {
+            service: "in-label-pdf",
+            status: "Up 7 days",
+            health: "healthy",
+            port: "5003",
+        },
+        {
+            service: "curtain-calculator",
+            status: "Up",
+            health: "healthy",
+            port: "5000 / 8000",
+        },
+        {
+            service: "visual-brief-builder",
+            status: "Up 7 days",
+            health: "running",
+            port: "9001",
+        },
+        {
+            service: "op-round-robin",
+            status: "Up 7 days",
+            health: "running",
+            port: "worker",
+        },
+        {
+            service: "bills-server",
+            status: "Up 7 days",
+            health: "running",
+            port: "8089",
+        },
+        {
+            service: "tunnel-master",
+            status: "Up 7 days",
+            health: "healthy",
+            port: "Cloudflare",
+        },
+        {
+            service: "action-local-bridge",
+            status: "Up 7 days",
+            health: "running",
+            port: "5504",
+        },
+        {
+            service: "auto-workflow",
+            status: "Up 7 days",
+            health: "running",
+            port: "5050",
+        },
     ],
-    "ord-price-lookup": [
-      // search_audit: 478 total, date 2025-12-30 to 2026-05-08, types: ai_chat (375), sale (103)
-      { label: "Search audit total", value: "478", source: "PostgreSQL search_audit — queried 2026-05-15", confidence: "verified" },
-      { label: "  — sale searches", value: "103", source: "PostgreSQL search_audit WHERE search_type='sale'", confidence: "verified" },
-      { label: "  — ai_chat searches", value: "375", source: "PostgreSQL search_audit WHERE search_type='ai_chat'", confidence: "verified" },
-      { label: "Admin products", value: "481", source: "PostgreSQL products", confidence: "verified" },
-      { label: "Sales products", value: "789", source: "sale_products (563) + sale_products_v2 (226)", confidence: "verified" },
-    ],
-    "bonario-stock-management": [
-      { label: "Users", value: "6", source: "PostgreSQL users", confidence: "verified" },
-      { label: "Audit log", value: "43", source: "PostgreSQL audit_log", confidence: "verified" },
-      { label: "Stocktake sessions", value: "0", source: "PostgreSQL stocktake_sessions", confidence: "verified" },
-    ],
-    "in-label-pdf": [
-      // Container logs show QC batches #5, #6, #7 saved (3+3+10 items) in current session
-      { label: "QC batches (visible in logs)", value: "7+", source: "Docker logs in-label-pdf — 2026-05-15", confidence: "verified" },
-      { label: "QC items (latest batch)", value: "10", source: "Docker logs: Saved batch #7: 10 items", confidence: "verified" },
-      { label: "API searches", value: "10+", source: "Docker logs: tìm kiếm phiếu theo tên", confidence: "verified" },
-    ],
-    "bills-server": [
-      // C:\Bills: 998 total files, 201MB, date range 2025-12 to 2026-05
-      { label: "PDF archive", value: "983", source: "C:\\Bills file count — 2026-05-15", confidence: "verified" },
-      { label: "Image files", value: "13", source: "C:\\Bills file count", confidence: "verified" },
-      { label: "Total archive size", value: "~201MB", source: "C:\\Bills total bytes", confidence: "verified" },
-      // Monthly: 2025-12: 3, 2026-01: 312, 2026-02: 156, 2026-03: 222, 2026-04: 266, 2026-05: 24 (ongoing)
-    ],
-    "auto-workflow": [
-      // health endpoint: conducted.ticked = 2, routes = 9, ZNS tokens auto-refreshed daily
-      { label: "Webhook routes live", value: "9", source: "auto-workflow /health — 2026-05-15", confidence: "verified" },
-      { label: "Meetings auto-ticked", value: "2", source: "health: conducted.last_result.ticked", confidence: "verified" },
-      { label: "ZNS auto-refresh", value: "active (ORD + BON)", source: "health: zns_tokens", confidence: "verified" },
-    ],
-  },
-  costModel: {
-    baselineHoursPerMonth: 176,
-    overheadMultiplier: 1.28,
-    note:
-      "Full company cost = gross salary benchmark x overhead multiplier. Benchmarks are assumptions until approved.",
-    roles: [
-      { role: "Product Data Operator", grossMonthly: 18000000, fullCost: 23040000 },
-      { role: "Pricing Data Admin", grossMonthly: 20000000, fullCost: 25600000 },
-      { role: "Warehouse Admin", grossMonthly: 16000000, fullCost: 20480000 },
-      { role: "Document Processing Assistant", grossMonthly: 15000000, fullCost: 19200000 },
-      { role: "Automation / Integration Engineer", grossMonthly: 35000000, fullCost: 44800000 },
-      { role: "Creative Operations Assistant", grossMonthly: 18000000, fullCost: 23040000 },
-      { role: "Internal Tools Developer", grossMonthly: 40000000, fullCost: 51200000 },
-    ],
-  },
-  roleEquivalents: [
-    {
-      role: "Product Data Operator",
-      supportedBy: ["Bonario Product Hub"],
-      work: "Kiểm tra BOM, vendor, cost, giá, description và dữ liệu sản phẩm bất thường.",
-      confidence: "estimated",
+    cloudflareTraffic: {
+        total: 6305,
+        display: "6,305",
+        period: "Sep 2025 – May 2026",
+        source: "Cloudflare Analytics — queried 2026-05-15",
+        confidence: "verified",
+        breakdown: [
+            { subdomain: "action.bonstu.site", requests: 4570 },
+            { subdomain: "stock.bonstu.site", requests: 1359 },
+            { subdomain: "curtain", requests: 250 },
+            { subdomain: "in-label-pdf", requests: 98 },
+            { subdomain: "price.bonstu.site", requests: 17 },
+            { subdomain: "auto-workflow", requests: 11 },
+        ],
+        note: "Tổng 6 subdomain: 4570+1359+250+98+17+11 = 6,305.",
     },
-    {
-      role: "Pricing Data Admin",
-      supportedBy: ["ORD Price Lookup"],
-      work: "Tra cứu giá, chuẩn hóa dữ liệu giá, quản trị cost/fabric/config và audit search.",
-      confidence: "estimated",
+    adoption: {
+        "bonario-product-hub": [
+            // data/audit.db: 104 real user actions (2026-04-04 to 2026-05-11)
+            // Actions: checker.update_cost (34), bom.process (32), pricelist.update (32), ai.chat.request (4)
+            // Note: 34+32+32+4 = 102 categorized; 2 records unclassified — total queried = 104
+            {
+                label: "Audit log (user actions)",
+                value: "104",
+                source: "SQLite data/audit.db — queried 2026-05-15",
+                confidence: "verified",
+            },
+            // workflow_history.json: 50 entries, all success: Stock Monitor (42) + Daily Product Scan (8), 2026-05-07 to 2026-05-15
+            {
+                label: "Workflow history",
+                value: "50/50 success",
+                source: "workflow_history.json — queried 2026-05-15",
+                confidence: "verified",
+            },
+            {
+                label: "Daily scan",
+                value: "~800 issues found",
+                source: "workflow message (801/800/799)",
+                confidence: "verified",
+            },
+            {
+                label: "Stock monitor",
+                value: "20 variants watched",
+                source: "workflow message",
+                confidence: "verified",
+            },
+        ],
+        "ord-price-lookup": [
+            // search_audit: 478 total, date 2025-12-30 to 2026-05-08, types: ai_chat (375), sale (103)
+            {
+                label: "Search audit total",
+                value: "478",
+                source: "PostgreSQL search_audit — queried 2026-05-15",
+                confidence: "verified",
+            },
+            {
+                label: "  — sale searches",
+                value: "103",
+                source: "PostgreSQL search_audit WHERE search_type='sale'",
+                confidence: "verified",
+            },
+            {
+                label: "  — ai_chat searches",
+                value: "375",
+                source: "PostgreSQL search_audit WHERE search_type='ai_chat'",
+                confidence: "verified",
+            },
+            {
+                label: "Admin products",
+                value: "481",
+                source: "PostgreSQL products",
+                confidence: "verified",
+            },
+            {
+                label: "Sales products",
+                value: "789",
+                source: "sale_products (563) + sale_products_v2 (226)",
+                confidence: "verified",
+            },
+        ],
+        "bonario-stock-management": [
+            {
+                label: "Users",
+                value: "6",
+                source: "PostgreSQL users",
+                confidence: "verified",
+            },
+            {
+                label: "Audit log",
+                value: "43",
+                source: "PostgreSQL audit_log",
+                confidence: "verified",
+            },
+            {
+                label: "Stocktake sessions",
+                value: "0",
+                source: "PostgreSQL stocktake_sessions",
+                confidence: "verified",
+            },
+        ],
+        "in-label-pdf": [
+            // Container logs show QC batches #5, #6, #7 saved (3+3+10 items) in current session
+            {
+                label: "QC batches (visible in logs)",
+                value: "7+",
+                source: "Docker logs in-label-pdf — 2026-05-15",
+                confidence: "verified",
+            },
+            {
+                label: "QC items (latest batch)",
+                value: "10",
+                source: "Docker logs: Saved batch #7: 10 items",
+                confidence: "verified",
+            },
+            {
+                label: "API searches",
+                value: "10+",
+                source: "Docker logs: tìm kiếm phiếu theo tên",
+                confidence: "verified",
+            },
+        ],
+        "bills-server": [
+            // C:\Bills: 998 total files, 201MB, date range 2025-12 to 2026-05
+            {
+                label: "PDF archive",
+                value: "983",
+                source: "C:\\Bills file count — 2026-05-15",
+                confidence: "verified",
+            },
+            {
+                label: "Image files",
+                value: "13",
+                source: "C:\\Bills file count",
+                confidence: "verified",
+            },
+            {
+                label: "Total archive size",
+                value: "~201MB",
+                source: "C:\\Bills total bytes",
+                confidence: "verified",
+            },
+            // Monthly: 2025-12: 3, 2026-01: 312, 2026-02: 156, 2026-03: 222, 2026-04: 266, 2026-05: 24 (ongoing)
+        ],
+        "auto-workflow": [
+            // health endpoint: conducted.ticked = 2, routes = 9, ZNS tokens auto-refreshed daily
+            {
+                label: "Webhook routes live",
+                value: "9",
+                source: "auto-workflow /health — 2026-05-15",
+                confidence: "verified",
+            },
+            {
+                label: "Meetings auto-ticked",
+                value: "2",
+                source: "health: conducted.last_result.ticked",
+                confidence: "verified",
+            },
+            {
+                label: "ZNS auto-refresh",
+                value: "active (ORD + BON)",
+                source: "health: zns_tokens",
+                confidence: "verified",
+            },
+        ],
     },
-    {
-      role: "Warehouse Admin",
-      supportedBy: ["Stock Management", "In Label PDF"],
-      work: "Tra cứu tồn kho, label phiếu nhập, QC batch, export và kiểm soát thao tác kho.",
-      confidence: "estimated",
+    costModel: {
+        baselineHoursPerMonth: 176,
+        overheadMultiplier: 1.28,
+        note: "Full company cost = gross salary benchmark x overhead multiplier. Benchmarks are assumptions until approved.",
+        roles: [
+            {
+                role: "Product Data Operator",
+                grossMonthly: 18000000,
+                fullCost: 23040000,
+            },
+            {
+                role: "Pricing Data Admin",
+                grossMonthly: 20000000,
+                fullCost: 25600000,
+            },
+            {
+                role: "Warehouse Admin",
+                grossMonthly: 16000000,
+                fullCost: 20480000,
+            },
+            {
+                role: "Document Processing Assistant",
+                grossMonthly: 15000000,
+                fullCost: 19200000,
+            },
+            {
+                role: "Automation / Integration Engineer",
+                grossMonthly: 35000000,
+                fullCost: 44800000,
+            },
+            {
+                role: "Creative Operations Assistant",
+                grossMonthly: 18000000,
+                fullCost: 23040000,
+            },
+            {
+                role: "Internal Tools Developer",
+                grossMonthly: 40000000,
+                fullCost: 51200000,
+            },
+        ],
     },
-    {
-      role: "Document Processing Assistant",
-      supportedBy: ["OP Round Robin", "Bills Server"],
-      work: "Lưu trữ bill, xử lý chứng từ, PDF, VAT và truy cập archive nội bộ.",
-      confidence: "estimated",
-    },
-    {
-      role: "Automation / Integration Engineer",
-      supportedBy: ["Auto Workflow", "Tunnel Master", "Action Local Bridge"],
-      work: "Webhook, scheduler, routing, tunnel, publish service và tích hợp hệ thống.",
-      confidence: "estimated",
-    },
-    {
-      role: "Creative Operations Assistant",
-      supportedBy: ["Visual Content Production"],
-      work: "Chuẩn hóa brief, prompt, reference image và vòng lặp tạo/chỉnh ảnh.",
-      confidence: "estimated",
-    },
-  ],
+    roleEquivalents: [
+        {
+            role: "Product Data Operator",
+            supportedBy: ["Bonario Product Hub"],
+            work: "Kiểm tra BOM, vendor, cost, giá, description và dữ liệu sản phẩm bất thường.",
+            confidence: "estimated",
+        },
+        {
+            role: "Pricing Data Admin",
+            supportedBy: ["ORD Price Lookup"],
+            work: "Tra cứu giá, chuẩn hóa dữ liệu giá, quản trị cost/fabric/config và audit search.",
+            confidence: "estimated",
+        },
+        {
+            role: "Warehouse Admin",
+            supportedBy: ["Stock Management", "In Label PDF"],
+            work: "Tra cứu tồn kho, label phiếu nhập, QC batch, export và kiểm soát thao tác kho.",
+            confidence: "estimated",
+        },
+        {
+            role: "Document Processing Assistant",
+            supportedBy: ["OP Round Robin", "Bills Server"],
+            work: "Lưu trữ bill, xử lý chứng từ, PDF, VAT và truy cập archive nội bộ.",
+            confidence: "estimated",
+        },
+        {
+            role: "Automation / Integration Engineer",
+            supportedBy: [
+                "Auto Workflow",
+                "Tunnel Master",
+                "Action Local Bridge",
+            ],
+            work: "Webhook, scheduler, routing, tunnel, publish service và tích hợp hệ thống.",
+            confidence: "estimated",
+        },
+        {
+            role: "Creative Operations Assistant",
+            supportedBy: ["Visual Content Production"],
+            work: "Chuẩn hóa brief, prompt, reference image và vòng lặp tạo/chỉnh ảnh.",
+            confidence: "estimated",
+        },
+    ],
 };

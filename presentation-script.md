@@ -18,14 +18,19 @@ Cách nói:
 
 Thông điệp chính:
 
-> Em không claim các con số này là doanh thu cá nhân. Em dùng chúng để chứng minh quy mô vận hành đủ lớn để tự động hóa tạo ra giá trị thật.
+> Em không dùng doanh thu hay quy mô công ty để claim thành tích. Em dùng usage signal từ các repo đang chạy để chứng minh hệ thống có người dùng và có tác động thật.
 
 Nhấn mạnh:
 
-- 31.96B VND posted invoices.
-- 6,668 product templates tạo từ 22/09/2025.
+- 1,837 lượt tra cứu giá và onhand.
+- 250 lượt truy cập repo tính vải / production calculator.
+- 8 service đã chạy liên tục khoảng 7 ngày, các service còn lại cũng đang up/healthy tại thời điểm kiểm tra.
+
+Số Odoo vẫn giữ làm proof phụ khi cần hỏi sâu:
+
+- 6,677 product templates tạo từ 22/09/2025.
 - 3,539 BOM tạo từ 22/09/2025.
-- 4,552 stock pickings done.
+- 2,709 posted vendor bills trong kỳ.
 
 ## 3. Vấn đề
 
@@ -102,7 +107,7 @@ Nhấn mạnh:
 
 - Không đưa secret.
 - Không đưa dữ liệu khách hàng cấp dòng.
-- Chỉ đưa aggregate Odoo, trạng thái vận hành, audit/adoption trace.
+- Chỉ đưa trạng thái vận hành, audit/adoption trace và usage signal có nguồn.
 
 ## 9. Đề xuất cuối
 
@@ -127,6 +132,7 @@ Câu chốt đề xuất:
 ## Cách dùng report
 
 - Mở `index.html`.
-- Bắt đầu từ `#/opening`.
-- Dùng phím mũi tên phải/trái hoặc nút `Trước` / `Tiếp`.
-- Khi sếp hỏi số liệu, bật `Mở bằng chứng`.
+- Scene 1 là hook mở đầu, sau đó cuộn xuống.
+- Dùng dot nav để nhảy scene khi cần.
+- Ở scene hệ thống, click từng node để mở side panel.
+- Khi sếp hỏi số liệu, đọc phần `Bằng chứng xác minh` và `Nguồn xác minh` ngay trong UI.

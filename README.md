@@ -1,74 +1,72 @@
-# Bonario Project Report
+# Bonario Impact Report
 
-Static report for documenting completed Bonario projects, their business value,
-operating status, technical context, source repos, and next priorities.
+Static report nội bộ để trình bày tác động vận hành của 11 hệ thống Bonario.
 
-## Current Report Structure
+Repo hiện tại không phải dashboard CRUD kiểu cũ. Bản đang dùng là một report
+cinematic 4 scene viết bằng HTML/CSS/vanilla JS, mở trực tiếp trong browser.
 
-- Fixed top navigation.
-- Opening summary with readiness score and headline KPIs.
-- KPI cards for total projects, live status, high-impact scope, and quality.
-- Summary strip for business coverage and operating signals.
-- Reading-focus section for the projects that should be read first.
-- Narrative section that explains the overall project landscape.
-- Value map grouped by business function and operating area.
-- Operating model section showing data sources, business apps, automation layer,
-  and management value.
-- Technical/source section for Docker runtime, data layer, integrations, and
-  Markdown report coverage.
-- Analysis section with category coverage, reading priority, and items that need
-  more detail before handover.
-- Search, category filter, and impact filter.
-- Responsive project cards.
-- Clickable project detail modal with outcomes, stack, source repo, report file,
-  runtime URL, missing references, score, and report notes.
-- Narrative fields per project: what it is, how it works, key functions,
-  practical usage, business value, and performance impact.
-- Impact/effort matrix.
-- Summary table with mapped Markdown report file for each project.
-- Completion plan for content, data sync, and deployment.
-- Scroll reveal, hover states, active navigation, and animated dashboard visuals.
+## Current Structure
+
+- `scene-0`: hook mở đầu.
+- `scene-1`: counter output + usage signals từ log/database/Cloudflare.
+- `scene-2`: system map 7 nhóm nghiệp vụ, click mở side panel chi tiết.
+- `scene-3`: close statement + roadmap.
+- Dot navigation chỉ hiện từ scene 2 trở đi.
+- `impactEvidence` đã được nối vào UI để hiện source/proof thay vì nằm chết trong data.
 
 ## Run
 
-Open `index.html` directly in a browser.
+Mở [index.html](./index.html) trực tiếp trong browser.
 
-No package install is required for the current version.
+Không cần `npm install`.
+
+## Files
+
+- `index.html`: shell static.
+- `app.js`: render 4 scene, interaction, side panel, counter animation.
+- `styles.css`: toàn bộ layout, motion, responsive styling.
+- `data/impact-projects.js`: narrative ngắn cho 11 project đang đưa lên report.
+- `data/impact-evidence.js`: bằng chứng verified, usage signals, adoption, runtime.
+- `data/projects.js`: narrative dài hơn theo từng project, hiện chưa phải nguồn render chính.
+- `*.md`: hồ sơ từng project, plan, script trình bày, review prompt.
 
 ## Data Contract
 
-The UI reads project data from `data/projects.js` via `window.reportProjects`.
-The current dataset was shaped from the Markdown reports in this folder. The
-data sync step can replace the array with parsed data from Markdown,
-JSON, CSV, Notion export, or any internal project source.
+### `window.impactProjects`
 
-Expected project fields:
+Nguồn chính cho UI story.
+
+Expected fields:
 
 - `id`
 - `name`
-- `category`
-- `status`
-- `quarter`
-- `impact`
-- `effort`
-- `owner`
-- `duration`
-- `stack`
-- `summary`
-- `outcomes`
-- `narrative.what`
-- `narrative.operation`
-- `narrative.features`
-- `narrative.practicalUse`
-- `narrative.businessValue`
-- `narrative.performance`
-- `metrics.delivery`
-- `metrics.adoption`
-- `metrics.quality`
+- `chapter`
+- `hook`
+- `problem`
+- `built`
+- `verifiedMetrics[]`
 
-## Completion Plan
+### `window.impactEvidence`
 
-1. Source mapping: collect source files, screenshots, metrics, and owner approvals.
-2. Data sync: replace `data/projects.js` with generated project data.
-3. QA: review responsive layout, missing fields, and report wording.
-4. Deploy: host as static files on Vercel, Netlify, GitHub Pages, or internal hosting.
+Nguồn proof/evidence.
+
+Expected sections:
+
+- `period`
+- `companyScale[]`: hiện dùng làm usage signal cards để giữ tương thích với app runtime.
+- `repoRelevantOdoo[]`: Odoo aggregates còn giữ vì liên quan trực tiếp repo, không render thành usage card chính.
+- `runtime[]`
+- `adoption{}`
+- `costModel`
+- `roleEquivalents[]`
+
+### `window.reportProjects`
+
+Dataset narrative chi tiết hơn theo từng project. Hữu ích cho sync nội dung,
+nhưng app hiện tại không render dataset này ra scene chính.
+
+## Notes
+
+- Số liệu plan/script phải bám `data/impact-evidence.js` và `data/impact-projects.js`.
+- Nếu refresh số Odoo/Docker, cập nhật data trước rồi mới sửa script/presentation.
+- Không đưa secret, customer line data, hoặc credential vào report.
