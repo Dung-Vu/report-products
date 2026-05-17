@@ -9,6 +9,7 @@
 **Người xem:** Giám đốc công ty — không cần biết kỹ thuật, cần biết giá trị.
 
 **Mục tiêu của report:** Trả lời 3 câu hỏi mà giám đốc đang thật sự nghĩ:
+
 1. Người này đang làm gì ngoài việc code theo yêu cầu?
 2. Những thứ đã làm đang giúp ích gì thật sự cho công ty?
 3. Có đủ lý do để giao thêm trách nhiệm không?
@@ -23,35 +24,35 @@
 
 Mỗi con số phải được gán nhãn rõ. Không viết số trần không có nguồn.
 
-| Nhãn | Ý nghĩa |
-|---|---|
-| **Verified** | Có nguồn từ Odoo, database, Docker log, file system, audit log |
-| **Estimated** | Có công thức + assumption rõ ràng, đã được xác nhận |
-| **Narrative** | Nhận định định tính, không gán số tiền/số người |
+| Nhãn          | Ý nghĩa                                                        |
+| ------------- | -------------------------------------------------------------- |
+| **Verified**  | Có nguồn từ Odoo, database, Docker log, file system, audit log |
+| **Estimated** | Có công thức + assumption rõ ràng, đã được xác nhận            |
+| **Narrative** | Nhận định định tính, không gán số tiền/số người                |
 
 **Quan trọng về giá trị quy đổi nhân sự:** Chưa có benchmark lương thật của công ty và chưa đo được thời gian trước/sau cho từng tác vụ. Vì vậy **không claim "tương đương X người"** trong lần này. Chỉ viết "hỗ trợ/thay thế việc của các vai trò" với danh sách cụ thể.
 
 ---
 
-## 3. Số liệu đã xác minh (Verified)
+## 3. CÁC SỐ LIỆU ĐÁNG CHÚ Ý (Verified)
 
 Kỳ tính từ `22/09/2025`. Nguồn: app logs, Cloudflare Analytics, local DB, Docker inspect và các aggregate Odoo chỉ khi số đó gắn trực tiếp với repo đang kể.
 
 ### Usage signals trực tiếp từ repo/tool
 
-| Chỉ số | Số | Nguồn |
-|---|---|---|
-| Tra cứu giá & tồn kho | 1,837 | PostgreSQL search_audit + Cloudflare stock.bonstu.site |
-| Tính vải / SC production | 250 | Cloudflare curtain subdomain + app logs |
-| Runtime ổn định | 8 service | Docker runtime / health status |
+| Chỉ số                   | Số        | Nguồn                                                  |
+| ------------------------ | --------- | ------------------------------------------------------ |
+| Tra cứu giá & tồn kho    | 1,837     | PostgreSQL search_audit + Cloudflare stock.bonstu.site |
+| Tính vải / SC production | 250       | Cloudflare curtain subdomain + app logs                |
+| Runtime ổn định          | 8 service | Docker runtime / health status                         |
 
 ### Odoo aggregate còn giữ vì liên quan trực tiếp repo đang kể
 
-| Chỉ số | Số | Nguồn |
-|---|---|---|
+| Chỉ số                    | Số    | Nguồn                              |
+| ------------------------- | ----- | ---------------------------------- |
 | Product templates tạo mới | 6,677 | Odoo product.template search_count |
-| BOM tạo mới | 3,539 | Odoo mrp.bom search_count |
-| Posted vendor bills | 2,709 | Odoo account.move read_group |
+| BOM tạo mới               | 3,539 | Odoo mrp.bom search_count          |
+| Posted vendor bills       | 2,709 | Odoo account.move read_group       |
 
 ### Hệ thống đang chạy (Docker runtime)
 
@@ -60,13 +61,13 @@ Kỳ tính từ `22/09/2025`. Nguồn: app logs, Cloudflare Analytics, local DB,
 
 ### Adoption trace (local database — verified)
 
-| Hệ thống | Bằng chứng sử dụng | Ghi chú |
-|---|---|---|
-| ORD Price Lookup | **478 search audit** — queries có timestamp | Đây là số lần người khác (sales/SC) thật sự tra cứu — meaningful nhất |
-| Product Hub | 104 audit actions, 50/50 workflow history success, daily_scan ~800 issues | Automation đang chạy thật, không phải test |
-| Stock Management | **43 audit log** — operations thật | Bỏ "6 users" — tài khoản tạo không chứng minh gì. Audit log = hành động thật |
-| In Label PDF | 1 QC batch, 10 QC items | Nhỏ — chỉ dùng làm narrative, không claim adoption lớn |
-| Bills archive | **983 PDF + 13 JPG** trong `C:\Bills` | Volume chứng từ thật đang được phục vụ |
+| Hệ thống         | Bằng chứng sử dụng                                                        | Ghi chú                                                                      |
+| ---------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| ORD Price Lookup | **478 search audit** — queries có timestamp                               | Đây là số lần người khác (sales/SC) thật sự tra cứu — meaningful nhất        |
+| Product Hub      | 104 audit actions, 50/50 workflow history success, daily_scan ~800 issues | Automation đang chạy thật, không phải test                                   |
+| Stock Management | **43 audit log** — operations thật                                        | Bỏ "6 users" — tài khoản tạo không chứng minh gì. Audit log = hành động thật |
+| In Label PDF     | 1 QC batch, 10 QC items                                                   | Nhỏ — chỉ dùng làm narrative, không claim adoption lớn                       |
+| Bills archive    | **983 PDF + 13 JPG** trong `C:\Bills`                                     | Volume chứng từ thật đang được phục vụ                                       |
 
 **Lưu ý về Stock Management:** Cần kiểm tra thêm audit_log có phân biệt được thao tác nào là production use vs. setup/test không (xem timestamp, user_id, action type). Nếu không phân biệt được thì chỉ dùng narrative.
 
@@ -108,14 +109,14 @@ Scene 4 — CLOSE / ĐỀ NGHỊ
 
 ### Mechanics cần implement (vanilla JS + CSS, không framework)
 
-| Mechanic | Cách làm cụ thể |
-|---|---|
-| Nav ẩn Scene 1 | `body[data-scene="1"] .topbar { opacity: 0; pointer-events: none }` — toggle class khi scroll qua threshold |
+| Mechanic         | Cách làm cụ thể                                                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Nav ẩn Scene 1   | `body[data-scene="1"] .topbar { opacity: 0; pointer-events: none }` — toggle class khi scroll qua threshold          |
 | Animated counter | `IntersectionObserver` → khi `.stat-number` vào viewport, chạy `requestAnimationFrame` đếm từ 0 → target trong ~1.2s |
-| Slide-in panel | Default `transform: translateX(100%)` → toggle `.is-open` → `transform: translateX(0)`, `transition: 380ms ease` |
-| Scene transition | `opacity: 0 + translateY(20px)` → `opacity: 1 + translateY(0)`, duration 350ms |
-| Node hover | CSS hover: `max-height` hoặc opacity transition, không JS |
-| Scroll nav | Dot indicator (4 chấm) thay vì text route — nhỏ gọn, không tiết lộ cấu trúc |
+| Slide-in panel   | Default `transform: translateX(100%)` → toggle `.is-open` → `transform: translateX(0)`, `transition: 380ms ease`     |
+| Scene transition | `opacity: 0 + translateY(20px)` → `opacity: 1 + translateY(0)`, duration 350ms                                       |
+| Node hover       | CSS hover: `max-height` hoặc opacity transition, không JS                                                            |
+| Scroll nav       | Dot indicator (4 chấm) thay vì text route — nhỏ gọn, không tiết lộ cấu trúc                                          |
 
 ### Điều KHÔNG làm
 
@@ -161,6 +162,7 @@ Câu chuyện không phải là "em biết nhiều kỹ thuật". Câu chuyện 
 ### Cách đưa vào report mà không "tự vỗ ngực"
 
 Không kể trực tiếp. Để người xem tự suy ra từ timeline:
+
 - Scene 1: Hook bắt đầu bằng sự tương phản (xem Mục 5.1)
 - Scene 2 (Scale): Show quy mô Odoo trước → người xem hiểu context
 - Scene 3 (System Map): Show 11 hệ thống đang chạy → người xem tự nhẩm "ai làm cái này?"
@@ -173,12 +175,14 @@ Không kể trực tiếp. Để người xem tự suy ra từ timeline:
 **Nguyên tắc:** Ít chữ nhất có thể. Không giải thích. Không option card.
 
 **Hook đã chốt (Option A):**
+
 ```
 "Hai năm không chạm một dòng code.
 Tám tháng sau — 11 hệ thống đang chạy."
 ```
 
 Sub-line (nhỏ hơn, fade in sau):
+
 ```
 "Từ 22/09/2025 — Bonario."
 ```
@@ -187,28 +191,29 @@ Không cần gì thêm. Scroll indicator xuống Scene 2.
 
 ### Scene 2 — Scale (4 số Verified)
 
-| Hiển thị | Nguồn |
-|---|---|
-| 1,837 lượt tra cứu giá & onhand | PostgreSQL + Cloudflare |
-| 250 lượt truy cập repo tính vải | Cloudflare + app logs |
-| 8 service up khoảng 7 ngày | Docker runtime / health status |
-| 11 hệ thống đang chạy | Docker inspect |
+| Hiển thị                        | Nguồn                          |
+| ------------------------------- | ------------------------------ |
+| 1,837 lượt tra cứu giá & onhand | PostgreSQL + Cloudflare        |
+| 250 lượt truy cập repo tính vải | Cloudflare + app logs          |
+| 8 service up khoảng 7 ngày      | Docker runtime / health status |
+| 11 hệ thống đang chạy           | Docker inspect                 |
 
 **Context text (2–3 câu):** Đây là usage signal trực tiếp từ các repo/tool đang chạy, không phải số doanh thu hoặc quy mô chung của công ty. Mỗi số đại diện cho một lane khác nhau: tra cứu vận hành, giá trị cho SC và độ ổn định runtime.
 
 ### Scene 3 — 7 Node System Map
 
-| # | Nhóm | Project |
-|---|---|---|
-| 1 | Dữ liệu sản phẩm | Product Hub |
-| 2 | Sales / Giá | ORD Price Lookup |
-| 3 | Kho / Stock | Stock Management + In Label PDF |
-| 4 | Chứng từ | Bills Server + OP Round Robin |
-| 5 | Tự động hóa | Auto Workflow |
-| 6 | Hạ tầng | Tunnel Master + Action Local Bridge |
-| 7 | Sản xuất / Creative | Curtain Size + Visual Brief Builder |
+| #   | Nhóm                | Project                             |
+| --- | ------------------- | ----------------------------------- |
+| 1   | Dữ liệu sản phẩm    | Product Hub                         |
+| 2   | Sales / Giá         | ORD Price Lookup                    |
+| 3   | Kho / Stock         | Stock Management + In Label PDF     |
+| 4   | Chứng từ            | Bills Server + OP Round Robin       |
+| 5   | Tự động hóa         | Auto Workflow                       |
+| 6   | Hạ tầng             | Tunnel Master + Action Local Bridge |
+| 7   | Sản xuất / Creative | Curtain Size + Visual Brief Builder |
 
 Khi click node → slide-in panel hiện:
+
 - **Vấn đề** (2 câu)
 - **Đã xây** (2 câu)
 - **Bằng chứng** (chỉ Verified, không estimate)
@@ -216,19 +221,22 @@ Khi click node → slide-in panel hiện:
 
 ### Scene 4 — Close
 
-**Nguyên tắc viết scene này:** Không xin vai trò. Không đề cập lương thưởng. Không đặt câu hỏi trực tiếp. Mục tiêu là để giám đốc tự đặt câu hỏi: *"Nếu người này không ở đây, ai đang làm những việc này?"*
+**Nguyên tắc viết scene này:** Không xin vai trò. Không đề cập lương thưởng. Không đặt câu hỏi trực tiếp. Mục tiêu là để giám đốc tự đặt câu hỏi: _"Nếu người này không ở đây, ai đang làm những việc này?"_
 
 3 điểm kết luận — viết theo kiểu statement, không phải đề nghị:
+
 1. Từ FE + 2 năm không code → tự học lại từ đầu → 11 hệ thống đang chạy production
 2. Biết tách số thật khỏi ước lượng — không vẽ đẹp, chỉ nói được phần đã làm được
 3. Kết hợp AI không phải để claim nhiều hơn, mà để làm được nhiều hơn với ít người hơn
 
 **Câu kết — không kết bằng đề nghị, kết bằng câu hỏi ngược:**
+
 ```
 "Những hệ thống này không tự nhiên có. Và hiện tại, chỉ có một người biết cách vận hành,
 mở rộng và sửa chúng khi cần. Sếp đang nghĩ gì?"
 ```
-*Hoặc không cần câu kết — kết bằng silence: chỉ hiện logo + ngày bắt đầu 22/09/2025.*
+
+_Hoặc không cần câu kết — kết bằng silence: chỉ hiện logo + ngày bắt đầu 22/09/2025._
 
 ---
 
@@ -245,7 +253,7 @@ Product Hub · Stock Management · ORD Price Lookup · In Label PDF · Auto Work
 
 ## 7. Phase implementation
 
-### Phase 1 — UX Rebuild *(ưu tiên cao nhất)*
+### Phase 1 — UX Rebuild _(ưu tiên cao nhất)_
 
 Viết lại `app.js` + `styles.css` theo 4-scene architecture.
 
@@ -280,23 +288,23 @@ Cập nhật `data/impact-projects.js`.
 
 ### Có giá trị kể chuyện (nên dùng)
 
-| Metric | Tại sao có giá trị |
-|---|---|
-| **Lookup: 1,837 lượt tra cứu giá & onhand** | Gắn trực tiếp với nhu cầu phản hồi nhanh của sales/stock |
-| **Curtain: 250 lượt truy cập repo tính vải** | Gắn trực tiếp với giá trị cho team SC |
-| **Runtime: 8 service up khoảng 7 ngày** | Proof hệ thống đang ổn định dần, không chỉ chạy demo |
-| **Docker: 11 service up** | Proof hệ thống đang sống — không phải demo |
-| **Product Hub: 50/50 workflow success** | Automation chạy ổn định không cần can thiệp |
-| **Bills: 983 PDF** | Volume công việc thật đang được hệ thống phục vụ |
+| Metric                                       | Tại sao có giá trị                                       |
+| -------------------------------------------- | -------------------------------------------------------- |
+| **Lookup: 1,837 lượt tra cứu giá & onhand**  | Gắn trực tiếp với nhu cầu phản hồi nhanh của sales/stock |
+| **Curtain: 250 lượt truy cập repo tính vải** | Gắn trực tiếp với giá trị cho team SC                    |
+| **Runtime: 8 service up khoảng 7 ngày**      | Proof hệ thống đang ổn định dần, không chỉ chạy demo     |
+| **Docker: 11 service up**                    | Proof hệ thống đang sống — không phải demo               |
+| **Product Hub: 50/50 workflow success**      | Automation chạy ổn định không cần can thiệp              |
+| **Bills: 983 PDF**                           | Volume công việc thật đang được hệ thống phục vụ         |
 
 ### Không có giá trị / bỏ
 
-| Metric | Tại sao bỏ |
-|---|---|
+| Metric                    | Tại sao bỏ                                                |
+| ------------------------- | --------------------------------------------------------- |
 | Stock Management: 6 users | Tài khoản tạo ≠ sử dụng thật. Không có timestamp truy cập |
-| `sale_products_v2`: 226 | Chỉ là version khác của table cùng data — trùng lặp |
-| `stocktake_sessions`: 0 | Số 0 không kể được gì tích cực |
-| QC items: 10 | Quá nhỏ để claim adoption. Chỉ dùng narrative |
+| `sale_products_v2`: 226   | Chỉ là version khác của table cùng data — trùng lặp       |
+| `stocktake_sessions`: 0   | Số 0 không kể được gì tích cực                            |
+| QC items: 10              | Quá nhỏ để claim adoption. Chỉ dùng narrative             |
 
 ### Cần kiểm tra thêm (trước khi code)
 
@@ -313,4 +321,3 @@ Cập nhật `data/impact-projects.js`.
 2. **Auto Workflow log:** Có log execution count không? (file log, DB counter, hay Docker stdout?)
 3. **Product Hub audit.db:** 104 real user actions + 98 data updates cụ thể đang đại diện cho các thao tác nào? (để viết rõ adoption thay vì chỉ nói audit log)
 4. **ORD search_audit:** Có timestamp column không? (để show usage pattern theo thời gian)
-

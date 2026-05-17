@@ -62,7 +62,6 @@
             eyebrow: "01 · Sales / Stock",
             summary: "Tra tồn kho và giá ORD từ một nguồn dữ liệu rõ ràng",
             projectIds: ["bonario-stock-management", "ord-price-lookup"],
-            countLabel: "2 hệ thống liên quan",
             accent: "#0369a1",
         },
         {
@@ -70,39 +69,35 @@
             label: "Bonario Hub",
             eyebrow: "02 · Product Ops",
             summary:
-                "Hub trung tâm cho dữ liệu sản phẩm Bonario: checker, BOM, bảng giá, mô tả, audit log và daily scan.",
+                "Hub trung tâm cho dữ liệu sản phẩm Bonario: checker, BOM, bảng giá, mô tả, audit log và daily scan. Bao gồm checklist tạo sản phẩm mới với đầy đủ BOM, cost, giá bán, vendor và description.",
             projectIds: ["bonario-product-hub"],
-            countLabel: "1 hub vận hành",
             accent: "#0f766e",
         },
         {
             id: "curtain-tools",
-            label: "Rèm",
+            label: "Công cụ tính toán cho Rèm Cửa",
             eyebrow: "03 · Production",
             summary:
-                "Tính vải, kích thước rèm, xử lý Excel/PDF sản xuất và xuất layout cho xưởng.",
+                "Tính vải, kích thước rèm, xử lý Excel/PDF sản xuất và xuất layout cho xưởng tiết kiệm thời gian cho OP xử lý đơn hàng rèm.",
             projectIds: ["calculate-curtain-size"],
-            countLabel: "1 công cụ sản xuất",
             accent: "#0891b2",
         },
         {
             id: "odoo-pdf-documents",
-            label: "Phiếu in PDF từ Odoo",
+            label: "Công cụ in Label nhập xuất hàng hóa",
             eyebrow: "04 · Documents",
             summary:
-                "Phiếu in label/PDF từ Odoo và kho lưu trữ chứng từ VAT/PDF để back office tra cứu nhanh hơn.",
+                "In label PDF cho phiếu nhập kho, tra cứu phiếu và QC batch kết nối trực tiếp dữ liệu Odoo.",
             projectIds: ["bills-server", "in-label-pdf"],
-            countLabel: "2 luồng chứng từ",
             accent: "#7c3aed",
         },
         {
             id: "sc-op-in-charge",
-            label: "Tối ưu quy trình hoạt động SC",
+            label: "Phân công OP Inchare tự động",
             eyebrow: "05 · SC Ops",
             summary:
-                "Phân công OP in charge, giảm thao tác chia việc thủ công và giúp trách nhiệm xử lý rõ ràng hơn.",
+                "Phân công OP in charge tự động, giảm thao tác chia việc thủ công và giúp trách nhiệm xử lý rõ ràng hơn.",
             projectIds: ["op-round-robin"],
-            countLabel: "1 automation",
             accent: "#be123c",
         },
         {
@@ -117,22 +112,20 @@
         },
         {
             id: "marketing-image-gen",
-            label: "MKT gen hình",
+            label: "Công cụ gen hình ảnh cho MKT qua Codex",
             eyebrow: "07 · Marketing AI",
             summary:
                 "Chuẩn hóa cách tạo brief hình AI để marketing ra ảnh nhanh hơn, đúng brand hơn và ít phụ thuộc vào kỹ năng prompt của từng người.",
             projectIds: ["visual-brief-builder"],
-            countLabel: "1 creative tool",
             accent: "#c026d3",
         },
         {
             id: "odoo-product-creation",
-            label: "Tạo sản phẩm Odoo",
+            label: "Đồng bộ & clean dữ liệu sản phẩm Bonario",
             eyebrow: "08 · Product Data",
             summary:
-                "Checklist và workflow để sản phẩm mới trên Odoo có đủ BOM, cost, giá bán, vendor và description cho các phòng ban dùng ngay.",
+                "Làm sạch và chuẩn hóa ~16.000 sản phẩm Bonario từ dữ liệu thô của nhà cung cấp: tên gốc, khổ vải, bảng giá và pricelist cho Odoo.",
             projectIds: ["bonario-product-hub"],
-            countLabel: "1 quy trình dữ liệu",
             accent: "#0f766e",
         },
         {
@@ -142,7 +135,6 @@
             summary:
                 "Theo dõi tiến độ đơn cho khách hàng và cho Sales, dựa trên Order State trong báo giá để biết đơn đang ở bước nào.",
             projectIds: ["auto-workflow"],
-            countLabel: "1 luồng tracking",
             accent: "#ea580c",
         },
         {
@@ -152,17 +144,15 @@
             summary:
                 "Định hướng đối soát RFID cho kho: ghi nhận, reconcile và giảm lệch tồn khi hàng di chuyển qua nhiều bước.",
             projectIds: ["auto-workflow", "bonario-stock-management"],
-            countLabel: "1 hướng mở rộng",
             accent: "#0d9488",
         },
         {
             id: "stock-escalation",
-            label: "Escalate thông báo hàng",
+            label: "Thông báo thông tin insight từ Odoo vào Teams",
             eyebrow: "11 · Alerting",
             summary:
-                "Cảnh báo hàng hết stock, discontinue và đẩy thông báo tới Teams để xử lý trước khi người dùng phải hỏi.",
+                "Đẩy thông báo insight hàng tồn, discontinue và cảnh báo từ Odoo vào Teams để các phòng ban xử lý kịp thời.",
             projectIds: ["auto-workflow", "bonario-product-hub"],
-            countLabel: "1 luồng cảnh báo",
             accent: "#dc2626",
         },
     ];
@@ -376,8 +366,13 @@
         },
     };
 
-    const HOOK_NET_PROFIT_MILLION = 150;
     const HOOK_COUNTERS = [
+        {
+            value: 11,
+            suffix: "",
+            label: "Projects",
+            sub: "Đã triển khai và đang hoạt động",
+        },
         {
             value: 8,
             suffix: " tháng",
@@ -387,14 +382,8 @@
         {
             value: 6305,
             suffix: "",
-            label: "Lượt truy cập tổng domain",
+            label: "Số lượt sử dụng các công cụ",
             sub: "Cloudflare Analytics · 6 subdomain · Sep 2025 – May 2026",
-        },
-        {
-            value: 100,
-            suffix: "%",
-            label: "Khả năng hoàn thành",
-            sub: "50/50 lượt tự động hoàn tất đúng kỳ vọng",
         },
     ];
 
@@ -565,7 +554,7 @@
         return `
       <section class="evidence-strip is-collapsed" id="evidence-strip" aria-label="Bằng chứng đã xác minh">
         <div class="evidence-strip-header">
-          <p class="eyebrow-label">Số liệu đã xác minh</p>
+          <p class="eyebrow-label">CÁC SỐ LIỆU ĐÁNG CHÚ Ý</p>
           <h3 class="evidence-strip-title">Những tín hiệu cho thấy hệ thống đang được dùng thật.</h3>
           <p class="evidence-strip-note">Các số này lấy từ log truy cập, database ứng dụng và dữ liệu Odoo. Đây là bằng chứng vận hành, tách riêng khỏi phần ước tính ROI.</p>
         </div>
@@ -602,10 +591,11 @@
         return `
       <section class="scene scene-hook" id="scene-0" aria-label="Mở đầu">
         <div class="hook-inner">
-          <div class="hook-profit" aria-label="Lợi nhuận ròng ước tính">
-            <strong class="hook-profit-num" data-hook-target="${HOOK_NET_PROFIT_MILLION}" data-suffix="tr+">0</strong>
-            <span>Lợi nhuận từ 11 project đã và đang triển khai và hoạt động</span>
+          <div class="hook-text">
+            <h1 class="hook-line1">Báo cáo phát triển</h1>
+            <h1 class="hook-line2">sản phẩm / hệ thống</h1>
           </div>
+          <p class="hook-sub" style="text-transform:none;letter-spacing:0;font-weight:500;font-size:clamp(14px,1.6vw,18px);max-width:680px;color:rgba(232,240,236,0.72);">11 projects đã triển khai và đang hoạt động. Giúp các phòng ban trong công ty hoạt động tốt hơn nhờ công nghệ, tiết kiệm giờ làm việc, quản lý hệ thống thông tin của công ty bên cạnh Odoo tốt hơn.</p>
           <div class="hook-stats">
             ${HOOK_COUNTERS.map(
                 (c) => `
@@ -669,23 +659,9 @@
     }
 
     function buildCounterScene() {
-        const cards = SCALE_CARDS.map(
-            (c) => `
-      <article class="counter-card${c.large ? " counter-large" : ""}">
-        <span class="counter-eyebrow">${escapeHtml(c.label)}</span>
-        <strong class="counter-num" data-target="${c.value}" data-suffix="${escapeHtml(c.suffix || "")}">0</strong>
-        <small class="counter-source">${escapeHtml(c.sub)}</small>
-      </article>`,
-        ).join("");
         return `
       <section class="scene scene-scale" id="scene-2" aria-label="Quy mô vận hành">
         <div class="scale-inner">
-          <div class="scale-header">
-            <p class="eyebrow-label">Tổng quan dữ liệu</p>
-            <h2>4 chỉ số chính để nhìn nhanh hiệu quả vận hành.</h2>
-            <p>Phần này chỉ giữ các con số tổng hợp quan trọng: lợi nhuận ròng, lượt truy cập domain, tỉ lệ hoàn thành và số workflow đang chạy.</p>
-          </div>
-          <div class="counter-grid">${cards}</div>
           ${buildMonthlyChart()}
           ${buildEvidenceScale()}
         </div>
@@ -717,7 +693,7 @@
         <span class="node-eyebrow">${escapeHtml(g.eyebrow)}</span>
         <strong class="node-label">${escapeHtml(g.label)}</strong>
         <p class="node-summary">${escapeHtml(g.summary)}</p>
-        <small class="node-count">${escapeHtml(g.countLabel || `${g.projectIds.length} hệ thống`)}</small>
+
       </button>`,
         ).join("");
     }
@@ -728,7 +704,7 @@
         <div class="system-inner">
           <header class="system-header">
             <p class="eyebrow-label">Project breakdown</p>
-            <h2 class="system-title">11 Project đã được thực hiện trong 8 tháng qua.</h2>
+            <h2 class="system-title">11 Projects đã triển khai và đang hoạt động trong 8 tháng qua.</h2>
             <p class="system-hint">Bấm vào từng mục để xem chi tiết →</p>
           </header>
           <div class="node-map" role="list">${buildNodeMap()}</div>
@@ -2014,12 +1990,12 @@
             <div>
               <p class="pd-section-label">Cost</p>
               <h3>Máy RFID, tem barcode và thời gian build script.</h3>
-              <p>Chi phí nằm ở phần thiết bị đọc RFID, vật tư barcode và thời gian triển khai automation.</p>
+              <p>Chi phí nằm ở phần thiết bị đọc RFID, vật tư barcode và thời gian triển khai automation. Ngoài ra, trước đây script automation chạy trên n8n với chi phí hosting hàng tháng bên ngoài.</p>
             </div>
             <div>
-              <p class="pd-section-label">P&amp;L</p>
-              <h3>Giảm thao tác thủ công, tăng độ chính xác CTL.</h3>
-              <p>Project giúp đảm bảo tính chính xác, giảm thiểu catalog bị mất không lý do và tạo báo cáo đều hơn cho hệ thống Odoo.</p>
+              <p class="pd-section-label">P&amp;L — Loại bỏ chi phí n8n</p>
+              <h3>Không còn chi phí vận hành n8n hàng tháng.</h3>
+              <p>Script automation đã được chuyển từ n8n về chạy trực tiếp trên máy chủ nội bộ. Toàn bộ logic điều phối RFID, xử lý báo cáo và Telegram automation hiện tự vận hành trên server của công ty — không cần thuê host ngoài, không phụ thuộc vào platform third-party và không có phí duy trì hàng tháng.</p>
             </div>
           </section>
 
@@ -2098,75 +2074,6 @@
                 <p>Nếu một người làm thủ công, không có nhiều kiến thức IT và không đủ kỹ năng xử lý các rào cản anti-bot từ website nhà cung cấp, toàn bộ công việc ước tính mất khoảng <strong>4,5 tháng</strong>. Workflow đã rút ngắn được khoảng <strong>4 tháng</strong>, với lợi ích ròng ước tính khoảng <strong>40 triệu VND</strong>.</p>
               </div>
             </section>
-          </div>
-        </article>
-
-        <article class="pd-card pd-card-product-data" style="--pd-accent:#0f766e">
-          <header class="pd-head">
-            <p class="pd-kicker">08.2 · Product Checklist</p>
-            <h2 class="pd-title">Tạo sản phẩm Odoo</h2>
-            <p class="pd-subtitle">Xây dựng checklist và các thông số cần thiết để khi sản phẩm được tạo trên Odoo, sản phẩm đã có đủ giá trị quan trọng cho SC, Sales, kế toán và các phòng ban khác làm việc dễ hơn.</p>
-          </header>
-
-          <div class="pd-stats">
-            <div class="pd-stat"><strong>3 ngày</strong><span>xây dựng scripts và hoàn thành nội dung hướng dẫn cần thiết</span></div>
-            <div class="pd-stat"><strong>+1.066,67%</strong><span>ROI ước tính sau 4 tháng triển khai</span></div>
-            <div class="pd-stat"><strong>420h</strong><span>thời gian thủ công được rút ngắn, tương đương khoảng 21 triệu VND</span></div>
-          </div>
-
-          <div class="pd-body">
-            <section>
-              <p class="pd-section-label">Checklist dữ liệu cần có</p>
-              <div class="pd-timeline-grid">
-                <div class="pd-timeline-item"><strong>BOM</strong><span>Thành phần và số lượng cấu thành sản phẩm rõ ràng hơn.</span></div>
-                <div class="pd-timeline-item"><strong>Cost</strong><span>Giá cost và vendor dễ tra, giảm phụ thuộc vào file Excel tổng.</span></div>
-                <div class="pd-timeline-item"><strong>Giá bán</strong><span>Sales có giá bán và thông tin cần thiết để làm báo giá nhanh hơn.</span></div>
-                <div class="pd-timeline-item"><strong>Description</strong><span>Mô tả sản phẩm đầy đủ hơn để các phòng ban dùng chung một dữ liệu.</span></div>
-              </div>
-            </section>
-
-            <div class="pd-two-col">
-              <div class="pd-box">
-                <p class="pd-section-label">People</p>
-                <h3>5 người đóng góp vào quy trình.</h3>
-                <ul class="pd-list">
-                  <li>Uyên hỗ trợ thông tin cần thiết.</li>
-                  <li>Anh Hà giải thích rõ những giá trị BOM, cost và các dữ liệu liên quan.</li>
-                  <li>Chị Mai Hồng đề xuất ý tưởng config sẵn các giá trị cần thiết khi nhảy ra phiếu cấu thành sản phẩm.</li>
-                  <li>Chị Vân Anh hỗ trợ thông tin description của sản phẩm.</li>
-                  <li>Dũng xây dựng workflow và cải tiến từ những ý tưởng đó.</li>
-                </ul>
-              </div>
-              <div class="pd-box">
-                <p class="pd-section-label">Cost</p>
-                <h3>3 ngày xây dựng scripts và hoàn thiện nội dung.</h3>
-                <p>Chi phí chính là thời gian xây dựng workflow, scripts và checklist để người mới cũng nắm được sản phẩm cần đủ thông tin gì trước khi các phòng ban khác sử dụng.</p>
-              </div>
-            </div>
-
-            <div class="pd-wide-box pd-roi-box">
-              <p class="pd-section-label">P&amp;L / ROI</p>
-              <h3>+1.066,67% · ước tính lợi ích khoảng 21 triệu VND sau 4 tháng.</h3>
-              <p>Project giảm lỗi xoay quanh dữ liệu sản phẩm từ phòng ban SC. Quy trình rút ngắn khoảng <strong>2 giờ/ngày</strong> cho việc check và thêm thủ công thành phần/số lượng BOM, giảm khoảng <strong>30 phút/ngày</strong> cho Sales khi điền giá bán và description cho báo giá, và giảm khoảng <strong>1 giờ/ngày</strong> cho việc tìm cost/vendor từ file Excel tổng.</p>
-              <p>Tổng thời gian thủ công giảm khoảng <strong>3 giờ 30 phút/ngày</strong>. Sau 4 tháng triển khai, lợi ích ước tính khoảng <strong>420 giờ</strong>, tương đương <strong>21 triệu VND</strong>.</p>
-            </div>
-
-            <div class="pd-analysis">
-              <div class="pd-strength">
-                <p class="pd-section-label">Điểm mạnh</p>
-                <ul class="pd-list">
-                  <li>Product có đầy đủ thông tin cần thiết cho các phòng ban.</li>
-                  <li>Data clean, dễ bảo trì và người mới dễ tiếp cận.</li>
-                  <li>Quy trình và checklist rõ ràng, đầy đủ các bước.</li>
-                </ul>
-              </div>
-              <div class="pd-weakness">
-                <p class="pd-section-label">Điểm yếu</p>
-                <ul class="pd-list">
-                  <li>Vẫn còn khoảng 20% số sản phẩm chưa được config đầy đủ thông tin.</li>
-                </ul>
-              </div>
-            </div>
           </div>
         </article>`;
     }
@@ -2488,15 +2395,6 @@
                 { threshold: 0.4 },
             ).observe(hook);
         }
-        const scale = document.getElementById("scene-2");
-        if (scale) {
-            new IntersectionObserver(
-                (entries) => {
-                    if (entries[0].isIntersecting) startCounters();
-                },
-                { threshold: 0.3 },
-            ).observe(scale);
-        }
         document.querySelectorAll(".scene").forEach((scene) => {
             new IntersectionObserver(
                 (entries) => {
@@ -2511,6 +2409,16 @@
                 { threshold: 0.5 },
             ).observe(scene);
         });
+        // Start counters when scale scene enters viewport
+        const scaleScene = document.getElementById("scene-2");
+        if (scaleScene) {
+            new IntersectionObserver(
+                (entries) => {
+                    if (entries[0].isIntersecting) startCounters();
+                },
+                { threshold: 0.3 },
+            ).observe(scaleScene);
+        }
         // Entrance animations: add scene-in when scene enters viewport
         document.querySelectorAll(".scene").forEach((scene) => {
             new IntersectionObserver(
@@ -2589,7 +2497,7 @@
         }
         app.innerHTML = `
       ${buildDotNav()}
-      <main id="story-scroll" aria-label="Báo cáo tác động Bonario">
+      <main id="story-scroll" aria-label="Báo cáo phát triển hệ thống">
         ${buildHookScene()}
         ${buildSystemScene()}
         ${buildCounterScene()}
@@ -2608,10 +2516,21 @@
         });
     }
 
+    let isInitialLoad = true;
+
     function renderApp() {
         const app = document.getElementById("app");
         if (!app) return;
         const route = parseRoute();
+        // On fresh page load, if #/breakdown is in URL, clear it and start at hook
+        if (isInitialLoad) {
+            isInitialLoad = false;
+            if (route.name === "home" && route.scrollToScene === 1) {
+                history.replaceState(null, "", window.location.pathname);
+                renderHome(app, { name: "home" });
+                return;
+            }
+        }
         if (route.name === "project") {
             app.innerHTML = buildProjectRoute(route.groupId);
             window.scrollTo({ top: 0, behavior: "auto" });

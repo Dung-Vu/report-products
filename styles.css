@@ -585,11 +585,15 @@ h2 {
     background: var(--surface-strong);
     border: 1px solid var(--line);
     border-radius: 16px;
-    box-shadow: 0 32px 80px rgba(17, 26, 23, 0.22), 0 4px 20px rgba(17, 26, 23, 0.12);
+    box-shadow:
+        0 32px 80px rgba(17, 26, 23, 0.22),
+        0 4px 20px rgba(17, 26, 23, 0.12);
     transform: translate(-50%, calc(-50% + 20px));
     opacity: 0;
     pointer-events: none;
-    transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease;
+    transition:
+        transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 260ms ease;
     overscroll-behavior: contain;
 }
 
@@ -751,8 +755,17 @@ h2 {
     min-height: 100svh;
     padding: 34px 0 82px;
     background:
-        radial-gradient(circle at 18% 0%, rgba(15, 118, 110, 0.12), transparent 32%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(239, 244, 242, 0.96) 44%, #edf3f0),
+        radial-gradient(
+            circle at 18% 0%,
+            rgba(15, 118, 110, 0.12),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(239, 244, 242, 0.96) 44%,
+            #edf3f0
+        ),
         var(--bg);
 }
 
@@ -812,7 +825,11 @@ h2 {
 
 .detail-hero-kicker span:first-child {
     color: var(--detail-accent, var(--accent));
-    border-color: color-mix(in srgb, var(--detail-accent, var(--accent)) 28%, transparent);
+    border-color: color-mix(
+        in srgb,
+        var(--detail-accent, var(--accent)) 28%,
+        transparent
+    );
 }
 
 .detail-title {
@@ -871,7 +888,15 @@ h2 {
     padding: 26px 30px 22px 34px;
     border-bottom: 1px solid var(--soft-line);
     background:
-        linear-gradient(135deg, color-mix(in srgb, var(--detail-accent, var(--accent)) 9%, transparent), transparent 58%),
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--detail-accent, var(--accent)) 9%,
+                transparent
+            ),
+            transparent 58%
+        ),
         rgba(255, 255, 255, 0.72);
 }
 
@@ -935,9 +960,21 @@ h2 {
 
 .detail-info-card-wide {
     background:
-        linear-gradient(135deg, color-mix(in srgb, var(--detail-accent, var(--accent)) 8%, transparent), transparent 70%),
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--detail-accent, var(--accent)) 8%,
+                transparent
+            ),
+            transparent 70%
+        ),
         rgba(255, 255, 255, 0.78);
-    border-color: color-mix(in srgb, var(--detail-accent, var(--accent)) 20%, transparent);
+    border-color: color-mix(
+        in srgb,
+        var(--detail-accent, var(--accent)) 20%,
+        transparent
+    );
 }
 
 .detail-info-card-strength {
@@ -993,8 +1030,16 @@ h2 {
 }
 
 .detail-text-block-strong {
-    background: color-mix(in srgb, var(--detail-accent, var(--accent)) 7%, white);
-    border-color: color-mix(in srgb, var(--detail-accent, var(--accent)) 20%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--detail-accent, var(--accent)) 7%,
+        white
+    );
+    border-color: color-mix(
+        in srgb,
+        var(--detail-accent, var(--accent)) 20%,
+        transparent
+    );
 }
 
 .detail-section-label {
@@ -1152,7 +1197,11 @@ h2 {
     border: 1px solid rgba(14, 63, 56, 0.13);
     border-radius: 16px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 251, 249, 0.86)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(248, 251, 249, 0.86)
+        ),
         #fff;
     box-shadow: 0 24px 70px rgba(17, 26, 23, 0.1);
 }
@@ -1165,7 +1214,11 @@ h2 {
     border-bottom: 1px solid rgba(17, 26, 23, 0.08);
     background:
         linear-gradient(135deg, rgba(15, 118, 110, 0.11), transparent 58%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.34));
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.78),
+            rgba(255, 255, 255, 0.34)
+        );
 }
 
 .stock-detail-index {
@@ -1435,7 +1488,11 @@ h2 {
     margin: 18px 30px 0;
     padding: 26px;
     background:
-        linear-gradient(135deg, rgba(15, 118, 110, 0.14), rgba(37, 99, 235, 0.07)),
+        linear-gradient(
+            135deg,
+            rgba(15, 118, 110, 0.14),
+            rgba(37, 99, 235, 0.07)
+        ),
         #f8fbf9;
 }
 
@@ -1513,7 +1570,11 @@ h2 {
     border: 1px solid rgba(3, 105, 161, 0.16);
     border-radius: 16px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 252, 0.9)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.94),
+            rgba(246, 250, 252, 0.9)
+        ),
         #fff;
     box-shadow: 0 20px 56px rgba(15, 23, 42, 0.08);
 }
@@ -1771,7 +1832,11 @@ h2 {
     margin: 16px 30px 0;
     padding: 22px;
     background:
-        linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(3, 105, 161, 0.05)),
+        linear-gradient(
+            135deg,
+            rgba(220, 38, 38, 0.1),
+            rgba(3, 105, 161, 0.05)
+        ),
         #fff;
 }
 
@@ -1909,7 +1974,6 @@ h2 {
     object-position: top center;
 }
 
-
 /* ── SHARED PROJECT DETAIL CARDS (.pd-*) ───────────────────────────────── */
 
 .pd-card {
@@ -1917,14 +1981,24 @@ h2 {
     border: 1px solid rgba(17, 26, 23, 0.12);
     border-top: 3px solid var(--pd-accent, #0f766e);
     border-radius: 16px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(248,251,249,0.88)), #fff;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.94),
+            rgba(248, 251, 249, 0.88)
+        ),
+        #fff;
     box-shadow: 0 20px 56px rgba(17, 26, 23, 0.09);
 }
 
 .pd-head {
     padding: 28px 32px 24px;
     border-bottom: 1px solid rgba(17, 26, 23, 0.08);
-    background: linear-gradient(135deg, color-mix(in srgb, var(--pd-accent, #0f766e) 10%, transparent), transparent 55%);
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--pd-accent, #0f766e) 10%, transparent),
+        transparent 55%
+    );
 }
 
 .pd-kicker {
@@ -2226,10 +2300,15 @@ h2 {
 
 .pd-market-estimate {
     padding: 22px 24px;
-    border: 1px solid color-mix(in srgb, var(--pd-accent, #0f766e) 18%, transparent);
+    border: 1px solid
+        color-mix(in srgb, var(--pd-accent, #0f766e) 18%, transparent);
     border-radius: 12px;
     background:
-        linear-gradient(135deg, color-mix(in srgb, var(--pd-accent, #0f766e) 8%, transparent), transparent 65%),
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--pd-accent, #0f766e) 8%, transparent),
+            transparent 65%
+        ),
         rgba(255, 255, 255, 0.8);
 }
 
@@ -2307,7 +2386,11 @@ h2 {
 .pd-card-hub {
     border-color: rgba(15, 118, 110, 0.18);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(242, 250, 247, 0.9)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(242, 250, 247, 0.9)
+        ),
         #fff;
     box-shadow: 0 28px 82px rgba(15, 118, 110, 0.12);
 }
@@ -2315,8 +2398,16 @@ h2 {
 .pd-card-hub .pd-head {
     padding: 34px 36px 30px;
     background:
-        radial-gradient(circle at 88% 18%, rgba(15, 118, 110, 0.14), transparent 28%),
-        linear-gradient(135deg, rgba(15, 118, 110, 0.13), rgba(255, 255, 255, 0.64) 62%),
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(15, 118, 110, 0.14),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(15, 118, 110, 0.13),
+            rgba(255, 255, 255, 0.64) 62%
+        ),
         #fff;
 }
 
@@ -2334,7 +2425,11 @@ h2 {
 .pd-card-hub .pd-stats {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     background:
-        linear-gradient(180deg, rgba(15, 118, 110, 0.05), rgba(255, 255, 255, 0.68)),
+        linear-gradient(
+            180deg,
+            rgba(15, 118, 110, 0.05),
+            rgba(255, 255, 255, 0.68)
+        ),
         rgba(248, 251, 249, 0.82);
 }
 
@@ -2351,7 +2446,11 @@ h2 {
     min-height: 142px;
     padding: 18px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(240, 253, 250, 0.55)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.9),
+            rgba(240, 253, 250, 0.55)
+        ),
         #fff;
 }
 
@@ -2369,7 +2468,11 @@ h2 {
     padding: 28px;
     border-color: rgba(15, 118, 110, 0.18);
     background:
-        linear-gradient(135deg, rgba(15, 118, 110, 0.13), rgba(37, 99, 235, 0.06)),
+        linear-gradient(
+            135deg,
+            rgba(15, 118, 110, 0.13),
+            rgba(37, 99, 235, 0.06)
+        ),
         #f8fbf9;
 }
 
@@ -2383,7 +2486,11 @@ h2 {
     padding: 28px;
     background:
         linear-gradient(135deg, rgba(15, 118, 110, 0.1), transparent 56%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(248, 251, 249, 0.78));
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.88),
+            rgba(248, 251, 249, 0.78)
+        );
 }
 
 .pd-card-hub .pd-market-summary {
@@ -2432,7 +2539,11 @@ h2 {
     padding: 28px 30px 32px;
     grid-template-columns: minmax(260px, 0.34fr) minmax(0, 0.66fr);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(240, 253, 250, 0.36)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(240, 253, 250, 0.36)
+        ),
         #fff;
 }
 
@@ -2457,7 +2568,11 @@ h2 {
 .pd-card-product-data {
     border-color: rgba(15, 118, 110, 0.18);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(240, 253, 250, 0.82)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.97),
+            rgba(240, 253, 250, 0.82)
+        ),
         #fff;
 }
 
@@ -2473,7 +2588,11 @@ h2 {
     border: 1px solid rgba(15, 118, 110, 0.16);
     border-radius: 14px;
     background:
-        linear-gradient(135deg, rgba(15, 118, 110, 0.09), rgba(255, 255, 255, 0.84)),
+        linear-gradient(
+            135deg,
+            rgba(15, 118, 110, 0.09),
+            rgba(255, 255, 255, 0.84)
+        ),
         #fff;
 }
 
@@ -2529,7 +2648,11 @@ h2 {
 .pd-card-tracking-order {
     border-color: rgba(234, 88, 12, 0.2);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 247, 237, 0.78)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.97),
+            rgba(255, 247, 237, 0.78)
+        ),
         #fff;
 }
 
@@ -2555,7 +2678,11 @@ h2 {
 
 .tracking-view-card-sales {
     background:
-        linear-gradient(135deg, rgba(234, 88, 12, 0.08), rgba(255, 255, 255, 0.86)),
+        linear-gradient(
+            135deg,
+            rgba(234, 88, 12, 0.08),
+            rgba(255, 255, 255, 0.86)
+        ),
         #fff;
 }
 
@@ -2599,7 +2726,11 @@ h2 {
     border-top: 3px solid #dc2626;
     border-radius: 16px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 247, 0.82)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(255, 247, 247, 0.82)
+        ),
         #fff;
     box-shadow: 0 24px 72px rgba(127, 29, 29, 0.1);
 }
@@ -2608,7 +2739,11 @@ h2 {
     padding: 34px 36px 30px;
     border-bottom: 1px solid rgba(220, 38, 38, 0.12);
     background:
-        radial-gradient(circle at 86% 20%, rgba(220, 38, 38, 0.12), transparent 30%),
+        radial-gradient(
+            circle at 86% 20%,
+            rgba(220, 38, 38, 0.12),
+            transparent 30%
+        ),
         linear-gradient(135deg, rgba(220, 38, 38, 0.09), transparent 64%);
 }
 
@@ -2692,7 +2827,11 @@ h2 {
 .escalation-roi {
     grid-column: 1 / -1;
     background:
-        linear-gradient(135deg, rgba(15, 118, 110, 0.13), rgba(37, 99, 235, 0.06)),
+        linear-gradient(
+            135deg,
+            rgba(15, 118, 110, 0.13),
+            rgba(37, 99, 235, 0.06)
+        ),
         #fff;
 }
 
@@ -2717,7 +2856,11 @@ h2 {
     border-top: 3px solid #0d9488;
     border-radius: 16px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(240, 253, 250, 0.84)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(240, 253, 250, 0.84)
+        ),
         #fff;
     box-shadow: 0 24px 72px rgba(13, 148, 136, 0.11);
 }
@@ -2726,7 +2869,11 @@ h2 {
     padding: 34px 36px 30px;
     border-bottom: 1px solid rgba(13, 148, 136, 0.13);
     background:
-        radial-gradient(circle at 86% 18%, rgba(13, 148, 136, 0.15), transparent 30%),
+        radial-gradient(
+            circle at 86% 18%,
+            rgba(13, 148, 136, 0.15),
+            transparent 30%
+        ),
         linear-gradient(135deg, rgba(13, 148, 136, 0.11), transparent 64%);
 }
 
@@ -2918,7 +3065,11 @@ h2 {
     border: 1px solid rgba(51, 65, 85, 0.14);
     border-radius: 16px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.88)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(248, 250, 252, 0.88)
+        ),
         #fff;
     box-shadow: 0 24px 72px rgba(15, 23, 42, 0.09);
 }
@@ -2929,7 +3080,11 @@ h2 {
     min-height: 280px;
     background:
         linear-gradient(135deg, rgba(51, 65, 85, 0.12), transparent 58%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.86));
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(241, 245, 249, 0.86)
+        );
 }
 
 .infra-overview-copy {
@@ -3010,7 +3165,11 @@ h2 {
     min-height: 176px;
     padding: 22px;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.84)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(248, 250, 252, 0.84)
+        ),
         #fff;
 }
 
@@ -3440,7 +3599,7 @@ h2 {
 .close-title {
     font-size: clamp(28px, 3.7vw, 48px);
     font-weight: 900;
-    line-height: 1.06;
+    line-height: 1.22;
     letter-spacing: 0;
     margin: 0 0 16px;
 }
@@ -3794,8 +3953,6 @@ h2 {
 
 .evidence-strip {
     margin-top: 28px;
-    padding-top: 24px;
-    border-top: 1px solid var(--soft-line);
 }
 
 .evidence-strip-toggle {
@@ -3974,9 +4131,13 @@ h2 {
     font-size: 10px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.1em;
     color: var(--rc-accent, var(--accent));
-    background: color-mix(in srgb, var(--rc-accent, var(--accent)) 10%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--rc-accent, var(--accent)) 10%,
+        transparent
+    );
     padding: 3px 8px;
     border-radius: 4px;
 }
@@ -4003,7 +4164,11 @@ h2 {
     color: var(--rc-accent, var(--accent));
     border-left: 2px solid var(--rc-accent, var(--accent));
     padding: 5px 10px;
-    background: color-mix(in srgb, var(--rc-accent, var(--accent)) 6%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--rc-accent, var(--accent)) 6%,
+        transparent
+    );
     border-radius: 0 4px 4px 0;
     margin-bottom: 12px;
     line-height: 1.4;
@@ -4041,7 +4206,7 @@ h2 {
 }
 
 .rc-items li::before {
-    content: '→';
+    content: "→";
     position: absolute;
     left: 0;
     color: var(--rc-accent, var(--accent));
