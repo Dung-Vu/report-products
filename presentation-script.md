@@ -1,4 +1,4 @@
-# Kịch bản trình bày báo cáo tác động
+# Kịch bản trình bày Báo cáo phát triển hệ thống
 
 Mục tiêu của buổi report: không trình bày như danh sách repo, mà dẫn sếp đi qua một câu chuyện rõ ràng: em đã nhìn thấy vấn đề vận hành, đã biến nó thành hệ thống, có bằng chứng, biết phần nào cần đo tiếp, và muốn nhận phạm vi trách nhiệm lớn hơn.
 
@@ -66,9 +66,9 @@ Thông điệp chính:
 Cách đi:
 
 - Nếu thời gian ít, mở 3 case tiêu biểu:
-  - Bonario Product Hub.
-  - ORD Price Lookup System.
-  - OP Round Robin hoặc Bills Server.
+    - Bonario Product Hub.
+    - ORD Price Lookup System.
+    - OP Round Robin hoặc Bills Server.
 - Nếu sếp muốn chi tiết, mở từng nhóm hệ thống.
 
 ## 6. Case study
