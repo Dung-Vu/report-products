@@ -71,7 +71,7 @@ window.reportProjects = [
         duration: "Docker / 5003",
         stack: ["React", "Vite", "Express", "Odoo JSON-RPC", "PDF"],
         summary:
-            "Công cụ in label PDF cho phiếu nhập kho, đồng thời hỗ trợ tra cứu phiếu, in thông tin người nhận, QC batch và báo cáo ABC doanh số.",
+            "Công cụ in label PDF cho phiếu nhập kho, đồng thời hỗ trợ tra cứu phiếu, in thông tin người nhận, QC batch và báo cáo doanh số các sản phẩm được gắn tags FURNITURE STOCK,Fabrics Stock .",
         outcomes: [
             "Tăng tốc thao tác in label và xử lý phiếu nhập kho",
             "Kết nối dữ liệu Odoo trực tiếp qua backend Express",
@@ -274,14 +274,14 @@ const projectNarratives = {
             "Tăng hiệu suất tra cứu và cập nhật giá; giảm thời gian tổng hợp Excel, giảm lỗi do dữ liệu giá phân tán.",
     },
     "in-label-pdf": {
-        what: "In Label PDF là công cụ nội bộ hỗ trợ in label PDF cho phiếu nhập kho. Repo này cũng mở rộng sang tra cứu phiếu, QC batch và báo cáo ABC doanh số.",
+        what: "In Label PDF là công cụ nội bộ hỗ trợ in label PDF cho phiếu nhập kho. Repo này cũng mở rộng sang tra cứu phiếu, QC batch và báo cáo doanh số các sản phẩm được gắn tags FURNITURE STOCK,Fabrics Stock .",
         operation:
             "Frontend React cho người dùng tra cứu phiếu nhập, backend Express gọi Odoo JSON-RPC để lấy dữ liệu và tạo các file PDF/label theo nghiệp vụ.",
         features: [
             "Tra cứu phiếu nhập kho từ Odoo",
             "In label PDF và phiếu thông tin người nhận",
             "Quản lý batch QC và luồng xử lý phiếu",
-            "Bổ sung báo cáo ABC doanh số để phục vụ vận hành",
+            "Bổ sung báo cáo doanh số các sản phẩm được gắn tags FURNITURE STOCK,Fabrics Stock  để phục vụ vận hành",
         ],
         practicalUse:
             "Dùng tại khâu kho/QC khi cần in label nhanh, lấy thông tin phiếu nhập và xử lý tài liệu phục vụ kiểm hàng.",

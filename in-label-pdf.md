@@ -10,7 +10,7 @@
 
 ## Mục tiêu
 
-In Label PDF ban đầu là app in label PDF cho phiếu nhập kho từ Odoo, hiện đã mở rộng thành app vận hành nội bộ cho tra cứu phiếu nhập kho, in label PDF, in phiếu thông tin người nhận, quản lý batch QC và báo cáo ABC doanh số.
+In Label PDF ban đầu là app in label PDF cho phiếu nhập kho từ Odoo, hiện đã mở rộng thành app vận hành nội bộ cho tra cứu phiếu nhập kho, in label PDF, in phiếu thông tin người nhận, quản lý batch QC và báo cáo doanh số các sản phẩm được gắn tags FURNITURE STOCK,Fabrics Stock .
 
 ## Người dùng và quy trình nghiệp vụ
 
@@ -24,7 +24,7 @@ Quy trình tiêu biểu:
 4. Có thể lấy thông tin giao nhận để in phiếu người nhận.
 5. Chọn sản phẩm lưu thành batch QC, cập nhật trạng thái từng item.
 6. Xem dashboard danh sách QC, thống kê batch đạt/lỗi/chờ.
-7. Xem báo cáo ABC doanh số theo tag sản phẩm.
+7. Xem báo cáo doanh số các sản phẩm được gắn tags FURNITURE STOCK,Fabrics Stock theo tag sản phẩm.
 
 ## Tính năng nổi bật
 
@@ -34,7 +34,7 @@ Quy trình tiêu biểu:
 - Trích lot, variant, mã sản phẩm, ngày nhận.
 - Lưu batch QC vào SQLite.
 - Theo dõi QC item theo trạng thái `pending`, `passed`, `failed`, `warning`, `partial`.
-- Báo cáo ABC doanh số theo ngày, tên sản phẩm, tag nội thất/vải.
+- báo cáo doanh số các sản phẩm được gắn tags FURNITURE STOCK,Fabrics Stock theo ngày, tên sản phẩm, tag nội thất/vải.
 - Chạy production bằng một server Node vừa serve API vừa serve static frontend.
 
 ## Kiến trúc và tech stack
