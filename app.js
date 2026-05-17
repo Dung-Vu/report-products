@@ -90,9 +90,9 @@
             label: "Phiếu in PDF từ Odoo",
             eyebrow: "04 · Documents",
             summary:
-                "Báo giá, in label hệ thống, bộ hồ sơ chứng từ VAT; phần documents thủ công được gom về một luồng dễ kiểm soát.",
-            projectIds: ["in-label-pdf", "op-round-robin", "bills-server"],
-            countLabel: "3 luồng chứng từ",
+                "Phiếu in label/PDF từ Odoo và kho lưu trữ chứng từ VAT/PDF để back office tra cứu nhanh hơn.",
+            projectIds: ["bills-server", "in-label-pdf"],
+            countLabel: "2 luồng chứng từ",
             accent: "#7c3aed",
         },
         {
@@ -110,7 +110,7 @@
             label: "Build hạ tầng: biến máy tính thành server",
             eyebrow: "06 · Platform",
             summary:
-                "Docker, tunnel, bridge và routing để đưa app nội bộ ra domain có kiểm soát, không mở port trực tiếp.",
+                "Đưa các app nội bộ lên domain riêng bằng máy tính sẵn có, giúp truy cập ổn định hơn mà không cần thuê server ngoài.",
             projectIds: ["tunnel-master", "action-local-bridge"],
             countLabel: "2 lớp hạ tầng",
             accent: "#334155",
@@ -120,7 +120,7 @@
             label: "MKT gen hình",
             eyebrow: "07 · Marketing AI",
             summary:
-                "Chuẩn hóa brief tạo hình AI theo brand, model, ratio, reference và rule để marketing dùng nhất quán.",
+                "Chuẩn hóa cách tạo brief hình AI để marketing ra ảnh nhanh hơn, đúng brand hơn và ít phụ thuộc vào kỹ năng prompt của từng người.",
             projectIds: ["visual-brief-builder"],
             countLabel: "1 creative tool",
             accent: "#c026d3",
@@ -130,27 +130,17 @@
             label: "Tạo sản phẩm Odoo",
             eyebrow: "08 · Product Data",
             summary:
-                "Làm sạch dữ liệu, checklist, upload sản phẩm nhanh hơn: BOM, giá cost, giá bán và sales description.",
+                "Checklist và workflow để sản phẩm mới trên Odoo có đủ BOM, cost, giá bán, vendor và description cho các phòng ban dùng ngay.",
             projectIds: ["bonario-product-hub"],
             countLabel: "1 quy trình dữ liệu",
             accent: "#0f766e",
         },
         {
-            id: "company-switch-bon-ord",
-            label: "Chuyển công ty BON - ORD",
-            eyebrow: "09 · Company Flow",
-            summary:
-                "Chuẩn hóa thao tác chuyển ngữ cảnh giữa BON và ORD để dữ liệu, giá và chứng từ không bị lẫn luồng.",
-            projectIds: ["bonario-product-hub", "ord-price-lookup"],
-            countLabel: "2 nguồn dữ liệu",
-            accent: "#4f46e5",
-        },
-        {
             id: "internal-order-tracking",
             label: "Tracking order internal",
-            eyebrow: "10 · Order Tracking",
+            eyebrow: "09 · Order Tracking",
             summary:
-                "Theo dõi đơn nội bộ và trạng thái xử lý để các team biết việc đang nằm ở đâu, ai phụ trách, cần làm gì tiếp.",
+                "Theo dõi tiến độ đơn cho khách hàng và cho Sales, dựa trên Order State trong báo giá để biết đơn đang ở bước nào.",
             projectIds: ["auto-workflow"],
             countLabel: "1 luồng tracking",
             accent: "#ea580c",
@@ -158,7 +148,7 @@
         {
             id: "rfid",
             label: "RFID",
-            eyebrow: "11 · Warehouse",
+            eyebrow: "10 · Warehouse",
             summary:
                 "Định hướng đối soát RFID cho kho: ghi nhận, reconcile và giảm lệch tồn khi hàng di chuyển qua nhiều bước.",
             projectIds: ["auto-workflow", "bonario-stock-management"],
@@ -168,7 +158,7 @@
         {
             id: "stock-escalation",
             label: "Escalate thông báo hàng",
-            eyebrow: "12 · Alerting",
+            eyebrow: "11 · Alerting",
             summary:
                 "Cảnh báo hàng hết stock, discontinue và đẩy thông báo tới Teams để xử lý trước khi người dùng phải hỏi.",
             projectIds: ["auto-workflow", "bonario-product-hub"],
@@ -296,14 +286,14 @@
         },
         "bills-server": {
             timeline:
-                "Từ 12/2025 đến 05/2026: đưa kho chứng từ PDF lên web nội bộ để truy cập qua trình duyệt.",
-            people: "Back Office, kế toán/admin và người cần tra chứng từ là nhóm dùng chính.",
-            pnl: "Cost vận hành thấp vì dùng static file server/Nginx. P&L nằm ở giảm thời gian tìm file local và giảm rủi ro file chỉ nằm trên một máy.",
-            roi: "983 PDF và 13 ảnh (~201MB) được phục vụ qua web là ROI về khả năng truy cập và chia sẻ chứng từ.",
+                "1 buổi để triển khai toàn bộ script và setup automation.",
+            people: "2 người: Uyên đưa ra ý tưởng triển khai; Dũng viết scripts và xử lý ổn định workflow automation.",
+            pnl: "Cost khoảng 250k cho 1 buổi triển khai. P&L nằm ở việc giảm thao tác thủ công, đảm bảo tính chính xác và đúng format kế toán.",
+            roi: "Xử lý 983 chứng từ VAT trong 4 tháng, rút ngắn khối lượng thao tác thủ công từ khoảng 1 tháng xuống còn 1 buổi chiều. ROI ước tính +4.700%.",
             strengths: [
-                "Đơn giản, nhẹ, dễ vận hành.",
-                "Biến folder local thành điểm truy cập qua web.",
-                "Phù hợp làm lớp nền cho automation chứng từ.",
+                "Giảm mạnh thao tác thủ công khi xử lý chứng từ VAT.",
+                "Đầu ra đúng format kế toán, dễ kiểm soát và đối chiếu.",
+                "Chứng từ được gom thành folder hoàn chỉnh, thuận tiện cho triển khai thực tế.",
             ],
             weaknesses: [
                 "Cần kiểm soát quyền truy cập nếu mở rộng ra nhiều người.",
@@ -332,85 +322,107 @@
         },
         "visual-brief-builder": {
             timeline:
-                "Q1-Q2/2026: chuẩn hóa luồng tạo brief hình AI cho marketing, từ chọn model/ratio đến reference và refinement.",
-            people: "Marketing/Creative là nhóm dùng chính; người không chuyên prompt vẫn có thể tạo brief theo chuẩn.",
-            pnl: "Cost thấp vì là static app + Nginx. P&L đến từ giảm vòng lặp prompt sai, giảm lệch brand và tiết kiệm thời gian brief hình.",
-            roi: "ROI hiện ở mức quy trình: chuẩn hóa cách tạo brief và giảm phụ thuộc vào kỹ năng prompt của từng người.",
+                "Q1-Q2/2026: xây dựng luồng tạo brief hình AI cho marketing, từ chọn mục đích hình, phong cách, tỷ lệ đến chỉnh lại yêu cầu.",
+            people: "Anh Hà triển khai toàn bộ project. Dũng support build Docker, connect subdomain và bảo trì hệ thống.",
+            pnl: "Cost thấp vì tận dụng hạ tầng hiện có. P&L đến từ giảm vòng lặp brief sai, giảm lệch brand tone và tiết kiệm thời gian chuẩn bị prompt.",
+            roi: "ROI hiện nằm ở quy trình: marketing có cách làm thống nhất hơn, giảm phụ thuộc vào kỹ năng prompt cá nhân và giảm thời gian sửa brief.",
             strengths: [
-                "Dễ dùng cho người không chuyên kỹ thuật.",
-                "Chuẩn hóa model, ratio, rule và reference.",
-                "Phù hợp mở rộng thành workflow creative nội bộ.",
+                "Dễ dùng cho người không chuyên prompt.",
+                "Chuẩn hóa mục đích hình, tone, tỷ lệ và reference trong cùng một form.",
+                "Phù hợp mở rộng thành workflow creative nội bộ cho marketing.",
             ],
             weaknesses: [
                 "Chưa có số usage định lượng mạnh.",
-                "Chất lượng output vẫn phụ thuộc model tạo ảnh và reference đầu vào.",
+                "Chất lượng ảnh vẫn phụ thuộc reference đầu vào và engine tạo ảnh.",
             ],
             description:
-                "Visual Brief Builder là công cụ chuẩn hóa brief AI image, giúp marketing tạo yêu cầu hình ảnh nhất quán hơn với brand rule.",
+                "Công cụ chuẩn hóa brief hình AI, giúp marketing tạo yêu cầu hình ảnh nhất quán hơn với brand và giảm thời gian thử prompt thủ công.",
         },
         "tunnel-master": {
             timeline:
-                "Q1/2026 - 05/2026: gom Cloudflare Tunnel và routing cho nhiều app nội bộ vào một cấu hình tập trung.",
-            people: "Platform/Ops và người cần truy cập app nội bộ từ domain là nhóm hưởng lợi.",
-            pnl: "Cost vận hành thấp so với mở server/cloud riêng. P&L nằm ở việc dùng máy hiện có làm server, không mở port router và giảm rủi ro cấu hình rời rạc.",
-            roi: "6+ service nội bộ đi qua tunnel và 6,305 request qua subdomain cho thấy hạ tầng đã phục vụ traffic thật.",
+                "Q1/2026 - 05/2026: đưa nhiều app nội bộ lên domain riêng để người dùng truy cập dễ hơn.",
+            people: "Nhóm vận hành và các bộ phận dùng app nội bộ là người hưởng lợi trực tiếp.",
+            pnl: "Cost vận hành thấp vì tận dụng máy tính sẵn có. P&L nằm ở việc giảm nhu cầu thuê server riêng và giảm rủi ro mở port trực tiếp.",
+            roi: "6+ app nội bộ đã có domain và 6.305 lượt truy cập qua subdomain cho thấy hạ tầng đã phục vụ nhu cầu thật.",
             strengths: [
-                "Không cần mở port trực tiếp.",
-                "Tập trung hóa cấu hình tunnel.",
-                "Cho phép app nội bộ có domain kiểm soát.",
+                "Không cần mở port trực tiếp trên mạng công ty.",
+                "Các app nội bộ có domain dễ nhớ và dễ chia sẻ hơn.",
+                "Dễ thêm app mới khi công ty cần mở rộng công cụ nội bộ.",
             ],
             weaknesses: [
-                "Phụ thuộc Cloudflare Tunnel và máy host nội bộ.",
-                "Cần thêm monitoring/backup để tránh single point of failure.",
+                "Phụ thuộc vào máy chủ nội bộ, máy tắt thì app không truy cập được.",
+                "Cần thêm cảnh báo sớm khi đường truy cập bị lỗi.",
             ],
             description:
-                "Tunnel Master là lớp hạ tầng đưa các service nội bộ ra ngoài qua Cloudflare Tunnel, giúp chia sẻ app an toàn hơn mà không mở port.",
+                "Cổng truy cập app nội bộ giúp biến máy tính sẵn có thành nơi phục vụ nhiều app qua domain riêng, dễ dùng hơn cho các phòng ban.",
         },
         "action-local-bridge": {
             timeline:
-                "Q1/2026: triển khai bridge nhẹ để định tuyến action-product qua network/tunnel riêng.",
-            people: "Platform/Ops và người vận hành service action-product hưởng lợi trực tiếp.",
-            pnl: "Cost gần như chỉ là container nhẹ và thời gian cấu hình. P&L nằm ở giảm sửa backend chính và giảm rủi ro khi expose service.",
-            roi: "ROI nằm ở việc tách routing khỏi code nghiệp vụ: thay đổi hạ tầng mà không phải chỉnh app chính.",
+                "Q1/2026: tạo cầu nối riêng để Action Product truy cập ổn định qua domain nội bộ.",
+            people: "Người vận hành Action Product và người dùng app hưởng lợi trực tiếp.",
+            pnl: "Cost gần như chỉ là thời gian setup. P&L nằm ở việc giảm rủi ro khi đưa app live mà không phải sửa app chính.",
+            roi: "ROI nằm ở việc app có đường truy cập ổn định hơn, thay đổi hạ tầng không ảnh hưởng logic nghiệp vụ.",
             strengths: [
-                "Nhẹ, rõ trách nhiệm, không database.",
-                "Tách hạ tầng bridge khỏi backend nghiệp vụ.",
-                "Dễ triển khai cùng Docker network.",
+                "Giữ đường truy cập cho Action Product ổn định hơn.",
+                "Không phải sửa logic app chính khi đổi cách truy cập.",
+                "Dễ thay thế hoặc điều chỉnh khi hạ tầng thay đổi.",
             ],
             weaknesses: [
-                "Ít giá trị nếu đứng một mình, chủ yếu là phần hạ tầng hỗ trợ.",
-                "Cần tài liệu network rõ để người khác maintain.",
+                "Giá trị chính là hỗ trợ app Action Product, không phải sản phẩm độc lập.",
+                "Cần tài liệu vận hành rõ để người khác tiếp quản dễ hơn.",
             ],
             description:
-                "Action Local Bridge là container cầu nối để chuyển tiếp traffic trong mạng nội bộ, giúp expose service mà không đụng vào backend chính.",
+                "Cầu nối cho Action Product giúp app chạy sau domain nội bộ ổn định hơn, giảm rủi ro khi thay đổi hạ tầng truy cập.",
         },
     };
 
-    const COUNTERS = [
+    const HOOK_NET_PROFIT_MILLION = 150;
+    const HOOK_COUNTERS = [
         {
-            value: 983,
+            value: 8,
+            suffix: " tháng",
+            label: "Timeline triển khai",
+            sub: "Từ 22/09/2025 đến 05/2026",
+        },
+        {
+            value: 6305,
             suffix: "",
-            label: "Chứng từ PDF đã xử lý",
-            sub: "Xử lý tự động + web xem chứng từ · 201MB · từ tháng 12/2025",
+            label: "Lượt truy cập tổng domain",
+            sub: "Cloudflare Analytics · 6 subdomain · Sep 2025 – May 2026",
+        },
+        {
+            value: 100,
+            suffix: "%",
+            label: "Khả năng hoàn thành",
+            sub: "50/50 lượt tự động hoàn tất đúng kỳ vọng",
+        },
+    ];
+
+    const SCALE_CARDS = [
+        {
+            value: 150,
+            suffix: "tr+",
+            label: "Tổng lợi nhuận ròng",
+            sub: "Lợi nhuận từ 11 project đã và đang triển khai, chỉ tính các phần đã quy đổi được ra VND",
             large: true,
         },
         {
             value: 6305,
             suffix: "",
-            label: "Lượt truy cập 6 subdomain",
-            sub: "Cloudflare Analytics · Sep 2025 – May 2026",
+            label: "Lượt truy cập tổng domain",
+            sub: "Cloudflare Analytics · 6 subdomain nội bộ · Sep 2025 – May 2026",
         },
         {
-            value: 50,
-            suffix: "/50",
-            label: "Workflow chạy tự động, 0 thất bại",
-            sub: "42 lần kiểm kho + 8 lần quét hàng ngày · 07–15/05/2026",
+            value: 100,
+            suffix: "%",
+            label: "Tỉ lệ hoàn thành",
+            sub: "50 workflow automation đã được triển khai và hoàn tất đúng kỳ vọng",
         },
         {
             value: 9,
             suffix: "",
-            label: "Webhook routes đang hoạt động",
-            sub: "Shopify · Odoo · Zalo · Telegram · action.bonstu.site: 4,570 req",
+            label: "Workflow đang chạy",
+            sub: "Các workflow/webhook đang live và phục vụ vận hành hằng ngày",
         },
     ];
 
@@ -447,46 +459,46 @@
 
     const ROADMAP = [
         {
-            num: "01",
-            phase: "Đang triển khai",
+            num: "30",
+            phase: "0-30 ngày",
             accent: "#0f766e",
-            title: "HR Onboarding tự động — không qua IT",
-            why: "Nhân viên mới chờ 2–3 ngày. Quyền bị sai do gán thủ công.",
-            desc: "Hệ thống tự tạo account Odoo và gán phân quyền theo vị trí. Đã phân tích 46 user thực tế trên 3 công ty — HR thao tác, không cần IT can thiệp.",
+            title: "Ổn định hệ thống đang chạy",
+            why: "11 project đã tạo giá trị, bước tiếp theo là vận hành ổn định và có người theo dõi rõ ràng.",
+            desc: "Trong 30 ngày đầu, ưu tiên chuẩn hóa cách theo dõi các hệ thống đang live, gom lại checklist vận hành và xác định rõ project nào cần bảo trì, project nào cần nâng cấp.",
             items: [
-                "HR chọn vị trí → account tạo + phân quyền đúng trong vài giây — áp dụng cho Bonario, Ordinaire, Furny",
-                "Role profile xây từ 46 user thực tế + kiểm tra chéo với phân quyền đang chạy trên hệ thống",
-                "Audit log đầy đủ: ai được tạo, khi nào, quyền gì — truy vết được khi review nội bộ hoặc kiểm toán",
+                "Lập danh sách 11 project đang chạy, trạng thái hiện tại, người dùng chính và mức độ ưu tiên.",
+                "Tạo checklist kiểm tra hằng tuần để phát hiện sớm lỗi trước khi phòng ban báo ngược lại.",
+                "Viết tài liệu ngắn cho các project đang được dùng nhiều để người khác có thể nắm cách vận hành cơ bản.",
             ],
-            effort: "Đang xây · ~3 tuần",
+            effort: "Timeline: 0-30 ngày",
         },
         {
-            num: "02",
-            phase: "Tiếp theo",
+            num: "60",
+            phase: "31-60 ngày",
             accent: "#2563eb",
-            title: "Quan sát hệ thống — chủ động thay vì thụ động",
-            why: "11 service đang chạy — biết có vấn đề khi user báo.",
-            desc: "Chuyển từ vận hành thụ động sang full visibility. Alert tức thì, dashboard tổng quan, báo cáo vận hành tự động gửi cho quản lý.",
+            title: "Chuẩn hóa quy trình cho các phòng ban",
+            why: "Giá trị lớn nhất không chỉ nằm ở app, mà nằm ở việc app thay đổi cách team làm việc mỗi ngày.",
+            desc: "Giai đoạn này tập trung làm rõ quy trình trước và sau khi có công cụ, đo thời gian tiết kiệm được, gom feedback từ Sales, SC, kho, kế toán và marketing để cải tiến đúng việc cần.",
             items: [
-                "Telegram alert trong 1 phút khi container down — không cần đăng nhập server để biết",
-                "Health dashboard qua trình duyệt — trạng thái tất cả service trong 1 trang, không cần SSH",
-                "Monthly ops digest tự động: uptime %, incident, scheduler health — quản lý nhận được không cần hỏi IT",
+                "Chọn 3-5 project có tác động lớn nhất để chuẩn hóa hướng dẫn sử dụng và quy trình bàn giao.",
+                "Đo lại thời gian tiết kiệm thực tế theo từng nhóm nghiệp vụ, thay vì chỉ ước tính bằng cảm nhận.",
+                "Chốt danh sách cải tiến nhỏ nhưng có tác động cao để giảm thao tác thủ công cho từng phòng ban.",
             ],
-            effort: "3–5 ngày",
+            effort: "Timeline: 31-60 ngày",
         },
         {
-            num: "03",
-            phase: "Không thể bỏ",
+            num: "90",
+            phase: "61-90 ngày",
             accent: "#7c3aed",
-            title: "Nền tảng vững để scale thêm người và service",
-            why: "Server hỏng = mất hết. Chưa có backup, chưa có môi trường test.",
-            desc: "Backup tự động, staging environment, deploy an toàn — ba thứ này không có thì mỗi lần cập nhật là một lần đánh cược với dữ liệu thật.",
+            title: "Mở rộng vai trò thành người phụ trách vận hành số",
+            why: "Khi hệ thống đã chạy thật, công ty cần một người giữ nhịp phát triển, bảo trì và biến nhu cầu nghiệp vụ thành công cụ dùng được.",
+            desc: "Trong 90 ngày, mục tiêu là chuyển từ người build từng app riêng lẻ thành người chịu trách nhiệm một lớp vận hành số: nhận yêu cầu, phân tích tác động, ưu tiên việc cần làm và theo dõi hiệu quả sau triển khai.",
             items: [
-                "Backup tự động hàng ngày: PostgreSQL + SQLite + 983 PDF lên cloud — phục hồi được trong vài tiếng",
-                "Staging environment để test trước khi đẩy production — tránh incident từ thay đổi code",
-                "Auto-deploy từ Git: cập nhật service không cần SSH vào từng container thủ công",
+                "Thiết lập cách nhận yêu cầu mới từ các phòng ban: vấn đề là gì, tốn bao nhiêu thời gian, lợi ích dự kiến ra sao.",
+                "Lập roadmap cải tiến theo quý, ưu tiên các việc giảm lỗi, giảm thời gian chờ và tăng khả năng kiểm soát dữ liệu.",
+                "Báo cáo định kỳ kết quả sau triển khai: project nào đang dùng tốt, project nào cần sửa, project nào nên dừng hoặc gộp lại.",
             ],
-            effort: "1 tuần",
+            effort: "Timeline: 61-90 ngày",
         },
     ];
 
@@ -553,21 +565,21 @@
         return `
       <section class="evidence-strip is-collapsed" id="evidence-strip" aria-label="Bằng chứng đã xác minh">
         <div class="evidence-strip-header">
-          <p class="eyebrow-label">Dữ liệu có nguồn</p>
-          <h3 class="evidence-strip-title">Tín hiệu sử dụng thực tế — từ hệ thống đang chạy.</h3>
-          <p class="evidence-strip-note">Phân tách riêng khỏi số vận hành của công ty — lấy từ lịch sử truy cập, cơ sở dữ liệu và Odoo.</p>
+          <p class="eyebrow-label">Số liệu đã xác minh</p>
+          <h3 class="evidence-strip-title">Những tín hiệu cho thấy hệ thống đang được dùng thật.</h3>
+          <p class="evidence-strip-note">Các số này lấy từ log truy cập, database ứng dụng và dữ liệu Odoo. Đây là bằng chứng vận hành, tách riêng khỏi phần ước tính ROI.</p>
         </div>
         <button class="evidence-strip-toggle" id="evidence-toggle" aria-expanded="false" aria-controls="evidence-body">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Xem usage signals (${companyScale.length + repoRelevantOdoo.length})
+          Xem số liệu xác minh (${companyScale.length + repoRelevantOdoo.length})
         </button>
         <div class="evidence-strip-body" id="evidence-body">
           <div class="evidence-strip-body-inner">
             ${
                 companyScale.length
-                    ? `<p class="evidence-subgroup-title">Từ log & database</p>
+                    ? `<p class="evidence-subgroup-title">Usage từ app nội bộ</p>
             <div class="evidence-grid">
               ${renderEvidenceCards(companyScale)}
             </div>`
@@ -575,7 +587,7 @@
             }
             ${
                 repoRelevantOdoo.length
-                    ? `<p class="evidence-subgroup-title">Từ Odoo aggregate</p>
+                    ? `<p class="evidence-subgroup-title">Dữ liệu từ project &amp; Odoo</p>
             <div class="evidence-grid evidence-grid-secondary">
               ${renderEvidenceCards(repoRelevantOdoo)}
             </div>`
@@ -590,13 +602,12 @@
         return `
       <section class="scene scene-hook" id="scene-0" aria-label="Mở đầu">
         <div class="hook-inner">
-          <div class="hook-text">
-            <p class="hook-line1">Hai năm không chạm code.</p>
-            <p class="hook-line2">Tám tháng tại Bonario — 11 hệ thống đang chạy.</p>
+          <div class="hook-profit" aria-label="Lợi nhuận ròng ước tính">
+            <strong class="hook-profit-num" data-hook-target="${HOOK_NET_PROFIT_MILLION}" data-suffix="tr+">0</strong>
+            <span>Lợi nhuận từ 11 project đã và đang triển khai và hoạt động</span>
           </div>
-          <p class="hook-sub">Từ ${escapeHtml(reportPeriod.personalStartLabel || "22/09/2025")} &nbsp;·&nbsp; Bonario</p>
           <div class="hook-stats">
-            ${COUNTERS.map(
+            ${HOOK_COUNTERS.map(
                 (c) => `
             <div class="hook-stat">
               <strong class="hook-stat-num" data-hook-target="${c.value}" data-suffix="${escapeHtml(c.suffix || "")}">0</strong>
@@ -658,7 +669,7 @@
     }
 
     function buildCounterScene() {
-        const cards = COUNTERS.map(
+        const cards = SCALE_CARDS.map(
             (c) => `
       <article class="counter-card${c.large ? " counter-large" : ""}">
         <span class="counter-eyebrow">${escapeHtml(c.label)}</span>
@@ -669,25 +680,13 @@
         return `
       <section class="scene scene-scale" id="scene-2" aria-label="Quy mô vận hành">
         <div class="scale-inner">
+          <div class="scale-header">
+            <p class="eyebrow-label">Tổng quan dữ liệu</p>
+            <h2>4 chỉ số chính để nhìn nhanh hiệu quả vận hành.</h2>
+            <p>Phần này chỉ giữ các con số tổng hợp quan trọng: lợi nhuận ròng, lượt truy cập domain, tỉ lệ hoàn thành và số workflow đang chạy.</p>
+          </div>
           <div class="counter-grid">${cards}</div>
           ${buildMonthlyChart()}
-          <div class="scale-pills">
-            <span>104 thao tác thật ghi trong audit log — cost, BOM, pricelist</span>
-            <span>Daily scan chạy mỗi ngày — tự rà soát toàn bộ sản phẩm và gửi báo cáo qua Telegram, không cần ai nhớ check</span>
-            <span>7+ đợt QC nhập kho đã xử lý trong Docker session này</span>
-            <span>5 file sản xuất được tính và xuất layout trong 2 ngày gần nhất</span>
-            <span>Bill ghi đều: 312 · 156 · 222 · 266 chứng từ mỗi tháng</span>
-            <span>action 4,570 · stock 1,359 · curtain 250 · label 98 · price 17 · workflow 11 req</span>
-          </div>
-          <div class="value-callout">
-            <p class="value-callout-label">Nếu tính ra giờ công</p>
-            <div class="value-callout-items">
-              <span><strong>~82h</strong> lưu bill thủ công/năm → automation xử lý toàn bộ</span>
-              <span><strong>~2.7h</strong> kiểm tra thủ công/ngày</span>
-              <span><strong>100%</strong> scheduler không thất bại — 50/50 lần chạy</span>
-              <span><strong>6,305</strong> request qua 6 subdomain — Cloudflare Analytics Sep~May</span>
-            </div>
-          </div>
           ${buildEvidenceScale()}
         </div>
       </section>`;
@@ -729,7 +728,7 @@
         <div class="system-inner">
           <header class="system-header">
             <p class="eyebrow-label">Project breakdown</p>
-            <h2 class="system-title">12 Project đã được thực hiện trong 8 tháng qua.</h2>
+            <h2 class="system-title">11 Project đã được thực hiện trong 8 tháng qua.</h2>
             <p class="system-hint">Bấm vào từng mục để xem chi tiết →</p>
           </header>
           <div class="node-map" role="list">${buildNodeMap()}</div>
@@ -741,7 +740,7 @@
         return `
       <div class="roadmap-block">
         <span class="roadmap-eyebrow">Kế hoạch tiếp theo</span>
-        <h3 class="roadmap-title">3 bước cụ thể tiếp theo.</h3>
+        <h3 class="roadmap-title">Lộ trình 90 ngày để chuyển từ build app sang phụ trách vận hành số.</h3>
         <div class="roadmap-grid">
           ${ROADMAP.map(
               (r) => `
@@ -789,35 +788,26 @@
           <div class="close-statement">
             <h2 class="close-title">
               Không top trường.<br>
-              Không background IT vững.<br>
-              <span class="close-title-accent">Tám tháng — ${projects.length} hệ thống đang chạy.</span>
+              Không nền IT vững.<br>
+              <span class="close-title-accent">8 tháng — ${projects.length} hệ thống production.</span>
             </h2>
             <div class="close-contrast">
               <div class="close-contrast-row">
-                <span class="close-contrast-before">GPA 2.03 · chưa chạm production</span>
-                <span class="close-contrast-sep">→</span>
-                <span class="close-contrast-after">${projects.length} hệ thống production · dữ liệu xác minh</span>
+                <span class="close-contrast-before">GPA 2.03</span>
+                <span class="close-contrast-after">${projects.length} hệ thống production</span>
               </div>
               <div class="close-contrast-row">
                 <span class="close-contrast-before">14 tháng không viết code</span>
-                <span class="close-contrast-sep">→</span>
-                <span class="close-contrast-after">8 tháng · stack đang chạy độc lập</span>
+                <span class="close-contrast-after">8 tháng stack chạy độc lập</span>
               </div>
               <div class="close-contrast-row">
-                <span class="close-contrast-before">0 đội ops · 0 managed service</span>
-                <span class="close-contrast-sep">→</span>
-                <span class="close-contrast-after">983 PDF tự động · 50/50 scheduler</span>
+                <span class="close-contrast-before">0 đội ops</span>
+                <span class="close-contrast-after">Docker · Tunnel · scheduler tự vận hành</span>
               </div>
             </div>
-            <ul class="close-points">
-              <li>Mỗi con số trong báo cáo đều có nguồn — log, database hoặc Odoo. Không ước tính, không vẽ đẹp.</li>
-              <li>${projects.length} repo chạy song song mà không có đội ops — Docker, Cloudflare Tunnel, scheduler tự vận hành.</li>
-              <li>AI tích hợp vào quy trình để làm được nhiều hơn với ít người hơn — không phải để báo cáo đẹp hơn.</li>
-            </ul>
-            <p class="close-body">8 tháng tại Bonario. Số liệu lấy từ Odoo, Docker, SQLite, PostgreSQL — muốn verify thì hỏi.</p>
+            <p class="close-body">Số liệu lấy từ Odoo, Docker, SQLite, PostgreSQL, log và database ứng dụng. Có nguồn để verify, không viết cho đẹp báo cáo.</p>
             <hr class="close-divider" aria-hidden="true" />
-            <p class="close-question">Số liệu đã có. Stack đang chạy.
-Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em chạy.</p>
+            <p class="close-question">Điều em muốn tiếp tục không chỉ là build thêm app, mà là được nhận trách nhiệm rõ ràng hơn để biến những hệ thống này thành nền vận hành dài hạn cho công ty.</p>
             <div class="close-meta">
               <span>${escapeHtml(reportPeriod.personalStartLabel || "22/09/2025")} — ${monthYear}</span>
               <span>${projects.length} hệ thống production</span>
@@ -1095,31 +1085,29 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         </article>`;
     }
 
-
     function renderBonarioHubDetail(proj, index) {
         return `
-        <article class="pd-card" style="--pd-accent:#0f766e">
+        <article class="pd-card pd-card-hub" style="--pd-accent:#0f766e">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
             <h2 class="pd-title">Bonario Product Hub</h2>
-            <p class="pd-subtitle">Hub trung tâm vận hành sản phẩm: kiểm tra dữ liệu Odoo, tự động hóa BOM/giá/mô tả, daily scan và giám sát Docker — tất cả trong một giao diện nội bộ.</p>
+            <p class="pd-subtitle">Hub trung tâm vận hành dữ liệu sản phẩm trên Odoo: làm sạch BOM, pricelist, cost, description, report tự động, daily scan và workflow automation trong một giao diện nội bộ.</p>
           </header>
 
           <div class="pd-stats">
-            <div class="pd-stat"><strong>6,677</strong><span>sản phẩm Odoo · xác minh 15/05/2026</span></div>
-            <div class="pd-stat"><strong>3,540</strong><span>BOM trong hệ thống · xác minh 15/05/2026</span></div>
-            <div class="pd-stat"><strong>50/50</strong><span>automation không thất bại · 07–15/05/2026</span></div>
-            <div class="pd-stat"><strong>104</strong><span>thao tác ghi trong audit log</span></div>
+            <div class="pd-stat"><strong>10 ngày</strong><span>xây dựng và hoàn thiện project</span></div>
+            <div class="pd-stat"><strong>+843,4%</strong><span>ROI ước tính sau 4 tháng triển khai</span></div>
+            <div class="pd-stat"><strong>~50tr</strong><span>tổng lợi ích vận hành ước tính</span></div>
           </div>
 
           <div class="pd-body">
             <section>
               <p class="pd-section-label">Timeline</p>
               <div class="pd-timeline-grid">
-                <div class="pd-timeline-item"><strong>Q4/2025</strong><span>Product Checker, BOM Automation, Pricelist Tools.</span></div>
-                <div class="pd-timeline-item"><strong>Q1/2026</strong><span>Cambodia Manager, Description Workflow, daily scan.</span></div>
-                <div class="pd-timeline-item"><strong>Q2/2026</strong><span>Docker Monitor, Grafana, Prometheus, passkey auth.</span></div>
-                <div class="pd-timeline-item"><strong>05/2026</strong><span>50 lần chạy tự động liên tiếp không hỏng.</span></div>
+                <div class="pd-timeline-item"><strong>10 ngày</strong><span>Được xây dựng và hoàn thiện trong vòng 10 ngày.</span></div>
+                <div class="pd-timeline-item"><strong>4 tháng</strong><span>Đã triển khai vận hành production và tạo lợi ích đều theo ngày/tháng.</span></div>
+                <div class="pd-timeline-item"><strong>26 modules</strong><span>End-to-end modules cho data, report, automation và monitoring.</span></div>
+                <div class="pd-timeline-item"><strong>Enterprise</strong><span>Monitoring stack, scheduled jobs và multi-channel reporting.</span></div>
               </div>
             </section>
 
@@ -1129,37 +1117,53 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
                 <h3>Hoàn thiện bởi 1 người.</h3>
                 <ul class="pd-list">
                   <li>Dũng xây dựng repo, logic, integration và vận hành.</li>
-                  <li>Anh Hà hỗ trợ hướng dẫn Odoo và quy trình nghiệp vụ.</li>
                 </ul>
               </div>
               <div class="pd-box">
                 <p class="pd-section-label">Cost P&amp;L</p>
-                <h3>Chi phí nội bộ — vận hành bằng hạ tầng sẵn có.</h3>
-                <p>Cost chính là thời gian phát triển và Redis/Docker nội bộ. P&amp;L nằm ở giảm thao tác thủ công trên Odoo, chuẩn hóa dữ liệu sản phẩm và báo cáo tự động thay cho check thủ công hàng ngày.</p>
+                <h3>Cost nội bộ: 5,3 triệu VND.</h3>
+                <p>Chi phí build và hoàn thiện gồm 10 ngày công và AI. P&amp;L nằm ở giảm thao tác thủ công trên Odoo, chuẩn hóa dữ liệu sản phẩm, báo cáo tự động thay cho check thủ công hàng ngày và workflow automation.</p>
               </div>
             </div>
 
-            <div class="pd-wide-box">
-              <p class="pd-section-label">Audit log breakdown</p>
-              <h3>104 thao tác đã ghi nhận.</h3>
-              <p><strong>34</strong> cập nhật giá vốn &nbsp;·&nbsp; <strong>32</strong> xử lý BOM &nbsp;·&nbsp; <strong>32</strong> bảng giá &nbsp;·&nbsp; <strong>4</strong> AI chat &nbsp;·&nbsp; <strong>2</strong> giám sát tồn kho · từ log hệ thống đã xác minh.</p>
+            <div class="pd-wide-box pd-roi-box">
+              <p class="pd-section-label">ROI</p>
+              <h3>+843,4% · tổng lợi ích ước tính khoảng 50 triệu VND.</h3>
+              <p>Report tự động cho Sales/SC tiết kiệm khoảng <strong>2 ngày</strong> cho chu kỳ 14 ngày và 1 tháng, tương đương khoảng <strong>6 bản báo cáo/tháng</strong> (~1 triệu VND). Hệ thống xử lý <strong>3.540 BOM</strong>, <strong>3.769 pricelist</strong>, <strong>4.000 cost</strong> chi tiết cho product variants và tạo <strong>437 mô tả sản phẩm</strong> bằng tiếng Anh + tiếng Việt trong 2,5 ngày cho sản phẩm ORD, ước lượng tối ưu được 3,5 tháng (~42 triệu VND).</p>
+              <p>Daily scan tiết kiệm khoảng <strong>1 giờ/ngày</strong> cho việc kiểm tra sản phẩm thiếu BOM, pricelist, description, cost, vendor; thêm khoảng <strong>30 phút/ngày</strong> để kiểm tra sức khỏe các project production. Sau 4 tháng vận hành, tổng lợi ích ước tính khoảng <strong>50 triệu VND</strong>.</p>
+            </div>
+
+            <div class="pd-market-estimate">
+              <div class="pd-market-summary">
+                <p class="pd-section-label">Ước lượng nếu không dùng AI hỗ trợ</p>
+                <h3>Team 9 người × 9 tháng</h3>
+                <span>Tổng chi phí nhân công tham chiếu: <strong>153.000 USD</strong></span>
+                <p>Bonario Product Hub lớn hơn khoảng 4 lần so với Stock Onhand và ORD Price Lookup cộng lại về lượng code và độ phức tạp.</p>
+              </div>
+              <div class="pd-market-grid">
+                <div><strong>1 Tech Lead / Architect</strong><span>Thiết kế tổng thể, Odoo integration, core infrastructure · $3.000/tháng</span></div>
+                <div><strong>3 Senior Backend</strong><span>26 blueprints, service/domain layer, scheduler, tests · $2.000 × 3/tháng</span></div>
+                <div><strong>3 Senior Frontend</strong><span>22 pages, 74+ components, 26 hooks, 11 stores, PWA, Three.js · $1.500 × 3/tháng</span></div>
+                <div><strong>1 DevOps</strong><span>Docker 5 services, Prometheus, Grafana, CI/CD, Cloudflare · $2.000/tháng</span></div>
+                <div><strong>1 QA Engineer</strong><span>47 backend tests, Vitest, 6 Playwright E2E · $1.500/tháng</span></div>
+              </div>
+              <p class="pd-market-note">Một mình Product Hub đã là sản phẩm enterprise cỡ vừa với monitoring stack, scheduled jobs, multi-channel reporting và 26 modules end-to-end.</p>
             </div>
 
             <div class="pd-analysis">
               <div class="pd-strength">
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
-                  <li>Daily scan tự động — phát hiện ~800 mục cần xem lại mỗi lần chạy.</li>
-                  <li>Bao phủ nhiều điểm dữ liệu: BOM, cost, pricelist, description, Cambodia.</li>
-                  <li>Audit log cho thao tác quan trọng, Docker Monitor ngay trong app.</li>
-                  <li>Có test suite Pytest/Vitest/Playwright cho vận hành lâu dài.</li>
+                  <li>Daily scan tự động.</li>
+                  <li>Bao phủ nhiều điểm dữ liệu: BOM, cost, pricelist, description, Cambodia, Statistics.</li>
+                  <li>Rút ngắn quy trình thao tác và giảm thiểu vấn đề phát sinh từ bộ phận SC.</li>
+                  <li>Kiểm soát dữ liệu chặt chẽ.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
-                  <li>Phụ thuộc chất lượng dữ liệu Odoo gốc — lỗi source thì báo cáo nhiễu.</li>
-                  <li>Cần tiếp tục phân tách cảnh báo thật/giả để giảm noise cho người dùng.</li>
+                  <li>Scale quá rộng nên có vài chức năng chưa được dùng tới.</li>
                 </ul>
               </div>
             </div>
@@ -1169,16 +1173,12 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
             <div class="pd-site-copy">
               <p class="pd-section-label">Website đang chạy</p>
               <h3>action.bonstu.site</h3>
-              <p>Hub vận hành sản phẩm Bonario — truy cập nội bộ qua Cloudflare Tunnel, port 5004.</p>
+              <p>Hub vận hành sản phẩm Bonario đang live tại action.bonstu.site, dùng cho dữ liệu sản phẩm, workflow automation, report và monitoring nội bộ.</p>
               <a class="pd-site-link" href="https://action.bonstu.site/" target="_blank" rel="noopener noreferrer">Mở website</a>
             </div>
-            <div class="pd-site-shot" style="display:flex;align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg,rgba(15,118,110,0.12),rgba(255,255,255,0.9))">
-              <div style="text-align:center;padding:24px">
-                <div style="font-size:40px;margin-bottom:12px">⚙️</div>
-                <p style="margin:0;color:#0f766e;font-weight:900;font-size:14px">React 18 · Flask · Odoo · Docker</p>
-                <p style="margin:4px 0 0;color:#53635e;font-size:12px">Redis · Prometheus · Grafana</p>
-              </div>
-            </div>
+            <a class="pd-site-shot" href="https://action.bonstu.site/" target="_blank" rel="noopener noreferrer" aria-label="Mở website Bonario Product Hub">
+              <img src="./assets/bonario-product-hub.png" alt="Giao diện đăng nhập Bonario Product Hub trên action.bonstu.site" loading="lazy">
+            </a>
           </div>
         </article>`;
     }
@@ -1187,7 +1187,7 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#ea580c">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
             <h2 class="pd-title">Auto Workflow</h2>
             <p class="pd-subtitle">Hub điều phối automation nội bộ — gom Shopify, Odoo, Zalo ZNS, Telegram và scheduler vào một service Flask duy nhất thay cho các webhook rời rạc.</p>
           </header>
@@ -1263,38 +1263,43 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#7c3aed">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
             <h2 class="pd-title">In Label PDF</h2>
-            <p class="pd-subtitle">App vận hành kho: tra cứu phiếu nhập từ Odoo, in label PDF, quản lý batch QC và báo cáo ABC doanh số — một app phục vụ nhiều khâu liên hoàn.</p>
+            <p class="pd-subtitle">App vận hành kho: tra cứu phiếu nhập từ Odoo, in label PDF, quản lý batch QC và báo cáo doanh số sản phẩm được gắn tags FURNITURE STOCK,FABRICS STOCK</p>
           </header>
 
           <div class="pd-stats">
-            <div class="pd-stat"><strong>7+</strong><span>batch QC hoàn chỉnh từ lần khởi động gần nhất</span></div>
-            <div class="pd-stat"><strong>10</strong><span>sản phẩm trong batch QC cuối (batch #7)</span></div>
-            <div class="pd-stat"><strong>98</strong><span>requests ghi nhận từ log hệ thống</span></div>
+            <div class="pd-stat"><strong>2 ngày</strong><span>timeline hoàn thiện app</span></div>
+            <div class="pd-stat"><strong>~1tr2</strong><span>chi phí ước tính để xây dựng và hoàn thiện</span></div>
+            <div class="pd-stat"><strong>P&amp;L</strong><span>hữu ích cho kho vận kiểm soát, vận chuyển và đối chiếu số lượng QC trên phiếu Odoo</span></div>
           </div>
 
           <div class="pd-body">
             <section>
               <p class="pd-section-label">Luồng nghiệp vụ</p>
               <div class="pd-timeline-grid">
-                <div class="pd-timeline-item"><strong>Tra cứu</strong><span>Nhập mã phiếu → backend gọi Odoo JSON-RPC lấy dữ liệu thật.</span></div>
+                <div class="pd-timeline-item"><strong>Tra cứu</strong><span>Nhập mã phiếu để lấy đúng dữ liệu phiếu nhập đang có trên Odoo.</span></div>
                 <div class="pd-timeline-item"><strong>In label</strong><span>Xuất PDF layout 4×12, 48 labels/trang, trích lot và variant.</span></div>
-                <div class="pd-timeline-item"><strong>QC Batch</strong><span>Chọn sản phẩm → lưu SQLite → theo dõi pending/passed/failed.</span></div>
-                <div class="pd-timeline-item"><strong>Báo cáo</strong><span>ABC doanh số theo ngày, tên sản phẩm và tag nội thất/vải.</span></div>
+                <div class="pd-timeline-item"><strong>QC Batch</strong><span>Gom sản phẩm theo batch để kho theo dõi trạng thái kiểm hàng.</span></div>
+                <div class="pd-timeline-item"><strong>Báo cáo</strong><span>Xem nhanh nhóm sản phẩm nội thất/vải để hỗ trợ xử lý kho.</span></div>
               </div>
             </section>
 
             <div class="pd-two-col">
               <div class="pd-box">
-                <p class="pd-section-label">People &amp; Cost</p>
-                <h3>1 người · Q4/2025 → 5/2026.</h3>
-                <p>Cost là thời gian build và container Docker. P&amp;L: giảm thao tác copy tay từ Odoo, lưu lịch sử QC cục bộ và đẩy nhanh xử lý kho trong cao điểm nhập hàng.</p>
+                <p class="pd-section-label">People</p>
+                <h3>4 người đóng góp vào cách app được hình thành và vận hành.</h3>
+                <ul class="pd-list">
+                  <li>Vy đóng góp ý tưởng về việc QC để xử lý thuận tiện hơn.</li>
+                  <li>Uyên đề xuất ý tưởng phát triển thống kê các hàng gắn tags FURNITURE STOCK, FABRICS STOCK.</li>
+                  <li>Anh Hà đưa ra các đóng góp và nhận xét về triển khai in label.</li>
+                  <li>Dũng build app, triển khai production và bảo trì app.</li>
+                </ul>
               </div>
               <div class="pd-box">
-                <p class="pd-section-label">Stack kỹ thuật</p>
-                <h3>React + Express + Odoo + SQLite.</h3>
-                <p>Frontend React 18/Vite, backend Express, Odoo JSON-RPC cho dữ liệu phiếu, SQLite lưu QC data, jsPDF/html2pdf.js xuất PDF, Framer Motion cho UX.</p>
+                <p class="pd-section-label">Giá trị vận hành</p>
+                <h3>Kho/QC có một nơi để lấy phiếu và in label đúng form.</h3>
+                <p>Nhân sự không cần tự gom dữ liệu, tự chỉnh file hoặc hỏi lại thông tin phiếu. Công cụ giúp phiếu, label và batch QC đi cùng một luồng rõ ràng hơn.</p>
               </div>
             </div>
 
@@ -1302,16 +1307,15 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
               <div class="pd-strength">
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
-                  <li>Kết nối trực tiếp Odoo — không nhập lại dữ liệu thủ công.</li>
+                  <li>Chủ động design phiếu label theo phong cách riêng dễ ràng và dễ chỉnh sửa không phù thuộc vào ngôn ngữ của Odoo</li>
                   <li>Một app phục vụ nhiều nghiệp vụ: kho, QC, in ấn, báo cáo.</li>
-                  <li>SQLite lưu lịch sử QC — dễ truy vết khi cần kiểm tra lại.</li>
+                  <li>Tách các sản phẩm và số lượng QC  trong 1 phiếu trên hệ thống  Odoo.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
-                  <li>Cần thêm thống kê sử dụng theo ngày/tháng để đo adoption.</li>
-                  <li>Nếu format Odoo thay đổi, phần in PDF cần kiểm tra lại.</li>
+                  <li>Cần thêm thống kê sử dụng theo ngày/tháng để đo Technology adoption.</li>
                 </ul>
               </div>
             </div>
@@ -1323,53 +1327,52 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#be123c">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
             <h2 class="pd-title">OP Round Robin</h2>
-            <p class="pd-subtitle">Worker tự động cho Odoo: gán OP round-robin cho báo giá và xử lý toàn bộ pipeline bill/VAT/PDF chứng từ cuối tháng.</p>
+            <p class="pd-subtitle">Tự động phân công OP phụ trách báo giá theo vòng xoay, giúp việc chia người xử lý rõ ràng hơn và giảm thao tác phân công thủ công.</p>
           </header>
 
           <div class="pd-stats">
-            <div class="pd-stat"><strong>2,720</strong><span>vendor bills trong Odoo · xác minh 16/05/2026</span></div>
-            <div class="pd-stat"><strong>983</strong><span>PDF chứng từ đã lưu trữ</span></div>
-            <div class="pd-stat"><strong>~201MB</strong><span>kho chứng từ · 13 ảnh đi kèm</span></div>
+            <div class="pd-stat"><strong>1</strong><span>luồng phân công OP tự động</span></div>
+            <div class="pd-stat"><strong>2</strong><span>công ty áp dụng: Bonario / Ordinaire</span></div>
+            <div class="pd-stat"><strong>24/7</strong><span>kiểm tra quotation cần người phụ trách</span></div>
           </div>
 
           <div class="pd-body">
             <section>
-              <p class="pd-section-label">Phân bổ chứng từ theo tháng</p>
-              <div class="pd-monthly-grid">
-                <div class="pd-monthly-item"><strong>312</strong><span>Tháng 1/2026</span></div>
-                <div class="pd-monthly-item"><strong>156</strong><span>Tháng 2/2026</span></div>
-                <div class="pd-monthly-item"><strong>222</strong><span>Tháng 3/2026</span></div>
-                <div class="pd-monthly-item"><strong>266</strong><span>Tháng 4/2026</span></div>
+              <p class="pd-section-label">Luồng phân công</p>
+              <div class="pd-timeline-grid">
+                <div class="pd-timeline-item"><strong>Phát hiện</strong><span>Tìm các báo giá mới hoặc chưa có OP phụ trách.</span></div>
+                <div class="pd-timeline-item"><strong>Chia lượt</strong><span>Phân công theo vòng xoay để tránh dồn việc về một người.</span></div>
+                <div class="pd-timeline-item"><strong>Ghi nhận</strong><span>Lưu lại người được phân công để dễ kiểm tra trách nhiệm xử lý.</span></div>
+                <div class="pd-timeline-item"><strong>Theo dõi</strong><span>Giúp SC/Sales biết báo giá đang thuộc về ai.</span></div>
               </div>
             </section>
 
             <div class="pd-two-col">
               <div class="pd-box">
-                <p class="pd-section-label">Luồng OP Round Robin</p>
-                <h3>Gán OP tự động — không thủ công.</h3>
+                <p class="pd-section-label">Vấn đề giải quyết</p>
+                <h3>Không cần chia OP bằng tay cho từng báo giá.</h3>
                 <ul class="pd-list">
-                  <li>Worker polling Odoo → tìm quotation draft chưa có OP.</li>
-                  <li>Xác định công ty (Bonario / Ordinaire) → gán theo vòng xoay cố định.</li>
-                  <li>Ghi log mỗi lần gán để truy vết lịch sử phân bổ.</li>
+                  <li>Giảm tình trạng báo giá bị bỏ sót người phụ trách.</li>
+                  <li>Giảm phụ thuộc vào một người phải ngồi chia việc thủ công.</li>
+                  <li>Trách nhiệm xử lý rõ hơn trên từng báo giá.</li>
                 </ul>
               </div>
               <div class="pd-box">
-                <p class="pd-section-label">Luồng Bill / VAT / PDF</p>
-                <h3>Pipeline chứng từ tự động.</h3>
+                <p class="pd-section-label">Giá trị vận hành</p>
+                <h3>Luồng phân công đều hơn, dễ kiểm soát hơn.</h3>
                 <ul class="pd-list">
-                  <li>Lấy bill vendor từ Odoo hoặc file VAT local.</li>
-                  <li>OCR trích dữ liệu → sinh PHIEU_GIAO_NHAN và YEU_CAU_BAO_GIA.</li>
-                  <li>Đổi tên chuẩn hóa → lưu vào C:\Bills theo tháng.</li>
+                  <li>OP nhận việc theo thứ tự rõ ràng.</li>
+                  <li>SC/Sales dễ biết ai đang phụ trách quotation.</li>
                 </ul>
               </div>
             </div>
 
             <div class="pd-wide-box">
               <p class="pd-section-label">Cost P&amp;L</p>
-              <h3>Worker background · hạ tầng nội bộ.</h3>
-              <p>Cost là thời gian build và máy chủ local. P&amp;L: giảm thao tác chia OP thủ công, chuẩn hóa lưu trữ chứng từ và giảm sai sót khi xử lý nhiều bill/chứng từ cùng lúc. Có batch end-of-month phù hợp closing nghiệp vụ.</p>
+              <h3>Chi phí thấp, tác động nằm ở việc giảm thao tác phân công lặp lại.</h3>
+              <p>Cost là thời gian xây dựng script và duy trì chạy ổn định. P&amp;L nằm ở việc giảm thời gian chia OP thủ công, giảm rủi ro bỏ sót báo giá và giúp trách nhiệm xử lý rõ ràng hơn.</p>
             </div>
 
             <div class="pd-analysis">
@@ -1377,15 +1380,15 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
                   <li>Tự động hóa đúng phần việc lặp lại và dễ sai nhất.</li>
-                  <li>2,720 hóa đơn qua pipeline từ tháng 9/2025.</li>
-                  <li>Kho chứng từ truy cập được qua web (bills-server).</li>
+                  <li>Giúp phân bổ việc đều hơn giữa các OP.</li>
+                  <li>Làm rõ người phụ trách trên từng báo giá.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
                   <li>Cần thêm log số lần gán OP để đo adoption rõ hơn.</li>
-                  <li>Phụ thuộc cấu trúc dữ liệu Odoo và quy ước lưu file.</li>
+                  <li>Cần rule rõ hơn cho trường hợp OP nghỉ, quá tải hoặc đổi người phụ trách.</li>
                 </ul>
               </div>
             </div>
@@ -1397,62 +1400,66 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#be123c">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
             <h2 class="pd-title">Bills Archive Server</h2>
-            <p class="pd-subtitle">Lớp web phục vụ kho chứng từ PDF — biến thư mục C:\\Bills thành archive truy cập được qua trình duyệt, không cần mở folder local.</p>
+            <p class="pd-subtitle">Kho lưu trữ chứng từ PDF để back office mở, tra cứu và đối chiếu nhanh hơn, và bảo mật tuyệt đối chỉ truy cập được folder khi cùng mạng lan với máy chủ.</p>
           </header>
 
           <div class="pd-stats">
             <div class="pd-stat"><strong>983</strong><span>PDF chứng từ trong kho lưu trữ</span></div>
-            <div class="pd-stat"><strong>13</strong><span>ảnh đi kèm chứng từ</span></div>
-            <div class="pd-stat"><strong>~201MB</strong><span>tổng dung lượng kho</span></div>
-            <div class="pd-stat"><strong>6 tháng</strong><span>12/2025 → 5/2026</span></div>
+            <div class="pd-stat"><strong>1 buổi</strong><span>timeline triển khai script và setup automation</span></div>
+            <div class="pd-stat"><strong>250k</strong><span>chi phí triển khai toàn bộ script</span></div>
+            <div class="pd-stat pd-stat-positive"><strong>+4.700%</strong><span>ROI ước tính từ việc rút ngắn xử lý chứng từ VAT</span></div>
           </div>
 
           <div class="pd-body">
             <section>
-              <p class="pd-section-label">Cấu trúc kho chứng từ theo tháng</p>
+              <p class="pd-section-label">Tác động xử lý chứng từ VAT</p>
               <div class="pd-monthly-grid">
-                <div class="pd-monthly-item"><strong>T12/25</strong><span>Khởi đầu</span></div>
-                <div class="pd-monthly-item"><strong>312</strong><span>T1/2026</span></div>
-                <div class="pd-monthly-item"><strong>156</strong><span>T2/2026</span></div>
-                <div class="pd-monthly-item"><strong>222</strong><span>T3/2026</span></div>
-                <div class="pd-monthly-item"><strong>266</strong><span>T4/2026</span></div>
-                <div class="pd-monthly-item"><strong>T5/26</strong><span>Đang chạy</span></div>
+                <div class="pd-monthly-item"><strong>983</strong><span>chứng từ VAT đã xử lý trong 4 tháng</span></div>
+                <div class="pd-monthly-item"><strong>1 tháng</strong><span>thao tác thủ công trước đây</span></div>
+                <div class="pd-monthly-item"><strong>1 buổi</strong><span>thời gian xử lý sau automation</span></div>
+                <div class="pd-monthly-item"><strong>20 phút</strong><span>thời gian xử lý thủ công mỗi phiếu</span></div>
+                <div class="pd-monthly-item"><strong>5 giây</strong><span>để ra một folder hoàn chỉnh</span></div>
+                <div class="pd-monthly-item"><strong>12tr</strong><span>ước tính tiết kiệm 1 tháng công</span></div>
               </div>
             </section>
 
             <div class="pd-two-col">
               <div class="pd-box">
-                <p class="pd-section-label">Kiến trúc</p>
-                <h3>Nginx Alpine · Read-only mount.</h3>
+                <p class="pd-section-label">People</p>
+                <h3>2 người đóng góp vào ý tưởng và triển khai.</h3>
                 <ul class="pd-list">
-                  <li>Container nginx:alpine serve thư mục bill qua HTTP nội bộ.</li>
-                  <li>Mount C:\Bills ở chế độ read-only — không thể ghi đè qua web.</li>
-                  <li>Gắn với pipeline op-round-robin để sinh và chuẩn hóa chứng từ.</li>
+                  <li>Uyên đưa ra ý tưởng về việc triển khai.</li>
+                  <li>Dũng viết scripts và xử lý ổn định workflow automation.</li>
                 </ul>
               </div>
               <div class="pd-box">
-                <p class="pd-section-label">Giá trị</p>
-                <h3>Truy cập nhanh, không cần SSH.</h3>
-                <p>Biến kho file local thành điểm truy cập web nội bộ. Tăng tốc tra cứu chứng từ, giảm thất lạc file và hỗ trợ quy trình cuối tháng. URL nội bộ: bills.bonstu.site.</p>
+                <p class="pd-section-label">Cost P&amp;L</p>
+                <h3>Chi phí triển khai khoảng 250k.</h3>
+                <p>Cost là 1 buổi triển khai toàn bộ script và setup automation. P&amp;L nằm ở việc giảm một lượng lớn thời gian thao tác thủ công, đảm bảo tính chính xác và đúng format kế toán, giúp quá trình triển khai tiện lợi hơn.</p>
               </div>
+            </div>
+
+            <div class="pd-wide-box">
+              <p class="pd-section-label">ROI</p>
+              <h3>+4.700%</h3>
+              <p>Trong 1 buổi chiều hệ thống đã xử lý 983 chứng từ VAT của 4 tháng đầu năm 2026. Nếu làm thủ công, khối lượng này ước tính mất khoảng 1 tháng công, tương đương 12 triệu VND. Từ tháng 5, automation workflow giúp không còn phải xử lý thủ công từ phiếu VAT; thời gian xử lý mỗi phiếu giảm từ khoảng 20 phút xuống còn khoảng 5 giây để ra một folder hoàn chỉnh.</p>
             </div>
 
             <div class="pd-analysis">
               <div class="pd-strength">
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
-                  <li>Đơn giản, nhẹ, dễ vận hành — Nginx Alpine không cần bảo trì nhiều.</li>
-                  <li>Biến folder local thành web archive truy cập từ bất kỳ máy nội bộ.</li>
-                  <li>Phù hợp làm lớp nền cho automation chứng từ.</li>
+                  <li>Giảm mạnh thao tác thủ công khi xử lý chứng từ VAT.</li>
+                  <li>Đầu ra đúng format kế toán, dễ kiểm soát và đối chiếu.</li>
+                  <li>Chứng từ được gom thành folder hoàn chỉnh, thuận tiện cho triển khai thực tế.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
-                  <li>Cần kiểm soát quyền truy cập nếu mở rộng ra nhiều người.</li>
-                  <li>Chưa có search metadata sâu như document management đầy đủ.</li>
+                <li>Vận hành workflow automation từ đầu tháng 5 cho nên chưa có dữ liệu dài hạn để đánh giá hiệu quả lâu dài.</li>
                 </ul>
               </div>
             </div>
@@ -1464,59 +1471,72 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#0891b2">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
             <h2 class="pd-title">Curtain Size Calculator</h2>
-            <p class="pd-subtitle">Web app tính vải và kích thước rèm — hỗ trợ tính lẻ, xử lý Excel hàng loạt và chuyển PDF sản xuất sang layout Excel BON cho xưởng.</p>
+            <p class="pd-subtitle">Công cụ tính vải rèm từ file báo giá PDF, giúp SC rút ngắn thao tác tính thủ công, kiểm tra lại số liệu báo giá và xuất format chuẩn để gửi xưởng.</p>
           </header>
 
           <div class="pd-stats">
-            <div class="pd-stat"><strong>250</strong><span>requests từ log hệ thống</span></div>
-            <div class="pd-stat"><strong>5</strong><span>file sản xuất xử lý gần nhất · 14–15/05/2026</span></div>
-            <div class="pd-stat"><strong>2</strong><span>service độc lập: web Flask + API FastAPI</span></div>
+            <div class="pd-stat"><strong>2 tuần</strong><span>thời gian triển khai và build production</span></div>
+            <div class="pd-stat"><strong>4 người</strong><span>tham gia mô tả nghiệp vụ, góp ý và triển khai</span></div>
+            <div class="pd-stat pd-stat-positive"><strong>+350%</strong><span>ROI ước tính sau 4 tháng vận hành</span></div>
           </div>
 
           <div class="pd-body">
             <section>
-              <p class="pd-section-label">Luồng xử lý</p>
+              <p class="pd-section-label">Mô tả project</p>
               <div class="pd-timeline-grid">
-                <div class="pd-timeline-item"><strong>Form</strong><span>Nhập thông số rèm → auto-detect Cách Nối → tính vải cần.</span></div>
-                <div class="pd-timeline-item"><strong>Excel</strong><span>Upload file hàng loạt → xử lý batch → download kết quả.</span></div>
-                <div class="pd-timeline-item"><strong>PDF</strong><span>Upload PDF kích thước sản xuất → chuyển sang layout Excel BON.</span></div>
-                <div class="pd-timeline-item"><strong>Output</strong><span>Số khoang, bi, chiều rộng vải, số cuộn, vải cần order.</span></div>
+                <div class="pd-timeline-item"><strong>Nhận PDF</strong><span>Chỉ cần gửi file báo giá PDF vào app thay vì nhập lại từng dòng thủ công.</span></div>
+                <div class="pd-timeline-item"><strong>Tính vải</strong><span>Tính số nối tổng, quy cách vải và mã vải cần bao nhiêu m2.</span></div>
+                <div class="pd-timeline-item"><strong>Đối chiếu</strong><span>So sánh số liệu với JAK và rà soát báo giá Sales đã tính đúng thành tiền chưa.</span></div>
+                <div class="pd-timeline-item"><strong>Xuất file</strong><span>Tạo 5 sheet xử lý để gửi xưởng, thay vì gom số liệu bằng tay.</span></div>
               </div>
             </section>
 
             <div class="pd-two-col">
               <div class="pd-box">
-                <p class="pd-section-label">People &amp; Cost</p>
-                <h3>1 người · Q4/2025 → 5/2026.</h3>
-                <p>Cost là thời gian build và container Docker. P&amp;L: giảm lỗi tính vải tay, giảm thời gian chuẩn bị file sản xuất và chuẩn hóa output cho xưởng.</p>
-              </div>
-              <div class="pd-box">
-                <p class="pd-section-label">Stack kỹ thuật</p>
-                <h3>Flask + FastAPI + pandas + PyMuPDF.</h3>
+                <p class="pd-section-label">People</p>
+                <h3>Hoàn thiện bởi 4 người.</h3>
                 <ul class="pd-list">
-                  <li>Web app Flask cho người dùng không chuyên kỹ thuật.</li>
-                  <li>API FastAPI có /docs cho tích hợp chương trình.</li>
-                  <li>pandas/openpyxl xử lý Excel · PyMuPDF xử lý PDF sản xuất.</li>
+                  <li>Chị Yến mô tả cách tính vải xếp li và định vị.</li>
+                  <li>Trang hỗ trợ trao đổi thêm thông tin về quá trình tính toán.</li>
+                  <li>Uyên đề xuất các cải tiến nâng cao.</li>
+                  <li>Dũng xây dựng toàn bộ hệ thống và bảo trì hệ thống.</li>
                 </ul>
               </div>
+              <div class="pd-box">
+                <p class="pd-section-label">Cost &amp; P&amp;L</p>
+                <h3>Cost triển khai: khoảng 6tr.</h3>
+                <ul class="pd-list">
+                  <li>Chi phí gồm 2 tuần ngày công để triển khai project và build production.</li>
+                  <li>P&amp;L nằm ở việc giảm thao tác tính thủ công, kiểm soát dữ liệu chính xác hơn và nắm rõ cách tính vải.</li>
+                  <li>SC có file đầu ra chuẩn hơn để đối chiếu nội bộ và gửi xưởng.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pd-wide-box pd-roi-box">
+              <p class="pd-section-label">ROI</p>
+              <h3>+350% · ước tính lợi nhuận 27tr sau 4 tháng.</h3>
+              <p>Trước khi có app, một đơn báo giá lớn cần tính số nối tổng, lượng vải theo từng quy cách, đối chiếu với JAK, rà lại thành tiền và chuẩn hóa format gửi xưởng. Người có kinh nghiệm như Trang có thể mất khoảng 2-3 tiếng cho một đơn lớn; người chưa đủ kinh nghiệm lâu như Mai Thu có thể mất cả một buổi chiều, khoảng 4-5 tiếng.</p>
+              <p>Sau khi triển khai, quy trình rút xuống còn một thao tác gửi file PDF báo giá. App tính toán và tạo 5 sheet xử lý trong khoảng 10-20 giây. Ước tính mỗi tháng giảm khoảng 3 giờ/ngày thao tác thủ công. Sau 4 tháng vận hành, lợi ích ước tính khoảng 540 giờ, tương đương 27tr. Chưa tính phần tối ưu chi phí vải cho xưởng, vì mỗi 1m vải rút gọn được có thể tiết kiệm thêm khoảng 1-2tr.</p>
             </div>
 
             <div class="pd-analysis">
               <div class="pd-strength">
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
-                  <li>Giải quyết bài toán nghiệp vụ có công thức phức tạp và nhiều biến.</li>
-                  <li>Phục vụ cả form web, API và batch Excel — nhiều cách dùng.</li>
-                  <li>Output layout BON phục vụ trực tiếp cho xưởng sản xuất.</li>
+                  <li>Rút ngắn rất nhiều thời gian thao tác thủ công.</li>
+                  <li>Giảm áp lực công việc cho bộ phận SC.</li>
+                  <li>Số liệu tính toán chính xác hơn và tránh sai sót từ báo giá của SC.</li>
+                  <li>Đầu ra có format rõ ràng để gửi xưởng và đối chiếu lại khi cần.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
-                  <li>Cần test kỹ khi format file đầu vào thay đổi.</li>
-                  <li>ROI tiền mặt cần thêm dữ liệu thời gian tiết kiệm trên mỗi file.</li>
+                  <li>Còn cần phát triển thêm công thức về nối ngang và công thức rèm roman.</li>
+                  <li>Cần thiết kế tài liệu hướng dẫn để người mới dễ tiếp cận, sử dụng và hiểu app.</li>
                 </ul>
               </div>
             </div>
@@ -1528,41 +1548,44 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#c026d3">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
-            <h2 class="pd-title">Visual Brief Builder</h2>
-            <p class="pd-subtitle">Công cụ tạo brief AI image theo brand — chọn category, model, ratio, reference và rule; hệ thống tự dựng prompt và gửi sang engine AI. Marketing dùng được mà không cần biết prompt.</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
+            <h2 class="pd-title">Công cụ brief hình AI cho Marketing</h2>
+            <p class="pd-subtitle">Một form nội bộ giúp marketing tạo brief hình ảnh theo brand rõ ràng hơn. Thay vì mỗi người tự viết prompt theo kinh nghiệm riêng, app gom các lựa chọn quan trọng thành một quy trình dễ dùng và nhất quán.</p>
           </header>
 
           <div class="pd-stats">
-            <div class="pd-stat"><strong>3</strong><span>model AI hỗ trợ: wan/2-7, nano-banana-2, gpt-image-2</span></div>
-            <div class="pd-stat"><strong>Static</strong><span>HTML/CSS/JS · Nginx Alpine · không cần server riêng</span></div>
-            <div class="pd-stat"><strong>Q1–Q2</strong><span>2026 · đang vận hành tại visual.bonstu.site</span></div>
+            <div class="pd-stat"><strong>1</strong><span>workflow chuẩn cho việc tạo brief hình AI</span></div>
+            <div class="pd-stat"><strong>3</strong><span>nhóm lựa chọn chính: mục đích hình, phong cách, tỷ lệ</span></div>
+            <div class="pd-stat"><strong>Live</strong><span>đang chạy tại visual.bonstu.site</span></div>
           </div>
 
           <div class="pd-body">
             <section>
-              <p class="pd-section-label">Luồng brief → ảnh</p>
+              <p class="pd-section-label">Luồng marketing sử dụng</p>
               <div class="pd-timeline-grid">
-                <div class="pd-timeline-item"><strong>Brief</strong><span>Chọn category, use case, material, mood, ánh sáng và tỷ lệ.</span></div>
-                <div class="pd-timeline-item"><strong>Generate</strong><span>Chọn model AI, gửi request, live watch panel theo dõi tiến trình.</span></div>
-                <div class="pd-timeline-item"><strong>Refine</strong><span>Preset: warmer light, fewer props, cleaner background, crop safe.</span></div>
-                <div class="pd-timeline-item"><strong>Compose</strong><span>Thêm wallpaper/curtain vào ảnh phòng đã chọn — bước xử lý tiếp.</span></div>
+                <div class="pd-timeline-item"><strong>Chọn mục đích</strong><span>Xác định hình dùng cho lifestyle, sản phẩm, moodboard hoặc campaign.</span></div>
+                <div class="pd-timeline-item"><strong>Chọn phong cách</strong><span>Gom mood, ánh sáng, chất liệu, bố cục và reference vào cùng một form.</span></div>
+                <div class="pd-timeline-item"><strong>Tạo brief</strong><span>App chuyển lựa chọn thành brief rõ ràng để gửi sang công cụ tạo ảnh.</span></div>
+                <div class="pd-timeline-item"><strong>Chỉnh lại</strong><span>Marketing có thể refine yêu cầu theo hướng ít props hơn, background sạch hơn hoặc đúng brand hơn.</span></div>
               </div>
             </section>
 
             <div class="pd-two-col">
               <div class="pd-box">
-                <p class="pd-section-label">People &amp; Cost</p>
-                <h3>Marketing team · static app.</h3>
-                <p>Cost vận hành gần bằng 0 — static site + Nginx. P&amp;L: chuẩn hóa brief AI image, giảm lệch brand tone và tăng tốc vòng lặp brief → tạo ảnh → chỉnh.</p>
+                <p class="pd-section-label">People</p>
+                <h3>Toàn bộ project do Anh Hà triển khai.</h3>
+                <ul class="pd-list">
+                  <li>Anh Hà triển khai toàn bộ project và định hướng workflow sử dụng.</li>
+                  <li>Dũng support build Docker, connect subdomain và bảo trì hệ thống.</li>
+                </ul>
               </div>
               <div class="pd-box">
-                <p class="pd-section-label">Brand governance</p>
-                <h3>Rulebook + template làm nền.</h3>
+                <p class="pd-section-label">Giá trị vận hành</p>
+                <h3>Biến prompt cá nhân thành quy trình chung cho team.</h3>
                 <ul class="pd-list">
-                  <li>brand-prompt-config.js — cấu hình prompt theo brand.</li>
-                  <li>brand-visual-ruleset.md — quy tắc visual governance.</li>
-                  <li>master-prompt-templates.md — template cho từng use case.</li>
+                  <li>Người mới vẫn có thể tạo brief theo cùng một chuẩn.</li>
+                  <li>Brief dễ kiểm soát hơn trước khi gửi tạo ảnh.</li>
+                  <li>Giảm tình trạng mỗi người viết prompt một kiểu khác nhau.</li>
                 </ul>
               </div>
             </div>
@@ -1571,16 +1594,16 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
               <div class="pd-strength">
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
-                  <li>Dễ dùng cho người không chuyên kỹ thuật — không cần biết prompt.</li>
-                  <li>Chuẩn hóa model, ratio, rule và reference trong một quy trình.</li>
-                  <li>Có refinement presets để chỉnh ảnh nhất quán theo brand.</li>
+                  <li>Dễ dùng cho người không chuyên prompt.</li>
+                  <li>Chuẩn hóa mục đích hình, tone, tỷ lệ và reference trong một quy trình.</li>
+                  <li>Giúp marketing giữ brand tone ổn định hơn khi dùng AI image.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
                   <li>Chưa có số usage định lượng mạnh — đang theo dõi adoption.</li>
-                  <li>Chất lượng output phụ thuộc model AI và reference đầu vào.</li>
+                  <li>Chất lượng ảnh vẫn phụ thuộc reference đầu vào và engine tạo ảnh.</li>
                 </ul>
               </div>
             </div>
@@ -1590,16 +1613,12 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
             <div class="pd-site-copy">
               <p class="pd-section-label">Website đang chạy</p>
               <h3>visual.bonstu.site</h3>
-              <p>Brief builder AI image cho marketing Ordinaire — truy cập nội bộ, port 9001.</p>
+              <p>Công cụ brief hình AI cho marketing. Link dùng để mở workflow tạo brief và chuẩn hóa yêu cầu hình ảnh trước khi generate.</p>
               <a class="pd-site-link" href="https://visual.bonstu.site/" target="_blank" rel="noopener noreferrer">Mở website</a>
             </div>
-            <div class="pd-site-shot" style="display:flex;align-items:center;justify-content:center;min-height:200px;background:linear-gradient(135deg,rgba(192,38,211,0.1),rgba(255,255,255,0.9))">
-              <div style="text-align:center;padding:24px">
-                <div style="font-size:40px;margin-bottom:12px">🎨</div>
-                <p style="margin:0;color:#c026d3;font-weight:900;font-size:14px">HTML · CSS · JS · Nginx</p>
-                <p style="margin:4px 0 0;color:#53635e;font-size:12px">Kie.ai Image Generation API</p>
-              </div>
-            </div>
+            <a class="pd-site-shot" href="https://visual.bonstu.site/" target="_blank" rel="noopener noreferrer" aria-label="Mở website Visual Brief Builder">
+              <img src="./assets/visual-brief-builder.png" alt="Giao diện Visual Brief Builder trên visual.bonstu.site" loading="lazy">
+            </a>
           </div>
         </article>`;
     }
@@ -1608,20 +1627,20 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#334155">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
-            <h2 class="pd-title">Tunnel Master</h2>
-            <p class="pd-subtitle">Cloudflare Tunnel tập trung — gom 6+ service nội bộ vào một gateway duy nhất, đưa app Docker local ra subdomain có kiểm soát mà không mở port trực tiếp.</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
+            <h2 class="pd-title">Cổng truy cập app nội bộ</h2>
+            <p class="pd-subtitle">Biến máy tính nội bộ thành điểm chạy nhiều app có domain riêng như action, stock, price, bills. Người dùng chỉ cần mở link, không cần biết máy nào đang host app.</p>
           </header>
 
           <div class="pd-stats">
-            <div class="pd-stat"><strong>6+</strong><span>service nội bộ qua một tunnel</span></div>
-            <div class="pd-stat"><strong>6,305</strong><span>requests qua 6 subdomain · Cloudflare Analytics Sep~May</span></div>
-            <div class="pd-stat"><strong>0</strong><span>port mở trực tiếp trên router/firewall</span></div>
+            <div class="pd-stat"><strong>6+</strong><span>app nội bộ đã có domain riêng</span></div>
+            <div class="pd-stat"><strong>6.305</strong><span>lượt truy cập qua các subdomain đã ghi nhận</span></div>
+            <div class="pd-stat"><strong>11</strong><span>port mở trực tiếp trên router công ty</span></div>
           </div>
 
           <div class="pd-body">
             <section>
-              <p class="pd-section-label">Subdomains đang route qua tunnel</p>
+              <p class="pd-section-label">Các domain nội bộ đang dùng</p>
               <div class="pd-tags" style="margin-top:0">
                 <span class="pd-tag">action.bonstu.site</span>
                 <span class="pd-tag">stock.bonstu.site</span>
@@ -1634,30 +1653,30 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
 
             <div class="pd-infra-route">
               <div class="pd-infra-node">
-                <strong>Cloudflare Edge</strong>
-                <span>HTTPS · bonstu.site subdomains</span>
+                <strong>Người dùng mở domain</strong>
+                <span>Truy cập bằng link bonstu.site trên trình duyệt</span>
               </div>
               <div class="pd-infra-arrow">→</div>
               <div class="pd-infra-node">
-                <strong>cloudflared container</strong>
-                <span>Docker · bonario-shared-tunnel network · route đến từng service local</span>
+                <strong>Máy chủ nội bộ Bonario</strong>
+                <span>Máy tính local phục vụ app mà không cần thuê VPS riêng</span>
               </div>
             </div>
 
             <div class="pd-two-col">
               <div class="pd-box">
-                <p class="pd-section-label">Tính năng hạ tầng</p>
-                <h3>Một tunnel · nhiều hostname.</h3>
+                <p class="pd-section-label">Vấn đề giải quyết</p>
+                <h3>App nội bộ không còn phụ thuộc vào IP, port hoặc máy cá nhân khó nhớ.</h3>
                 <ul class="pd-list">
-                  <li>Gom nhiều hostname vào cùng tunnel — cấu hình tập trung.</li>
-                  <li>Ép http2 thay QUIC/UDP để tránh lỗi mạng/firewall.</li>
-                  <li>Dùng bonario-shared-tunnel network kết nối chéo stack.</li>
+                  <li>Các phòng ban truy cập bằng domain rõ ràng.</li>
+                  <li>Không cần mở port trực tiếp trên mạng công ty.</li>
+                  <li>Dễ gom nhiều app nội bộ về một cách vận hành thống nhất.</li>
                 </ul>
               </div>
               <div class="pd-box">
                 <p class="pd-section-label">Cost P&amp;L</p>
-                <h3>Cost vận hành gần bằng 0.</h3>
-                <p>Cloudflare Tunnel miễn phí · container nhẹ · không mở port router. P&amp;L: biến máy tính nội bộ thành server với subdomain thật — không thuê VPS, không cấu hình mạng phức tạp.</p>
+                <h3>Tận dụng máy tính sẵn có thay vì thuê server riêng.</h3>
+                <p>Cost vận hành thấp. P&amp;L nằm ở việc nhiều app nội bộ có thể chạy bằng hạ tầng sẵn có, giảm chi phí thuê VPS và giảm rủi ro cấu hình mạng thủ công.</p>
               </div>
             </div>
 
@@ -1665,16 +1684,16 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
               <div class="pd-strength">
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
-                  <li>Không mở port trực tiếp — an toàn hơn so với port forwarding.</li>
-                  <li>Tập trung hóa cấu hình tunnel cho tất cả service.</li>
-                  <li>Dễ mở rộng khi thêm service mới — chỉ cần thêm hostname vào config.</li>
+                  <li>Người dùng có link rõ ràng để mở app nội bộ.</li>
+                  <li>Không cần thuê server ngoài cho từng app nhỏ.</li>
+                  <li>Dễ mở rộng khi phát sinh thêm app vận hành mới.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
-                  <li>Phụ thuộc Cloudflare và máy host nội bộ — nếu máy tắt thì mất kết nối.</li>
-                  <li>Cần thêm monitoring để phát hiện tunnel down sớm hơn.</li>
+                  <li>Phụ thuộc máy chủ nội bộ, máy tắt thì các app cũng bị ảnh hưởng.</li>
+                  <li>Cần thêm cảnh báo để phát hiện sớm khi domain hoặc máy chủ gặp lỗi.</li>
                 </ul>
               </div>
             </div>
@@ -1686,44 +1705,44 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         return `
         <article class="pd-card" style="--pd-accent:#334155">
           <header class="pd-head">
-            <p class="pd-kicker">${String(index + 1).padStart(2, '0')} · ${escapeHtml(proj.chapter)}</p>
-            <h2 class="pd-title">Action Local Bridge</h2>
-            <p class="pd-subtitle">Container hạ tầng dùng socat để chuyển tiếp TCP traffic từ port 5504 sang action-product:5004 trong Docker network — tách routing khỏi backend nghiệp vụ.</p>
+            <p class="pd-kicker">${String(index + 1).padStart(2, "0")} · ${escapeHtml(proj.chapter)}</p>
+            <h2 class="pd-title">Cầu nối cho Action Product</h2>
+            <p class="pd-subtitle">Một lớp trung gian giúp Action Product truy cập ổn định qua domain nội bộ mà không phải sửa logic app chính mỗi khi thay đổi cách host.</p>
           </header>
 
           <div class="pd-stats">
-            <div class="pd-stat"><strong>alpine/socat</strong><span>image cực nhẹ · không có application code</span></div>
-            <div class="pd-stat"><strong>5504→5004</strong><span>TCP forward · bonario-shared-tunnel network</span></div>
-            <div class="pd-stat"><strong>0</strong><span>database · 0 persistent storage · 0 thay đổi backend</span></div>
+            <div class="pd-stat"><strong>1</strong><span>cầu nối riêng cho Action Product</span></div>
+            <div class="pd-stat"><strong>0</strong><span>thay đổi logic app chính</span></div>
+            <div class="pd-stat"><strong>Low cost</strong><span>chi phí duy trì gần như không đáng kể</span></div>
           </div>
 
           <div class="pd-body">
             <div class="pd-infra-route">
               <div class="pd-infra-node">
-                <strong>:5504</strong>
-                <span>Port listen trên host</span>
+                <strong>Domain Action Product</strong>
+                <span>Người dùng truy cập bằng link quen thuộc</span>
               </div>
               <div class="pd-infra-arrow">→</div>
               <div class="pd-infra-node">
-                <strong>action-product:5004</strong>
-                <span>Service đích trong Docker network</span>
+                <strong>App chạy trên máy chủ local</strong>
+                <span>Cầu nối giữ đường truy cập ổn định cho app</span>
               </div>
             </div>
 
             <div class="pd-two-col">
               <div class="pd-box">
                 <p class="pd-section-label">Vai trò</p>
-                <h3>Cầu nối nhẹ, không cần bảo trì.</h3>
+                <h3>Giữ đường truy cập cho Action Product ổn định hơn.</h3>
                 <ul class="pd-list">
-                  <li>Expose action-product qua một đường tunnel/network path riêng.</li>
-                  <li>Không cần chỉnh code backend — chỉ thêm container bridge.</li>
-                  <li>Chạy trong bonario-shared-tunnel — kết nối chéo stack.</li>
+                  <li>Tách phần truy cập domain khỏi logic app chính.</li>
+                  <li>Khi đổi cách host, không cần sửa lại app nghiệp vụ.</li>
+                  <li>Giảm rủi ro khi đưa app nội bộ ra môi trường dùng thật.</li>
                 </ul>
               </div>
               <div class="pd-box">
-                <p class="pd-section-label">Tại sao cần?</p>
-                <h3>Tách routing khỏi nghiệp vụ.</h3>
-                <p>Khi cần thay đổi cách expose service hoặc test qua một đường riêng, chỉ cần thay đổi bridge container — không đụng vào code action-product. Giảm rủi ro khi thay đổi hạ tầng.</p>
+                <p class="pd-section-label">Giá trị vận hành</p>
+                <h3>Thay đổi hạ tầng mà ít ảnh hưởng người dùng.</h3>
+                <p>Project này không tạo tính năng mới cho người dùng cuối, nhưng giúp Action Product chạy ổn định hơn sau domain nội bộ và giảm rủi ro mỗi khi cần điều chỉnh hạ tầng.</p>
               </div>
             </div>
 
@@ -1731,21 +1750,157 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
               <div class="pd-strength">
                 <p class="pd-section-label">Điểm mạnh</p>
                 <ul class="pd-list">
-                  <li>Cực nhẹ, ít tài nguyên — phù hợp vai trò utility infrastructure.</li>
-                  <li>Tách hạ tầng bridge khỏi backend nghiệp vụ hoàn toàn.</li>
-                  <li>Dễ triển khai và thay thế khi cần thay đổi routing.</li>
+                  <li>Giảm rủi ro khi thay đổi cách truy cập Action Product.</li>
+                  <li>Không làm phức tạp app chính.</li>
+                  <li>Dễ thay thế nếu cần đổi cấu hình host sau này.</li>
                 </ul>
               </div>
               <div class="pd-weakness">
                 <p class="pd-section-label">Điểm yếu</p>
                 <ul class="pd-list">
-                  <li>Ít giá trị khi đứng một mình — phụ thuộc vào action-product.</li>
-                  <li>Cần tài liệu network rõ để người khác maintain dễ hơn.</li>
+                  <li>Giá trị chính là hỗ trợ Action Product, không phải một app độc lập.</li>
+                  <li>Cần tài liệu vận hành rõ để người khác tiếp quản dễ hơn.</li>
                 </ul>
               </div>
             </div>
           </div>
         </article>`;
+    }
+
+    function renderLocalServerInfraDetail() {
+        return `
+        <section class="infra-page">
+          <article class="infra-overview">
+            <div class="infra-overview-copy">
+              <p class="pd-kicker">06 · Platform</p>
+              <h2>Biến máy tính nội bộ thành server vận hành</h2>
+              <p>Hạ tầng này giúp các app nội bộ có domain rõ ràng, truy cập ổn định hơn và không cần thuê riêng một server cho từng công cụ nhỏ. Người dùng chỉ mở link, phần vận hành phía sau được gom về một lớp quản lý chung.</p>
+            </div>
+            <div class="infra-overview-stats" aria-label="Số liệu hạ tầng">
+              <div><strong>6+</strong><span>app nội bộ có domain riêng</span></div>
+              <div><strong>6.305</strong><span>lượt truy cập đã ghi nhận</span></div>
+              <div><strong>11</strong><span>port mở trực tiếp trên router</span></div>
+            </div>
+          </article>
+
+          <section class="infra-access-map" aria-label="Luồng truy cập app nội bộ">
+            <div>
+              <span>01</span>
+              <strong>Người dùng mở link</strong>
+              <p>Sales, SC, kho hoặc back office truy cập bằng domain bonstu.site.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>Cổng truy cập chung</strong>
+              <p>Domain được gom về một điểm điều phối thay vì mỗi app một cách mở riêng.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>Máy chủ nội bộ</strong>
+              <p>Máy tính local phục vụ app thật, tận dụng hạ tầng sẵn có.</p>
+            </div>
+            <div>
+              <span>04</span>
+              <strong>App vận hành</strong>
+              <p>Action, Stock, Price, Bills, Workflow, Visual tiếp tục chạy cho từng nghiệp vụ.</p>
+            </div>
+          </section>
+
+          <article class="infra-unit infra-unit-primary">
+            <header>
+              <p class="pd-kicker">01 · Internal Access</p>
+              <h2>Cổng truy cập app nội bộ</h2>
+              <p>Đưa nhiều app nội bộ lên domain riêng để các phòng ban mở nhanh bằng link, không phải nhớ IP, port hoặc máy nào đang chạy app.</p>
+            </header>
+            <div class="infra-domain-strip">
+              <span>action.bonstu.site</span>
+              <span>stock.bonstu.site</span>
+              <span>price.bonstu.site</span>
+              <span>curtain-calculator.bonstu.site</span>
+              <span>label.bonstu.site</span>
+              <span>visual.bonstu.site</span>
+            </div>
+            <div class="infra-unit-grid">
+              <div>
+                <p class="pd-section-label">Giá trị vận hành</p>
+                <h3>Một cách truy cập thống nhất cho nhiều app.</h3>
+                <ul class="pd-list">
+                  <li>Các phòng ban có link rõ ràng để mở app nội bộ.</li>
+                  <li>Không cần mở port trực tiếp trên mạng công ty.</li>
+                  <li>Dễ thêm app mới khi phát sinh công cụ vận hành mới.</li>
+                </ul>
+              </div>
+              <div>
+                <p class="pd-section-label">Cost P&amp;L</p>
+                <h3>Tận dụng máy tính sẵn có thay vì thuê server riêng.</h3>
+                <p>Cost vận hành thấp. P&amp;L nằm ở việc nhiều app có thể chạy bằng hạ tầng nội bộ, giảm chi phí thuê VPS và giảm rủi ro cấu hình mạng thủ công.</p>
+              </div>
+            </div>
+            <div class="infra-analysis">
+              <div class="pd-strength">
+                <p class="pd-section-label">Điểm mạnh</p>
+                <ul class="pd-list">
+                  <li>Truy cập dễ hơn cho người dùng không rành kỹ thuật.</li>
+                  <li>Không cần thuê server ngoài cho từng app nhỏ.</li>
+                  <li>Giữ quyền kiểm soát app nội bộ trên máy của công ty.</li>
+                </ul>
+              </div>
+              <div class="pd-weakness">
+                <p class="pd-section-label">Điểm yếu</p>
+                <ul class="pd-list">
+                  <li>Máy chủ nội bộ tắt thì các app cũng bị ảnh hưởng.</li>
+                  <li>Cần thêm cảnh báo sớm khi domain hoặc máy chủ gặp lỗi.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="infra-unit infra-unit-secondary">
+            <header>
+              <p class="pd-kicker">02 · Action Product</p>
+              <h2>Cầu nối cho Action Product</h2>
+              <p>Một lớp hỗ trợ riêng để Action Product chạy ổn định sau domain nội bộ. Khi cần đổi cách host hoặc đường truy cập, app chính ít bị ảnh hưởng hơn.</p>
+            </header>
+            <div class="infra-mini-stats">
+              <div><strong>1</strong><span>cầu nối riêng cho Action Product</span></div>
+              <div><strong>0</strong><span>thay đổi logic app chính</span></div>
+              <div><strong>Low cost</strong><span>chi phí duy trì gần như không đáng kể</span></div>
+            </div>
+            <div class="infra-unit-grid">
+              <div>
+                <p class="pd-section-label">Vai trò</p>
+                <h3>Giữ đường truy cập ổn định mà không làm phức tạp app chính.</h3>
+                <ul class="pd-list">
+                  <li>Tách phần truy cập domain khỏi logic nghiệp vụ.</li>
+                  <li>Khi đổi cách host, không cần sửa lại app chính.</li>
+                  <li>Giảm rủi ro khi đưa app nội bộ ra môi trường dùng thật.</li>
+                </ul>
+              </div>
+              <div>
+                <p class="pd-section-label">Giá trị vận hành</p>
+                <h3>Thay đổi hạ tầng mà ít ảnh hưởng người dùng.</h3>
+                <p>Project này không tạo tính năng mới cho người dùng cuối, nhưng giúp Action Product chạy ổn định hơn và giảm rủi ro mỗi khi cần điều chỉnh hạ tầng.</p>
+              </div>
+            </div>
+            <div class="infra-analysis">
+              <div class="pd-strength">
+                <p class="pd-section-label">Điểm mạnh</p>
+                <ul class="pd-list">
+                  <li>Giảm rủi ro khi thay đổi cách truy cập Action Product.</li>
+                  <li>Không làm phức tạp app chính.</li>
+                  <li>Dễ thay thế nếu cần đổi cấu hình host sau này.</li>
+                </ul>
+              </div>
+              <div class="pd-weakness">
+                <p class="pd-section-label">Điểm yếu</p>
+                <ul class="pd-list">
+                  <li>Giá trị chính là hỗ trợ Action Product, không phải một app độc lập.</li>
+                  <li>Cần tài liệu vận hành rõ để người khác tiếp quản dễ hơn.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </section>`;
     }
 
     const CUSTOM_PROJECT_RENDERERS = {
@@ -1762,9 +1917,406 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
         "action-local-bridge": renderActionBridgeDetail,
     };
 
+    function renderStockEscalationDetail() {
+        return `
+        <article class="escalation-card" style="--pd-accent:#dc2626">
+          <header class="escalation-head">
+            <p class="pd-kicker">12 · Alerting / Automation</p>
+            <h2>Escalate thông báo hàng</h2>
+            <p>Workflow automation check real-time khi hàng tồn kho có tag Discontinued đã được bán và không còn tồn trên Odoo. Khi phát hiện case này, hệ thống gửi thông báo tới các phòng ban liên quan để dừng bán và archive sản phẩm đúng nơi.</p>
+          </header>
+
+          <section class="escalation-flow" aria-label="Luồng thông báo discontinued">
+            <div><strong>Odoo</strong><span>Hàng có tag Discontinued và tồn kho về 0.</span></div>
+            <div><strong>Automation</strong><span>Script kiểm tra real-time và trigger cảnh báo.</span></div>
+            <div><strong>Marketing</strong><span>Archive sản phẩm trên website.</span></div>
+            <div><strong>BIS</strong><span>Archive sản phẩm trên Odoo.</span></div>
+            <div><strong>Sales / SC</strong><span>Thông báo và ngừng bán mặt hàng đó.</span></div>
+          </section>
+
+          <section class="escalation-grid">
+            <div class="escalation-box">
+              <p class="pd-section-label">Timeline</p>
+              <h3>30 phút</h3>
+              <p>Triển khai scripts automation cho luồng kiểm tra và thông báo hàng discontinued/out-of-stock.</p>
+            </div>
+            <div class="escalation-box">
+              <p class="pd-section-label">People</p>
+              <h3>1 người</h3>
+              <ul class="pd-list">
+                <li>Dũng xây dựng scripts để triển khai tự động hóa.</li>
+              </ul>
+            </div>
+            <div class="escalation-box">
+              <p class="pd-section-label">Cost P&amp;L</p>
+              <h3>Chi phí build không đáng kể.</h3>
+              <p>P&amp;L nằm ở giảm thao tác thủ công và đồng bộ thông tin đến toàn bộ các phòng ban liên quan.</p>
+            </div>
+            <div class="escalation-roi">
+              <p class="pd-section-label">ROI</p>
+              <strong>+5.900%</strong>
+              <p>Tiết kiệm khoảng 30 phút mỗi ngày cho việc check tồn kho của sản phẩm gắn tag và thông báo đến các bộ phận. Đã triển khai 2 tháng, tiết kiệm khoảng 1.800 phút.</p>
+            </div>
+          </section>
+
+          <section class="pd-analysis escalation-analysis">
+            <div class="pd-strength">
+              <p class="pd-section-label">Điểm mạnh</p>
+              <ul class="pd-list">
+                <li>Tối ưu thời gian thao tác thủ công.</li>
+                <li>Không bỏ sót các sản phẩm không còn stock mà bị discontinued.</li>
+              </ul>
+            </div>
+            <div class="pd-weakness">
+              <p class="pd-section-label">Điểm yếu</p>
+              <ul class="pd-list">
+                <li>Chưa có kênh chat chung để thông báo một nơi.</li>
+                <li>Đa số đang làm việc qua Zalo personal, không có webhook để can thiệp tự động.</li>
+              </ul>
+            </div>
+          </section>
+        </article>`;
+    }
+
+    function renderRfidDetail() {
+        return `
+        <article class="rfid-card" style="--pd-accent:#0d9488">
+          <header class="rfid-head">
+            <p class="pd-kicker">11 · Warehouse / RFID</p>
+            <h2>RFID</h2>
+            <p>Project dán từng tem barcode vào từng cuốn catalog. Hàng ngày quét RFID, xử lý logic để biết có bị miss hoặc mất CTL, sau đó báo cáo lên hệ thống Odoo với thông số chính xác.</p>
+          </header>
+
+          <section class="rfid-flow" aria-label="Luồng vận hành RFID">
+            <div><strong>Dán barcode</strong><span>Mỗi cuốn catalog được gắn mã để định danh.</span></div>
+            <div><strong>Quét RFID hằng ngày</strong><span>Đọc dữ liệu thực tế từ CTL đang có.</span></div>
+            <div><strong>Xử lý logic</strong><span>Đối chiếu để phát hiện miss hoặc mất CTL.</span></div>
+            <div><strong>Report Odoo</strong><span>Báo cáo thông số chính xác lên hệ thống.</span></div>
+          </section>
+
+          <section class="rfid-grid">
+            <div class="rfid-box">
+              <p class="pd-section-label">Timeline</p>
+              <h3>Không xác định chính xác</h3>
+              <p>Khi Dũng vào thử việc, Anh Hà đã chuẩn bị trang thiết bị và kế hoạch triển khai trước đó.</p>
+            </div>
+            <div class="rfid-box">
+              <p class="pd-section-label">People</p>
+              <h3>2 người</h3>
+              <ul class="pd-list">
+                <li>Anh Hà xây scripts automation lên n8n, triển khai kế hoạch và mua thiết bị liên quan.</li>
+                <li>Dũng đưa script về máy chủ để tối ưu chi phí vận hành n8n, dán barcode và follow project trong quá trình vận hành.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="rfid-pnl">
+            <div>
+              <p class="pd-section-label">Cost</p>
+              <h3>Máy RFID, tem barcode và thời gian build script.</h3>
+              <p>Chi phí nằm ở phần thiết bị đọc RFID, vật tư barcode và thời gian triển khai automation.</p>
+            </div>
+            <div>
+              <p class="pd-section-label">P&amp;L</p>
+              <h3>Giảm thao tác thủ công, tăng độ chính xác CTL.</h3>
+              <p>Project giúp đảm bảo tính chính xác, giảm thiểu catalog bị mất không lý do và tạo báo cáo đều hơn cho hệ thống Odoo.</p>
+            </div>
+          </section>
+
+          <section class="pd-analysis rfid-analysis">
+            <div class="pd-strength">
+              <p class="pd-section-label">Điểm mạnh</p>
+              <ul class="pd-list">
+                <li>Tối ưu thời gian thao tác thủ công.</li>
+                <li>Tỉ lệ CTL bị mất giảm đáng kể.</li>
+                <li>Kiểm soát độ chính xác cao với CTL đang thực sự có.</li>
+                <li>Tối ưu độ chính xác về số CTL Bonario đang sở hữu theo thời gian.</li>
+              </ul>
+            </div>
+            <div class="pd-weakness">
+              <p class="pd-section-label">Điểm yếu</p>
+              <ul class="pd-list">
+                <li>Mất khoảng 30 phút mỗi ngày để quét RFID, đưa lên Telegram xử lý logic và làm report thủ công.</li>
+                <li>Vẫn còn thao tác thủ công khi báo cáo lên hệ thống Odoo.</li>
+              </ul>
+            </div>
+          </section>
+        </article>`;
+    }
+
+    function renderOdooProductCreationDetail() {
+        return `
+        <article class="pd-card pd-card-product-data pd-card-supplier-sync" style="--pd-accent:#0f766e">
+          <header class="pd-head">
+            <p class="pd-kicker">08.1 · Supplier Data Clean</p>
+            <h2 class="pd-title">Đồng bộ &amp; clean 16.000 sản phẩm Bonario</h2>
+            <p class="pd-subtitle">Làm sạch dữ liệu Bonario từ nguồn thô của Arte, Acacia và các nhà cung cấp khác. Từ dữ liệu ban đầu chỉ có code và giá bán, workflow chuẩn hóa lại tên gốc, khổ vải, cách tính giá và pricelist để sản phẩm dùng được trên Odoo.</p>
+          </header>
+
+          <div class="pd-stats">
+            <div class="pd-stat"><strong>2 tuần</strong><span>tạo, đồng bộ và clean dữ liệu chuẩn</span></div>
+            <div class="pd-stat"><strong>~16.000</strong><span>sản phẩm Bonario được xử lý từ dữ liệu thô</span></div>
+            <div class="pd-stat"><strong>~40tr</strong><span>lợi ích ròng từ khoảng 4 tháng được rút ngắn</span></div>
+          </div>
+
+          <div class="pd-body">
+            <section>
+              <div class="pd-supplier-head">
+                <p class="pd-section-label">Nội dung xử lý</p>
+                <h3>Từ dữ liệu thô của nhà cung cấp thành dữ liệu sản phẩm có thể vận hành trên Odoo.</h3>
+                <p>Trong vòng 2 tuần, workflow đã tạo và đồng bộ dữ liệu chuẩn cho khoảng 16.000 sản phẩm từ nguồn thô ban đầu chỉ có code và giá bán do nhà cung cấp đưa ra. Phần việc này không chỉ upload sản phẩm, mà còn phải tìm lại tên gốc, kích thước/khổ vải và các thông tin cần thiết để sản phẩm trên Odoo dùng được cho tính giá và vận hành.</p>
+              </div>
+              <div class="pd-supplier-stats">
+                <div><strong>4,5 tháng</strong><span>ước tính nếu làm thủ công với năng lực phổ thông</span></div>
+                <div><strong>4 tháng</strong><span>thời gian được rút ngắn so với làm thủ công</span></div>
+                <div><strong>2.25 / 2.55</strong><span>hệ số giá cho 2 trường hợp dịch vụ</span></div>
+                <div><strong>2 pricelist</strong><span>chỉ áp dụng cho sản phẩm Arte trên Odoo</span></div>
+              </div>
+              <div class="pd-two-col">
+                <div class="pd-box">
+                  <p class="pd-section-label">Cách xử lý dữ liệu</p>
+                  <ul class="pd-list">
+                    <li>Tìm và chạy lệnh trên website nhà cung cấp để tra tên gốc của sản phẩm.</li>
+                    <li>Tìm kích thước/khổ vải để có dữ liệu đầu vào cho việc tính giá hàng loạt.</li>
+                    <li>Chuẩn hóa tên sản phẩm trên Odoo thay vì chỉ dùng code và giá bán thô.</li>
+                    <li>Tạo dữ liệu cho sản phẩm C (Thành phẩm Rèm) theo phương pháp tính giá của công ty.</li>
+                  </ul>
+                </div>
+                <div class="pd-box">
+                  <p class="pd-section-label">Giá và pricelist</p>
+                  <ul class="pd-list">
+                    <li>Tính giá hệ số cho trường hợp chưa có dịch vụ và có dịch vụ.</li>
+                    <li>Áp dụng hệ số 2.25 và 2.55 theo cách tính của công ty.</li>
+                    <li>Tạo 2 pricelist riêng biệt cho sản phẩm Arte để hiển thị giá chính xác và nhanh trên Odoo.</li>
+                    <li>Giảm thao tác tra cứu/tính lại thủ công khi cần báo giá hoặc kiểm tra sản phẩm.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="pd-wide-box">
+                <p class="pd-section-label">Tác động</p>
+                <h3>Rút ngắn một khối lượng công việc ước tính 4,5 tháng xuống còn 2 tuần.</h3>
+                <p>Nếu một người làm thủ công, không có nhiều kiến thức IT và không đủ kỹ năng xử lý các rào cản anti-bot từ website nhà cung cấp, toàn bộ công việc ước tính mất khoảng <strong>4,5 tháng</strong>. Workflow đã rút ngắn được khoảng <strong>4 tháng</strong>, với lợi ích ròng ước tính khoảng <strong>40 triệu VND</strong>.</p>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <article class="pd-card pd-card-product-data" style="--pd-accent:#0f766e">
+          <header class="pd-head">
+            <p class="pd-kicker">08.2 · Product Checklist</p>
+            <h2 class="pd-title">Tạo sản phẩm Odoo</h2>
+            <p class="pd-subtitle">Xây dựng checklist và các thông số cần thiết để khi sản phẩm được tạo trên Odoo, sản phẩm đã có đủ giá trị quan trọng cho SC, Sales, kế toán và các phòng ban khác làm việc dễ hơn.</p>
+          </header>
+
+          <div class="pd-stats">
+            <div class="pd-stat"><strong>3 ngày</strong><span>xây dựng scripts và hoàn thành nội dung hướng dẫn cần thiết</span></div>
+            <div class="pd-stat"><strong>+1.066,67%</strong><span>ROI ước tính sau 4 tháng triển khai</span></div>
+            <div class="pd-stat"><strong>420h</strong><span>thời gian thủ công được rút ngắn, tương đương khoảng 21 triệu VND</span></div>
+          </div>
+
+          <div class="pd-body">
+            <section>
+              <p class="pd-section-label">Checklist dữ liệu cần có</p>
+              <div class="pd-timeline-grid">
+                <div class="pd-timeline-item"><strong>BOM</strong><span>Thành phần và số lượng cấu thành sản phẩm rõ ràng hơn.</span></div>
+                <div class="pd-timeline-item"><strong>Cost</strong><span>Giá cost và vendor dễ tra, giảm phụ thuộc vào file Excel tổng.</span></div>
+                <div class="pd-timeline-item"><strong>Giá bán</strong><span>Sales có giá bán và thông tin cần thiết để làm báo giá nhanh hơn.</span></div>
+                <div class="pd-timeline-item"><strong>Description</strong><span>Mô tả sản phẩm đầy đủ hơn để các phòng ban dùng chung một dữ liệu.</span></div>
+              </div>
+            </section>
+
+            <div class="pd-two-col">
+              <div class="pd-box">
+                <p class="pd-section-label">People</p>
+                <h3>5 người đóng góp vào quy trình.</h3>
+                <ul class="pd-list">
+                  <li>Uyên hỗ trợ thông tin cần thiết.</li>
+                  <li>Anh Hà giải thích rõ những giá trị BOM, cost và các dữ liệu liên quan.</li>
+                  <li>Chị Mai Hồng đề xuất ý tưởng config sẵn các giá trị cần thiết khi nhảy ra phiếu cấu thành sản phẩm.</li>
+                  <li>Chị Vân Anh hỗ trợ thông tin description của sản phẩm.</li>
+                  <li>Dũng xây dựng workflow và cải tiến từ những ý tưởng đó.</li>
+                </ul>
+              </div>
+              <div class="pd-box">
+                <p class="pd-section-label">Cost</p>
+                <h3>3 ngày xây dựng scripts và hoàn thiện nội dung.</h3>
+                <p>Chi phí chính là thời gian xây dựng workflow, scripts và checklist để người mới cũng nắm được sản phẩm cần đủ thông tin gì trước khi các phòng ban khác sử dụng.</p>
+              </div>
+            </div>
+
+            <div class="pd-wide-box pd-roi-box">
+              <p class="pd-section-label">P&amp;L / ROI</p>
+              <h3>+1.066,67% · ước tính lợi ích khoảng 21 triệu VND sau 4 tháng.</h3>
+              <p>Project giảm lỗi xoay quanh dữ liệu sản phẩm từ phòng ban SC. Quy trình rút ngắn khoảng <strong>2 giờ/ngày</strong> cho việc check và thêm thủ công thành phần/số lượng BOM, giảm khoảng <strong>30 phút/ngày</strong> cho Sales khi điền giá bán và description cho báo giá, và giảm khoảng <strong>1 giờ/ngày</strong> cho việc tìm cost/vendor từ file Excel tổng.</p>
+              <p>Tổng thời gian thủ công giảm khoảng <strong>3 giờ 30 phút/ngày</strong>. Sau 4 tháng triển khai, lợi ích ước tính khoảng <strong>420 giờ</strong>, tương đương <strong>21 triệu VND</strong>.</p>
+            </div>
+
+            <div class="pd-analysis">
+              <div class="pd-strength">
+                <p class="pd-section-label">Điểm mạnh</p>
+                <ul class="pd-list">
+                  <li>Product có đầy đủ thông tin cần thiết cho các phòng ban.</li>
+                  <li>Data clean, dễ bảo trì và người mới dễ tiếp cận.</li>
+                  <li>Quy trình và checklist rõ ràng, đầy đủ các bước.</li>
+                </ul>
+              </div>
+              <div class="pd-weakness">
+                <p class="pd-section-label">Điểm yếu</p>
+                <ul class="pd-list">
+                  <li>Vẫn còn khoảng 20% số sản phẩm chưa được config đầy đủ thông tin.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    function renderInternalOrderTrackingDetail() {
+        return `
+        <article class="pd-card pd-card-tracking-order" style="--pd-accent:#ea580c">
+          <header class="pd-head">
+            <p class="pd-kicker">09 · Order Tracking</p>
+            <h2 class="pd-title">Tracking order internal</h2>
+            <p class="pd-subtitle">Luồng theo dõi tiến độ đơn hàng dựa trên field Order State trong báo giá Odoo. Project tách thành 2 góc nhìn: khách hàng xem đơn đang được triển khai tới đâu, còn Sales kiểm tra sâu hơn về purchase và sản xuất khi đơn đang ở trạng thái In Progress.</p>
+          </header>
+
+          <div class="pd-stats">
+            <div class="pd-stat"><strong>2</strong><span>website theo dõi: khách hàng và Sales nội bộ</span></div>
+            <div class="pd-stat"><strong>Order State</strong><span>field chính để xác định tiến độ đơn trên báo giá</span></div>
+            <div class="pd-stat"><strong>In Progress</strong><span>trạng thái cho phép Sales xem purchase và sản xuất</span></div>
+          </div>
+
+          <div class="pd-body">
+            <section>
+              <p class="pd-section-label">Luồng trạng thái đơn hàng</p>
+              <div class="pd-timeline-grid">
+                <div class="pd-timeline-item"><strong>Need process</strong><span>Đơn mới cần được tiếp nhận và bắt đầu xử lý.</span></div>
+                <div class="pd-timeline-item"><strong>In Progress</strong><span>Đơn đang triển khai; Sales xem được mua hàng và sản xuất đã tới đâu.</span></div>
+                <div class="pd-timeline-item"><strong>Done</strong><span>Đơn đã hoàn tất theo luồng xử lý nội bộ.</span></div>
+                <div class="pd-timeline-item"><strong>Cancelled</strong><span>Đơn bị hủy, không tiếp tục theo dõi tiến độ triển khai.</span></div>
+              </div>
+            </section>
+
+            <div class="tracking-split">
+              <div class="tracking-view-card">
+                <p class="pd-section-label">Website khách hàng</p>
+                <h3>Khách biết đơn đang ở giai đoạn nào.</h3>
+                <p>Trang dành cho khách hàng chỉ hiển thị tiến độ cần thiết: đơn đang chờ xử lý, đang triển khai, đã hoàn tất hay đã hủy. Mục tiêu là giảm việc khách phải hỏi lại Sales và giúp trải nghiệm sau báo giá rõ ràng hơn.</p>
+                <ul class="pd-list">
+                  <li>Hiển thị trạng thái đơn theo ngôn ngữ dễ hiểu.</li>
+                  <li>Không lộ thông tin nội bộ như purchase, cost hoặc tiến độ chi tiết của xưởng.</li>
+                  <li>Giúp khách có điểm tự kiểm tra thay vì nhắn hỏi từng lần.</li>
+                </ul>
+              </div>
+              <div class="tracking-view-card tracking-view-card-sales">
+                <p class="pd-section-label">Website Sales</p>
+                <h3>Sales kiểm tra tiến độ theo Order State.</h3>
+                <p>Trang dành cho Sales đọc field Order State trên đơn báo giá. Khi trạng thái là In Progress, Sales có thể biết đơn đó đã purchase bao nhiêu sản phẩm và sản xuất được bao nhiêu sản phẩm để phản hồi khách chính xác hơn.</p>
+                <ul class="pd-list">
+                  <li>Xem đơn đang nằm ở trạng thái nào trên báo giá.</li>
+                  <li>Với In Progress: kiểm tra số lượng đã purchase.</li>
+                  <li>Với In Progress: kiểm tra số lượng đã sản xuất.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pd-two-col">
+              <div class="pd-box">
+                <p class="pd-section-label">Vấn đề giải quyết</p>
+                <h3>Sales và khách hàng không phải hỏi tiến độ thủ công nhiều lần.</h3>
+                <p>Trước đây tiến độ thường nằm trong báo giá hoặc phải hỏi người phụ trách. Khi đưa Order State thành điểm theo dõi rõ ràng, mỗi nhóm nhìn đúng phần mình cần: khách xem trạng thái tổng quan, Sales xem chi tiết để tư vấn.</p>
+              </div>
+              <div class="pd-box">
+                <p class="pd-section-label">People</p>
+                <h3>Khách hàng, Sales, SC và production cùng hưởng lợi.</h3>
+                <ul class="pd-list">
+                  <li>Khách hàng tự xem được tiến độ tổng quan của đơn.</li>
+                  <li>Sales có dữ liệu để phản hồi khách nhanh hơn.</li>
+                  <li>SC/production giảm số lần bị hỏi lại về trạng thái đơn.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pd-wide-box pd-tracking-roi">
+              <p class="pd-section-label">P&amp;L / ROI</p>
+              <h3>ROI nằm ở việc giảm thời gian hỏi đáp và tăng độ minh bạch tiến độ.</h3>
+              <p>Project giúp giảm vòng lặp hỏi tiến độ giữa khách hàng, Sales và các bộ phận vận hành. Khi Sales nhìn được đơn In Progress đã purchase/sản xuất tới đâu, việc phản hồi khách sẽ nhanh và chính xác hơn thay vì phải hỏi thủ công từng bộ phận.</p>
+            </div>
+
+            <div class="pd-analysis">
+              <div class="pd-strength">
+                <p class="pd-section-label">Điểm mạnh</p>
+                <ul class="pd-list">
+                  <li>Tách rõ thông tin cho khách hàng và thông tin nội bộ cho Sales.</li>
+                  <li>Dựa trên Order State nên bám sát dữ liệu đang có trên báo giá Odoo.</li>
+                  <li>Giúp Sales phản hồi khách chủ động hơn khi đơn đang In Progress.</li>
+                </ul>
+              </div>
+              <div class="pd-weakness">
+                <p class="pd-section-label">Điểm yếu</p>
+                <ul class="pd-list">
+                  <li>Độ chính xác phụ thuộc việc cập nhật Order State đúng và đều.</li>
+                  <li>Cần thống nhất cách đặt tên trạng thái để khách hàng dễ hiểu hơn các label nội bộ.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tracking-sites">
+            <div class="tracking-site-card">
+              <p class="pd-section-label">Website khách hàng</p>
+              <h3>Tracking tiến độ đơn cho khách</h3>
+              <p>Link dùng cho khách hàng kiểm tra đơn đang được triển khai ở giai đoạn nào.</p>
+              <a class="pd-site-link" href="https://tracking.ordinaire.vn/" target="_blank" rel="noopener noreferrer">Mở tracking.ordinaire.vn</a>
+            </div>
+            <div class="tracking-site-card">
+              <p class="pd-section-label">Website Sales</p>
+              <h3>Tracking nội bộ cho Sales</h3>
+              <p>Link dành cho Sales kiểm tra Order State, số lượng đã purchase và số lượng đã sản xuất.</p>
+              <span>Chờ gắn URL website</span>
+            </div>
+          </div>
+        </article>`;
+    }
+
     function renderPanelContent(groupId) {
         const group = SYSTEM_GROUPS.find((g) => g.id === groupId);
         if (!group) return "";
+        if (group.id === "rfid") {
+            return `
+      <header class="detail-hero">
+        <h1 class="detail-title">${escapeHtml(group.label)}</h1>
+      </header>
+      <div class="detail-project-list">${renderRfidDetail()}</div>`;
+        }
+        if (group.id === "stock-escalation") {
+            return `
+      <header class="detail-hero">
+        <h1 class="detail-title">${escapeHtml(group.label)}</h1>
+      </header>
+      <div class="detail-project-list">${renderStockEscalationDetail()}</div>`;
+        }
+        if (group.id === "local-server-infra") {
+            return `
+      <header class="detail-hero infra-route-hero">
+        <h1 class="detail-title">${escapeHtml(group.label)}</h1>
+      </header>
+      ${renderLocalServerInfraDetail()}`;
+        }
+        if (group.id === "odoo-product-creation") {
+            return `
+      <header class="detail-hero">
+        <h1 class="detail-title">${escapeHtml(group.label)}</h1>
+      </header>
+      <div class="detail-project-list">${renderOdooProductCreationDetail()}</div>`;
+        }
+        if (group.id === "internal-order-tracking") {
+            return `
+      <header class="detail-hero">
+        <h1 class="detail-title">${escapeHtml(group.label)}</h1>
+      </header>
+      <div class="detail-project-list">${renderInternalOrderTrackingDetail()}</div>`;
+        }
         const groupProjects = group.projectIds
             .map((id) => projects.find((p) => p.id === id))
             .filter(Boolean);
@@ -2032,6 +2584,9 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
 
     function renderHome(app, route) {
         countersStarted = false;
+        if (route.scrollToScene === undefined) {
+            window.scrollTo({ top: 0, behavior: "auto" });
+        }
         app.innerHTML = `
       ${buildDotNav()}
       <main id="story-scroll" aria-label="Báo cáo tác động Bonario">
@@ -2047,6 +2602,8 @@ Em sẵn sàng cho giai đoạn tiếp theo — Sếp chỉ hướng là em ch�
             startHookCounters();
             if (route.scrollToScene !== undefined) {
                 scrollToScene(route.scrollToScene);
+            } else {
+                window.scrollTo({ top: 0, behavior: "auto" });
             }
         });
     }
