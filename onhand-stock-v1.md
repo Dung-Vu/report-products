@@ -1,4 +1,4 @@
-# Bonario Stock Management
+# Stock Onhand Management
 
 ## Thông tin chung
 
@@ -10,7 +10,7 @@
 
 ## Mục tiêu
 
-Bonario Stock Management là ứng dụng tra cứu tồn kho và kiểm kho hàng tháng cho Bonario.
+Stock Onhand Management là ứng dụng tra cứu tồn kho và kiểm kho hàng tháng cho Bonario.
 
 Ứng dụng hỗ trợ tra cứu on-hand stock theo kho/category/search, xem hàng incoming, fabric products, discontinued/archived products còn tồn, tạo phiên kiểm kho theo tháng/kho và lưu kết quả kiểm kho vào PostgreSQL.
 

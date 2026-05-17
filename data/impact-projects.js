@@ -32,9 +32,9 @@ window.impactProjects = [
     },
     {
         id: "bonario-stock-management",
-        name: "Bonario Stock Management",
+        name: "Stock Onhand Management",
         chapter: "Warehouse / Stock",
-        hook: "Nền tảng tra cứu tồn kho và kiểm kho — phân quyền, nhật ký thao tác, cập nhật trực tiếp — sẵn sàng khi cần kiểm kho thực tế.",
+        hook: "Nền tảng tra cứu tồn kho và kiểm kho — sẵn sàng khi cần kiểm kho thực tế.",
         problem:
             "Kho cần tra cứu và kiểm kho theo quy trình — phân quyền admin/counter, audit log, nhiều người check cùng lúc. Không có tool thì tất cả đều làm tay.",
         built: "Frontend + Express + PostgreSQL — auth, audit log, WebSocket live, mobile app. Nền đã sẵn cho kiểm kho đồng thời.",
@@ -138,7 +138,9 @@ window.impactProjects = [
         problem:
             "Mỗi app một cấu hình tunnel riêng thì rối, khó debug khi có sự cố, và không có chỗ xem tổng thể.",
         built: "Cloudflare Tunnel với cấu hình tập trung — tất cả subdomain chạy qua 1 điểm quản lý. Vận hành ổn định từ Q4 2025, toàn bộ hoạt động bình thường.",
-        verifiedMetrics: ["Hệ thống kết nối internet vận hành ổn định — kiểm tra 15/05 toàn bộ hoạt động bình thường"],
+        verifiedMetrics: [
+            "Hệ thống kết nối internet vận hành ổn định — kiểm tra 15/05 toàn bộ hoạt động bình thường",
+        ],
     },
     {
         id: "action-local-bridge",
