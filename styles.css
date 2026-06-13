@@ -328,22 +328,22 @@ h2 {
     background:
         radial-gradient(
             ellipse 60% 40% at 50% -10%,
-            rgba(15, 118, 110, 0.18),
+            rgba(15, 118, 110, 0.22),
             transparent
         ),
         radial-gradient(
             ellipse 50% 50% at 10% 80%,
-            rgba(37, 99, 235, 0.08),
+            rgba(20, 184, 166, 0.09),
             transparent
         ),
-        #070a13;
+        #0f1714;
     color: #e8f0ec;
     --ink: #ffffff;
     --muted: rgba(232, 240, 236, 0.65);
     --line: rgba(255, 255, 255, 0.15);
     --soft-line: rgba(255, 255, 255, 0.08);
-    --accent: #38bdf8;
-    --accent-2: #3b82f6;
+    --accent: #2dd4bf;
+    --accent-2: #14b8a6;
     align-items: flex-start;
     padding: 80px 0 60px;
 }
@@ -4095,11 +4095,11 @@ h2 {
 
 .evidence-card:hover {
     transform: translateY(-5px) scale(1.02);
-    border-color: rgba(56, 189, 248, 0.35);
+    border-color: rgba(45, 212, 191, 0.4);
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 
-        0 12px 30px rgba(7, 10, 19, 0.5),
-        0 0 20px rgba(56, 189, 248, 0.12);
+        0 12px 30px rgba(15, 23, 20, 0.6),
+        0 0 20px rgba(45, 212, 191, 0.16);
 }
 
 .evidence-card-header {
