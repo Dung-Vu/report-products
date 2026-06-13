@@ -541,18 +541,49 @@
 
     function buildEvidenceScale() {
         if (!companyScale.length && !repoRelevantOdoo.length) return "";
-        const renderEvidenceCards = (items) =>
-            items
-                .map(
-                    (item) => `
-              <article class="evidence-card">
-                <span class="evidence-card-label">${escapeHtml(item.label)}</span>
+        const allItems = [...companyScale, ...repoRelevantOdoo];
+        const col1 = [];
+        const col2 = [];
+        const col3 = [];
+        allItems.forEach((item, index) => {
+            if (index % 3 === 0) col1.push(item);
+            else if (index % 3 === 1) col2.push(item);
+            else col3.push(item);
+        });
+
+        const renderCard = (item) => `
+              <article class="evidence-card" data-id="${item.id}">
+                <div class="evidence-card-header">
+                  <span class="evidence-card-label">${escapeHtml(item.label)}</span>
+                  ${item.confidence === 'verified' ? `
+                    <span class="evidence-badge">
+                      <svg class="evidence-badge-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="10 3 4.5 8.5 2 6"></polyline>
+                      </svg>
+                      Verified
+                    </span>
+                  ` : ''}
+                </div>
                 <strong class="evidence-card-value">${escapeHtml(item.display)}</strong>
                 <p class="evidence-card-desc">${escapeHtml(item.description)}</p>
-                <small class="evidence-card-source">${escapeHtml(item.source)}</small>
-              </article>`,
-                )
-                .join("");
+                <div class="evidence-card-footer">
+                  <svg class="evidence-card-footer-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="10" height="10" rx="1.5"></rect>
+                    <path d="M4 5h6M4 8h4"></path>
+                  </svg>
+                  <small class="evidence-card-source">${escapeHtml(item.source)}</small>
+                </div>
+              </article>`;
+
+        const renderColumn = (columnItems) => {
+            if (!columnItems.length) return "";
+            let displayItems = [...columnItems];
+            while (displayItems.length < 4) {
+                displayItems = displayItems.concat(columnItems);
+            }
+            return displayItems.map(renderCard).join("");
+        };
+
         return `
       <section class="evidence-strip is-collapsed" id="evidence-strip" aria-label="Bằng chứng đã xác minh">
         <div class="evidence-strip-header">
@@ -568,22 +599,23 @@
         </button>
         <div class="evidence-strip-body" id="evidence-body">
           <div class="evidence-strip-body-inner">
-            ${
-                companyScale.length
-                    ? `<p class="evidence-subgroup-title">Usage từ app nội bộ</p>
-            <div class="evidence-grid">
-              ${renderEvidenceCards(companyScale)}
-            </div>`
-                    : ""
-            }
-            ${
-                repoRelevantOdoo.length
-                    ? `<p class="evidence-subgroup-title">Dữ liệu từ project &amp; Odoo</p>
-            <div class="evidence-grid evidence-grid-secondary">
-              ${renderEvidenceCards(repoRelevantOdoo)}
-            </div>`
-                    : ""
-            }
+            <div class="evidence-scroll-container">
+              <div class="evidence-scroll-column col-1">
+                <div class="evidence-scroll-inner scroll-slow">
+                  ${renderColumn(col1)}
+                </div>
+              </div>
+              <div class="evidence-scroll-column col-2">
+                <div class="evidence-scroll-inner scroll-fast">
+                  ${renderColumn(col2)}
+                </div>
+              </div>
+              <div class="evidence-scroll-column col-3">
+                <div class="evidence-scroll-inner scroll-medium">
+                  ${renderColumn(col3)}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>`;
@@ -660,7 +692,6 @@
         return `
       <section class="scene scene-scale" id="scene-2" aria-label="Quy mô vận hành">
         <div class="scale-inner">
-          ${buildMonthlyChart()}
           ${buildEvidenceScale()}
         </div>
       </section>`;

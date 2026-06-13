@@ -327,16 +327,23 @@ h2 {
 .scene-scale {
     background:
         radial-gradient(
-            ellipse 70% 50% at 90% 10%,
-            rgba(15, 118, 110, 0.11),
+            ellipse 60% 40% at 50% -10%,
+            rgba(15, 118, 110, 0.18),
             transparent
         ),
         radial-gradient(
-            ellipse 40% 50% at 5% 85%,
-            rgba(37, 99, 235, 0.06),
+            ellipse 50% 50% at 10% 80%,
+            rgba(37, 99, 235, 0.08),
             transparent
         ),
-        var(--bg);
+        #070a13;
+    color: #e8f0ec;
+    --ink: #ffffff;
+    --muted: rgba(232, 240, 236, 0.65);
+    --line: rgba(255, 255, 255, 0.15);
+    --soft-line: rgba(255, 255, 255, 0.08);
+    --accent: #38bdf8;
+    --accent-2: #3b82f6;
     align-items: flex-start;
     padding: 80px 0 60px;
 }
@@ -3879,8 +3886,10 @@ h2 {
 .monthly-chart {
     margin-top: 20px;
     padding: 20px 24px 16px;
-    background: rgba(255, 255, 255, 0.68);
-    border: 1px solid var(--soft-line);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: var(--radius);
     overflow: hidden;
     opacity: 0;
@@ -4059,43 +4068,126 @@ h2 {
 }
 
 .evidence-card {
-    border: 1px solid var(--soft-line);
-    border-radius: var(--radius);
-    padding: 18px;
-    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.evidence-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.evidence-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 
+        0 12px 30px rgba(7, 10, 19, 0.5),
+        0 0 20px rgba(56, 189, 248, 0.12);
+}
+
+.evidence-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    width: 100%;
 }
 
 .evidence-card-label {
     display: block;
     color: var(--accent);
-    font-size: 11px;
+    font-size: 10.5px;
+    font-weight: 850;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin: 0;
+}
+
+.evidence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 7px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 9999px;
+    color: #34d399;
+    font-size: 9px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+    line-height: 1;
+}
+
+.evidence-badge-icon {
+    width: 10px;
+    height: 10px;
 }
 
 .evidence-card-value {
     display: block;
-    color: var(--ink);
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 900;
-    line-height: 1;
+    color: #ffffff;
+    font-size: clamp(30px, 4.2vw, 42px);
+    font-weight: 950;
+    line-height: 1.05;
     margin-bottom: 10px;
+    background: linear-gradient(to right, #ffffff, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-variant-numeric: tabular-nums;
 }
 
 .evidence-card-desc {
-    margin: 0 0 10px;
-    color: #3d4f49;
+    margin: 0 0 16px;
+    color: rgba(232, 240, 236, 0.85);
     font-size: 13px;
-    line-height: 1.55;
+    line-height: 1.6;
+    font-weight: 450;
+    flex-grow: 1;
+}
+
+.evidence-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(232, 240, 236, 0.45);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 10px;
+    margin-top: auto;
+}
+
+.evidence-card-footer-icon {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
 }
 
 .evidence-card-source {
     display: block;
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.5;
+    color: inherit;
+    font-size: 10.5px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* ── ROADMAP ─────────────────────────────────────────────────────────────── */
@@ -4886,5 +4978,81 @@ h2 {
 
 .scene-hook .scroll-cue:hover {
     opacity: 1;
+}
+
+/* ── EVIDENCE INFINITE SCROLL COLUMNS ────────────────────────────────────── */
+.evidence-scroll-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+    height: 480px;
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
+
+.evidence-scroll-column {
+    flex: 1;
+    min-width: 0;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.evidence-scroll-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 16px;
+}
+
+.evidence-scroll-inner.scroll-slow {
+    animation: scroll-vertical 24s linear infinite;
+}
+
+.evidence-scroll-inner.scroll-medium {
+    animation: scroll-vertical 24s linear infinite; /* symmetrical speed and direction to column 1 */
+}
+
+.evidence-scroll-inner.scroll-fast {
+    animation: scroll-vertical-reverse 18s linear infinite; /* central column reverse scrolls, faster */
+}
+
+.evidence-scroll-inner:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-vertical {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes scroll-vertical-reverse {
+    0% {
+        transform: translateY(-50%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive columns matching the React sample */
+@media (max-width: 768px) {
+    .evidence-scroll-column.col-2,
+    .evidence-scroll-column.col-3 {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .evidence-scroll-column.col-3 {
+        display: none;
+    }
 }
 
