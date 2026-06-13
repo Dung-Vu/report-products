@@ -1,6 +1,8 @@
 (function () {
     "use strict";
 
+    let sparklesCleanup = null;
+
     const projects = window.impactProjects || [];
     const impactEvidence = window.impactEvidence || {};
     const companyScale = Array.isArray(impactEvidence.companyScale)
@@ -590,26 +592,22 @@
     function buildHookScene() {
         return `
       <section class="scene scene-hook" id="scene-0" aria-label="Mở đầu">
-        <div class="hook-inner">
-          <div class="hook-text">
-            <h1 class="hook-line1">Báo cáo phát triển</h1>
-            <h1 class="hook-line2">sản phẩm / hệ thống</h1>
+        <div class="sparkles-wrapper">
+          <h1 class="sparkles-title"><span class="sparkles-num">${projects.length}</span> <span class="sparkles-txt">Projects</span></h1>
+          
+          <div class="sparkles-container-box">
+            <!-- Gradients -->
+            <div class="sparkles-gradient-line sparkles-gradient-line-1"></div>
+            <div class="sparkles-gradient-line sparkles-gradient-line-2"></div>
+            <div class="sparkles-gradient-line sparkles-gradient-line-3"></div>
+            <div class="sparkles-gradient-line sparkles-gradient-line-4"></div>
+            
+            <!-- Core canvas component -->
+            <canvas id="sparkles-canvas"></canvas>
+            
+            <!-- Radial overlay to mask the edges -->
+            <div class="sparkles-radial-overlay"></div>
           </div>
-          <p class="hook-sub" style="text-transform:none;letter-spacing:0;font-weight:500;font-size:clamp(14px,1.6vw,18px);max-width:680px;color:rgba(232,240,236,0.72);">11 projects đã triển khai và đang hoạt động. Giúp các phòng ban trong công ty hoạt động tốt hơn nhờ công nghệ, tiết kiệm giờ làm việc, quản lý hệ thống thông tin của công ty bên cạnh Odoo tốt hơn.</p>
-          <div class="hook-stats">
-            ${HOOK_COUNTERS.map(
-                (c) => `
-            <div class="hook-stat">
-              <strong class="hook-stat-num" data-hook-target="${c.value}" data-suffix="${escapeHtml(c.suffix || "")}">0</strong>
-              <span class="hook-stat-label">${escapeHtml(c.label)}</span>
-            </div>`,
-            ).join("")}
-          </div>
-          <button class="scroll-cue" aria-label="Cuộn xuống" data-scroll-to="1">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-              <path d="M11 4v14M5 12l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
         </div>
       </section>`;
     }
@@ -2329,6 +2327,109 @@
         });
     }
 
+    function initSparkles() {
+        const canvas = document.getElementById("sparkles-canvas");
+        if (!canvas) return null;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return null;
+
+        let sparklesAnimId = null;
+        let width = (canvas.width = canvas.offsetWidth);
+        let height = (canvas.height = canvas.offsetHeight);
+
+        const particles = [];
+        const baseDensity = 1200; // Match React particleDensity={1200}
+        
+        function getParticleCount() {
+            return Math.floor((width * height * baseDensity) / 160000);
+        }
+
+        let density = getParticleCount();
+
+        for (let i = 0; i < density; i++) {
+            particles.push(createParticle(true));
+        }
+
+        function createParticle(randomize = true) {
+            // minSize=0.4, maxSize=1.0. Math.random() * 0.6 + 0.4 ensures size is in [0.4, 1.0]
+            const size = Math.random() * 0.6 + 0.4;
+            const colors = ["#ffffff", "#e0f2fe", "#f0fdf4", "#ccfbf1", "#a7f3d0"];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            return {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: size,
+                speedY: (Math.random() * 0.12 - 0.06), // slow Y drift
+                speedX: (Math.random() * 0.12 - 0.06), // slow X drift
+                alpha: randomize ? Math.random() * 0.8 + 0.2 : 0.15,
+                alphaSpeed: Math.random() * 0.005 + 0.002, // slow twinkle
+                direction: randomize ? (Math.random() > 0.5 ? 1 : -1) : 1,
+                color: color
+            };
+        }
+
+        function resize() {
+            if (!canvas) return;
+            width = canvas.width = canvas.offsetWidth;
+            height = canvas.height = canvas.offsetHeight;
+            
+            const newCount = getParticleCount();
+            while (particles.length < newCount) {
+                particles.push(createParticle(true));
+            }
+            if (particles.length > newCount) {
+                particles.length = newCount;
+            }
+        }
+
+        window.addEventListener("resize", resize);
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                p.y += p.speedY;
+                p.x += p.speedX;
+
+                p.alpha += p.alphaSpeed * p.direction;
+                if (p.alpha >= 1) {
+                    p.alpha = 1;
+                    p.direction = -1;
+                } else if (p.alpha <= 0.15) {
+                    p.alpha = 0.15;
+                    p.direction = 1;
+                }
+
+                if (p.y < -5 || p.y > height + 5 || p.x < -5 || p.x > width + 5) {
+                    particles[i] = createParticle(false);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            sparklesAnimId = requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        return () => {
+            window.removeEventListener("resize", resize);
+            if (sparklesAnimId) {
+                cancelAnimationFrame(sparklesAnimId);
+            }
+        };
+    }
+
     function updateDots(sceneIndex) {
         document.querySelectorAll(".dot").forEach((dot, i) => {
             dot.classList.toggle("dot-active", i === sceneIndex);
@@ -2508,6 +2609,7 @@
         requestAnimationFrame(() => {
             document.getElementById("scene-0")?.classList.add("scene-in");
             startHookCounters();
+            sparklesCleanup = initSparkles();
             if (route.scrollToScene !== undefined) {
                 scrollToScene(route.scrollToScene);
             } else {
@@ -2521,6 +2623,12 @@
     function renderApp() {
         const app = document.getElementById("app");
         if (!app) return;
+
+        if (sparklesCleanup) {
+            sparklesCleanup();
+            sparklesCleanup = null;
+        }
+
         const route = parseRoute();
         // On fresh page load, if #/breakdown is in URL, clear it and start at hook
         if (isInitialLoad) {

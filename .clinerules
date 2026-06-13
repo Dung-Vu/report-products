@@ -1,0 +1,4 @@
+# Agent Instructions & Constraints
+
+## Required Tools Usage
+- **Sequential Thinking**: YOU MUST ALWAYS call the `sequentialthinking` tool (from the `sequential-thinking` MCP server) at least once when processing any user message before responding or executing other tools. This applies to all tasks, simple or complex.
