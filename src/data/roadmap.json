@@ -1,0 +1,44 @@
+[
+  {
+    "num": "30",
+    "phase": "0-30 ngày",
+    "accent": "#0f766e",
+    "title": "Ổn định hệ thống đang chạy",
+    "why": "11 project đã tạo giá trị, bước tiếp theo là vận hành ổn định và có người theo dõi rõ ràng.",
+    "desc": "Trong 30 ngày đầu, ưu tiên chuẩn hóa cách theo dõi các hệ thống đang live, gom lại checklist vận hành và xác định rõ project nào cần bảo trì, project nào cần nâng cấp.",
+    "items": [
+      "Lập danh sách 11 project đang chạy, trạng thái hiện tại, người dùng chính và mức độ ưu tiên.",
+      "Tạo checklist kiểm tra hằng tuần để phát hiện sớm lỗi trước khi phòng ban báo ngược lại.",
+      "Viết tài liệu ngắn cho các project đang được dùng nhiều để người khác có thể nắm cách vận hành cơ bản."
+    ],
+    "effort": "Timeline: 0-30 ngày"
+  },
+  {
+    "num": "60",
+    "phase": "31-60 ngày",
+    "accent": "#2563eb",
+    "title": "Chuẩn hóa quy trình cho các phòng ban",
+    "why": "Giá trị lớn nhất không chỉ nằm ở app, mà nằm ở việc app thay đổi cách team làm việc mỗi ngày.",
+    "desc": "Giai đoạn này tập trung làm rõ quy trình trước và sau khi có công cụ, đo thời gian tiết kiệm được, gom feedback từ Sales, SC, kho, kế toán và marketing để cải tiến đúng việc cần.",
+    "items": [
+      "Chọn 3-5 project có tác động lớn nhất để chuẩn hóa hướng dẫn sử dụng và quy trình bàn giao.",
+      "Đo lại thời gian tiết kiệm thực tế theo từng nhóm nghiệp vụ, thay vì chỉ ước tính bằng cảm nhận.",
+      "Chốt danh sách cải tiến nhỏ nhưng có tác động cao để giảm thao tác thủ công cho từng phòng ban."
+    ],
+    "effort": "Timeline: 31-60 ngày"
+  },
+  {
+    "num": "90",
+    "phase": "61-90 ngày",
+    "accent": "#7c3aed",
+    "title": "Mở rộng vai trò thành người phụ trách vận hành số",
+    "why": "Khi hệ thống đã chạy thật, công ty cần một người giữ nhịp phát triển, bảo trì và biến nhu cầu nghiệp vụ thành công cụ dùng được.",
+    "desc": "Trong 90 ngày, mục tiêu là chuyển từ người build từng app riêng lẻ thành người chịu trách nhiệm một lớp vận hành số: nhận yêu cầu, phân tích tác động, ưu tiên việc cần làm và theo dõi hiệu quả sau triển khai.",
+    "items": [
+      "Thiết lập cách nhận yêu cầu mới từ các phòng ban: vấn đề là gì, tốn bao nhiêu thời gian, lợi ích dự kiến ra sao.",
+      "Lập roadmap cải tiến theo quý, ưu tiên các việc giảm lỗi, giảm thời gian chờ và tăng khả năng kiểm soát dữ liệu.",
+      "Báo cáo định kỳ kết quả sau triển khai: project nào đang dùng tốt, project nào cần sửa, project nào nên dừng hoặc gộp lại."
+    ],
+    "effort": "Timeline: 61-90 ngày"
+  }
+]

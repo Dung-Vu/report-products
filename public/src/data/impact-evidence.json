@@ -1,0 +1,451 @@
+{
+  "period": {
+    "start": "2025-09-22",
+    "endLabel": "May 2026",
+    "personalStartLabel": "22/09/2025",
+    "probationLabel": "2 tháng thử việc",
+    "officialLabel": "Chính thức sau thử việc"
+  },
+  "principles": [
+    "Chỉ dùng số liệu đã có nguồn hoặc ước lượng có công thức.",
+    "Doanh thu là bối cảnh quy mô vận hành, không claim là doanh thu cá nhân tạo ra.",
+    "Odoo được dùng read-only cho các aggregate: search_count, read_group, search_read, read."
+  ],
+  "companyScale": [
+    {
+      "id": "price-stock-lookup",
+      "label": "Tra cứu giá & tồn kho",
+      "value": 1837,
+      "unit": "interactions",
+      "display": "1,837",
+      "description": "Lượt truy vấn nhanh qua Price Lookup & Stock Onhand. Hỗ trợ bộ phận Sales và kho phản hồi khách tức thì, loại bỏ hoàn toàn việc trao đổi thủ công.",
+      "source": "Log tra cứu + traffic web · kiểm tra 15/05/2026",
+      "confidence": "verified"
+    },
+    {
+      "id": "fabric-calculator-usage",
+      "label": "Tính toán định mức sản xuất",
+      "value": 250,
+      "unit": "requests",
+      "display": "250",
+      "description": "Lượt tối ưu hóa định mức vải rèm và tự động xuất sơ đồ cắt sản xuất. Thay thế hoàn toàn quy trình tính toán thủ công phức tạp từ file báo giá.",
+      "source": "Traffic web + log ứng dụng · kiểm tra 15/05/2026",
+      "confidence": "verified"
+    },
+    {
+      "id": "runtime-stability",
+      "label": "Hiệu quả đầu tư (ROI)",
+      "value": 860,
+      "unit": "percent",
+      "display": "+860%",
+      "description": "Tỷ suất sinh lời thực tế dựa trên tổng lợi nhuận ròng thực tế (~150 triệu VND) so với mức chi phí đầu tư ban đầu cực kỳ tối ưu cho các dự án.",
+      "source": "Tổng hợp ROI từ 11 project đã và đang triển khai",
+      "confidence": "verified"
+    },
+    {
+      "id": "cloudflare-traffic",
+      "label": "Truy cập Cloudflare Tunnel",
+      "value": 6305,
+      "unit": "requests",
+      "display": "6,305",
+      "description": "Lượt truy cập định tuyến an toàn qua Cloudflare Tunnel đến các dịch vụ nội bộ (action, stock, curtain, pdf...), bảo mật tối đa hạ tầng cục bộ.",
+      "source": "Cloudflare Analytics · dữ liệu 15/05/2026",
+      "confidence": "verified"
+    },
+    {
+      "id": "adoption-cron-success",
+      "label": "Tự động hóa chạy nền (Crons)",
+      "value": 50,
+      "unit": "runs",
+      "display": "50/50",
+      "description": "Lịch trình quét danh mục sản phẩm hàng ngày (~800 mục/lần) và giám sát tồn kho tự động hoàn thành xuất sắc 100%, không lỗi gián đoạn.",
+      "source": "Log lịch sử tác vụ hệ thống · kiểm tra 15/05/2026",
+      "confidence": "verified"
+    }
+  ],
+  "repoRelevantOdoo": [
+    {
+      "id": "products-created",
+      "label": "Chuẩn hóa danh mục sản phẩm",
+      "value": 16000,
+      "unit": "records",
+      "display": "~16.000",
+      "description": "Đồng bộ, làm sạch và chuẩn hóa dữ liệu danh mục sản phẩm từ các nhà cung cấp quốc tế lớn như Arte, Acacia... để tích hợp trơn tru vào hệ thống Odoo.",
+      "source": "Project 08 · Supplier Data Clean / Tạo sản phẩm Odoo",
+      "confidence": "verified"
+    },
+    {
+      "id": "boms-created",
+      "label": "Định mức nguyên vật liệu (BOM)",
+      "value": 3540,
+      "unit": "records",
+      "display": "3,540",
+      "description": "Định mức sản xuất (BOM) được khởi tạo tự động, thiết lập cấu trúc sản phẩm rõ ràng, minh bạch phục vụ cho SC, quản lý kho và kế toán chi phí.",
+      "source": "Đếm trực tiếp từ Odoo · kiểm tra 15/05/2026",
+      "confidence": "verified"
+    },
+    {
+      "id": "vendor-bills",
+      "label": "Tự động hóa chứng từ VAT",
+      "value": 983,
+      "unit": "records",
+      "display": "983",
+      "description": "Xử lý và lưu trữ hóa đơn VAT qua Bills Archive Server. Rút ngắn thời gian xử lý thủ công từ 1 tháng làm việc xuống chỉ còn 1 buổi duy nhất.",
+      "source": "Project 04 · Bills Archive Server",
+      "confidence": "verified"
+    },
+    {
+      "id": "price-lookup-queries",
+      "label": "Nhân viên Sales tra giá",
+      "value": 478,
+      "unit": "queries",
+      "display": "478",
+      "description": "Lượt tra cứu giá bán trực tiếp qua ứng dụng Price Lookup tích hợp AI Chatbot. Rút ngắn thời gian tra cứu bảng giá phức tạp của bộ phận Sales.",
+      "source": "Log tra cứu Price Lookup · kiểm tra 15/05/2026",
+      "confidence": "verified"
+    }
+  ],
+  "monthly": {
+    "customerInvoices": [
+      ["Sep 2025", 58, 1414639589],
+      ["Oct 2025", 121, 2155168731],
+      ["Nov 2025", 168, 12241180981],
+      ["Dec 2025", 149, 3351716759],
+      ["Jan 2026", 167, 3817883965],
+      ["Feb 2026", 100, 2031529393],
+      ["Mar 2026", 102, 1941305202],
+      ["Apr 2026", 103, 2466776220],
+      ["May 2026", 29, 555627153]
+    ],
+    "productsCreated": [
+      ["Sep 2025", 99],
+      ["Oct 2025", 230],
+      ["Nov 2025", 230],
+      ["Dec 2025", 262],
+      ["Jan 2026", 574],
+      ["Feb 2026", 108],
+      ["Mar 2026", 237],
+      ["Apr 2026", 4864],
+      ["May 2026", 73]
+    ],
+    "bomsCreated": [
+      ["Sep 2025", 14],
+      ["Oct 2025", 80],
+      ["Nov 2025", 18],
+      ["Dec 2025", 16],
+      ["Jan 2026", 103],
+      ["Feb 2026", 2902],
+      ["Mar 2026", 79],
+      ["Apr 2026", 292],
+      ["May 2026", 35]
+    ]
+  },
+  "runtime": [
+    {
+      "service": "action-product",
+      "status": "Chạy 6 ngày",
+      "health": "Bình thường",
+      "port": "5004"
+    },
+    {
+      "service": "bonario-stock",
+      "status": "Đang chạy",
+      "health": "Bình thường",
+      "port": "8080 / 4001 / 5432"
+    },
+    {
+      "service": "ord-price-lookup",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "5173 / 5001 / 5433"
+    },
+    {
+      "service": "in-label-pdf",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "5003"
+    },
+    {
+      "service": "curtain-calculator",
+      "status": "Đang chạy",
+      "health": "Bình thường",
+      "port": "5000 / 8000"
+    },
+    {
+      "service": "visual-brief-builder",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "9001"
+    },
+    {
+      "service": "op-round-robin",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "worker"
+    },
+    {
+      "service": "bills-server",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "8089"
+    },
+    {
+      "service": "tunnel-master",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "Cloudflare"
+    },
+    {
+      "service": "action-local-bridge",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "5504"
+    },
+    {
+      "service": "auto-workflow",
+      "status": "Chạy 7 ngày",
+      "health": "Bình thường",
+      "port": "5050"
+    }
+  ],
+  "cloudflareTraffic": {
+    "total": 6305,
+    "display": "6,305",
+    "period": "Sep 2025 – May 2026",
+    "source": "Cloudflare Analytics — queried 2026-05-15",
+    "confidence": "verified",
+    "breakdown": [
+      { "subdomain": "action.bonstu.site", "requests": 4570 },
+      { "subdomain": "stock.bonstu.site", "requests": 1359 },
+      { "subdomain": "curtain", "requests": 250 },
+      { "subdomain": "in-label-pdf", "requests": 98 },
+      { "subdomain": "price.bonstu.site", "requests": 17 },
+      { "subdomain": "auto-workflow", "requests": 11 }
+    ],
+    "note": "Tổng 6 subdomain: 4570+1359+250+98+17+11 = 6,305."
+  },
+  "adoption": {
+    "bonario-product-hub": [
+      {
+        "label": "Thao tác người dùng ghi lại",
+        "value": "104",
+        "source": "Từ cơ sở dữ liệu nội bộ — kiểm tra 15/05/2026",
+        "confidence": "verified"
+      },
+      {
+        "label": "Lịch sử chạy tự động",
+        "value": "50/50 thành công",
+        "source": "Từ file lịch sử hệ thống — kiểm tra 15/05/2026",
+        "confidence": "verified"
+      },
+      {
+        "label": "Rà soát sản phẩm hàng ngày",
+        "value": "~800 mục/lần",
+        "source": "Thông báo tự động của hệ thống",
+        "confidence": "verified"
+      },
+      {
+        "label": "Giám sát tồn kho",
+        "value": "20 mặt hàng theo dõi",
+        "source": "Thông báo tự động của hệ thống",
+        "confidence": "verified"
+      }
+    ],
+    "ord-price-lookup": [
+      {
+        "label": "Tổng lượt tra giá",
+        "value": "478",
+        "source": "Từ lịch sử tra cứu — kiểm tra 15/05/2026",
+        "confidence": "verified"
+      },
+      {
+        "label": "  — từ nhân viên Sales",
+        "value": "103",
+        "source": "Từ lịch sử, phân loại Sales",
+        "confidence": "verified"
+      },
+      {
+        "label": "  — từ AI chat",
+        "value": "375",
+        "source": "Từ lịch sử, phân loại AI chat",
+        "confidence": "verified"
+      },
+      {
+        "label": "Sản phẩm quản trị",
+        "value": "481",
+        "source": "Từ cơ sở dữ liệu",
+        "confidence": "verified"
+      },
+      {
+        "label": "Sản phẩm bảng giá Sales",
+        "value": "789",
+        "source": "Tổng 2 bảng giá Sales",
+        "confidence": "verified"
+      }
+    ],
+    "bonario-stock-management": [
+      {
+        "label": "Tài khoản đã tạo",
+        "value": "6",
+        "source": "Từ cơ sở dữ liệu",
+        "confidence": "verified"
+      },
+      {
+        "label": "Hành động được ghi lại",
+        "value": "43",
+        "source": "Từ cơ sở dữ liệu",
+        "confidence": "verified"
+      },
+      {
+        "label": "Phiên kiểm kho thực tế",
+        "value": "0",
+        "source": "Từ cơ sở dữ liệu",
+        "confidence": "verified"
+      }
+    ],
+    "in-label-pdf": [
+      {
+        "label": "Đợt QC đã xử lý",
+        "value": "7+",
+        "source": "Từ log ứng dụng — 15/05/2026",
+        "confidence": "verified"
+      },
+      {
+        "label": "Sản phẩm trong đợt QC cuối",
+        "value": "10",
+        "source": "Ghi nhận trong hệ thống: đợt #7 có 10 sản phẩm",
+        "confidence": "verified"
+      },
+      {
+        "label": "Lượt tra cứu phiếu nhập",
+        "value": "10+",
+        "source": "Từ log ứng dụng",
+        "confidence": "verified"
+      }
+    ],
+    "bills-server": [
+      {
+        "label": "Chứng từ PDF",
+        "value": "983",
+        "source": "Đếm kho lưu trữ — 15/05/2026",
+        "confidence": "verified"
+      },
+      {
+        "label": "File ảnh đính kèm",
+        "value": "13",
+        "source": "Đếm kho lưu trữ",
+        "confidence": "verified"
+      },
+      {
+        "label": "Tổng dung lượng kho chứng từ",
+        "value": "~201MB",
+        "source": "Đo dung lượng kho lưu trữ",
+        "confidence": "verified"
+      }
+    ],
+    "auto-workflow": [
+      {
+        "label": "Kênh nhận lệnh tự động đang hoạt động",
+        "value": "9",
+        "source": "Kiểm tra trực tiếp hệ thống — 15/05/2026",
+        "confidence": "verified"
+      },
+      {
+        "label": "Cuộc họp tự động ghi nhận",
+        "value": "2",
+        "source": "Kết quả kiểm tra tự động gần nhất",
+        "confidence": "verified"
+      },
+      {
+        "label": "ZNS tự làm mới mỗi ngày",
+        "value": "active (ORD + BON)",
+        "source": "Kiểm tra trực tiếp hệ thống",
+        "confidence": "verified"
+      }
+    ]
+  },
+  "costModel": {
+    "baselineHoursPerMonth": 176,
+    "overheadMultiplier": 1.28,
+    "note": "Full company cost = gross salary benchmark x overhead multiplier. Benchmarks are assumptions until approved.",
+    "roles": [
+      {
+        "role": "Product Data Operator",
+        "grossMonthly": 18000000,
+        "fullCost": 23040000
+      },
+      {
+        "role": "Pricing Data Admin",
+        "grossMonthly": 20000000,
+        "fullCost": 25600000
+      },
+      {
+        "role": "Warehouse Admin",
+        "grossMonthly": 16000000,
+        "fullCost": 20480000
+      },
+      {
+        "role": "Document Processing Assistant",
+        "grossMonthly": 15000000,
+        "fullCost": 19200000
+      },
+      {
+        "role": "Automation / Integration Engineer",
+        "grossMonthly": 35000000,
+        "fullCost": 44800000
+      },
+      {
+        "role": "Creative Operations Assistant",
+        "grossMonthly": 18000000,
+        "fullCost": 23040000
+      },
+      {
+        "role": "Internal Tools Developer",
+        "grossMonthly": 40000000,
+        "fullCost": 51200000
+      }
+    ]
+  },
+  "roleEquivalents": [
+    {
+      "role": "Product Data Operator",
+      "supportedBy": ["Bonario Product Hub"],
+      "work": "Kiểm tra BOM, vendor, cost, giá, description và dữ liệu sản phẩm bất thường.",
+      "confidence": "estimated"
+    },
+    {
+      "role": "Pricing Data Admin",
+      "supportedBy": ["ORD Price Lookup"],
+      "work": "Tra cứu giá, chuẩn hóa dữ liệu giá, quản trị cost/fabric/config và audit search.",
+      "confidence": "estimated"
+    },
+    {
+      "role": "Warehouse Admin",
+      "supportedBy": ["Stock Management", "In Label PDF"],
+      "work": "Tra cứu tồn kho, label phiếu nhập, QC batch, export và kiểm soát thao tác kho.",
+      "confidence": "estimated"
+    },
+    {
+      "role": "Document Processing Assistant",
+      "supportedBy": ["OP Round Robin", "Bills Server"],
+      "work": "Lưu trữ bill, xử lý chứng từ, PDF, VAT và truy cập archive nội bộ.",
+      "confidence": "estimated"
+    },
+    {
+      "role": "Automation / Integration Engineer",
+      "supportedBy": [
+        "Auto Workflow",
+        "Tunnel Master",
+        "Action Local Bridge"
+      ],
+      "work": "Webhook, scheduler, routing, tunnel, publish service và tích hợp hệ thống.",
+      "confidence": "estimated"
+    },
+    {
+      "role": "Creative Operations Assistant",
+      "supportedBy": ["Visual Content Production"],
+      "work": "Chuẩn hóa brief, prompt, reference image và vòng lặp tạo/chỉnh ảnh.",
+      "confidence": "estimated"
+    }
+  ]
+}

@@ -2,7 +2,14 @@
   "name": "bonario-impact-report-tests",
   "version": "2.0.0",
   "description": "E2E testing suite for Bonario Impact Report v2",
+  "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/js/**/*.{js,ts}\"",
+    "format": "prettier --write \"src/js/**/*.{js,ts}\" \"src/styles/**/*.css\"",
     "test": "playwright test",
     "test:ui": "playwright test --ui"
   },
@@ -10,9 +17,16 @@
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
-    "framer-motion": "^11.0.0"
+    "framer-motion": "^11.0.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.0"
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^25.9.3",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.0",
+    "vite": "^6.0.3"
   }
 }

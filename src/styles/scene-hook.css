@@ -1,0 +1,236 @@
+/* ── SCENE 1: HOOK ──────────────────────────────────────────────────────── */
+
+@keyframes hook-glow-pulse {
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+}
+
+.scene-hook {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.18), transparent 55%),
+        linear-gradient(315deg, rgba(17, 26, 23, 0.06), transparent 45%),
+        #0f1714;
+    color: #e8f0ec;
+}
+
+.scene-hook::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 55% 60% at 15% 40%,
+        rgba(37, 99, 235, 0.3),
+        transparent
+    );
+    animation: hook-glow-pulse 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hook-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: min(1100px, calc(100% - 48px));
+    width: 100%;
+    padding: 0 24px;
+    gap: 28px;
+}
+
+.hook-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hook-line1,
+.hook-line2 {
+    margin: 0;
+    font-size: clamp(28px, 5.5vw, 72px);
+    line-height: 1.08;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+
+.hook-line1 {
+    color: rgba(232, 240, 236, 0.58);
+}
+
+.hook-line2 {
+    color: #e8f0ec;
+}
+
+.hook-sub {
+    margin: 0;
+    color: rgba(232, 240, 236, 0.46);
+    font-size: clamp(14px, 1.6vw, 17px);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.hook-profit {
+    display: grid;
+    gap: 8px;
+    max-width: 680px;
+    padding: 24px 0 4px;
+}
+
+.hook-profit-num {
+    display: block;
+    color: #f8fffb;
+    font-size: clamp(74px, 13vw, 168px);
+    line-height: 0.86;
+    font-weight: 950;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 28px 70px rgba(37, 99, 235, 0.34);
+}
+
+.hook-profit span {
+    max-width: 560px;
+    color: rgba(232, 240, 236, 0.72);
+    font-size: clamp(15px, 1.8vw, 20px);
+    line-height: 1.45;
+    font-weight: 750;
+}
+
+.scroll-cue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(232, 240, 236, 0.28);
+    color: rgba(232, 240, 236, 0.5);
+    transition:
+        color 200ms ease,
+        border-color 200ms ease;
+    animation: bounce-down 2s ease-in-out infinite;
+}
+
+.scroll-cue:hover {
+    color: #e8f0ec;
+    border-color: rgba(232, 240, 236, 0.6);
+}
+
+@keyframes bounce-down {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+/* ── HOOK STATS STRIP ───────────────────────────────────────────────────── */
+
+.hook-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 40px;
+    border-top: 1px solid rgba(232, 240, 236, 0.12);
+    padding-top: 20px;
+    width: 100%;
+}
+
+.hook-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hook-stat-num {
+    font-size: clamp(22px, 3.2vw, 40px);
+    font-weight: 900;
+    color: #e8f0ec;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+}
+
+.hook-stat-label {
+    font-size: 11px;
+    font-weight: 850;
+    color: rgba(232, 240, 236, 0.42);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    max-width: 18ch;
+}
+
+/* ── SCENE 2: SCALE ─────────────────────────────────────────────────────── */
+
+/* ── ENTRANCE ANIMATIONS ─────────────────────────────────────────────────── */
+
+/* Content starts hidden; parent .scene gets .scene-in when it enters viewport */
+
+.hook-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.hook-text {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity 700ms ease,
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hook-sub,
+.hook-profit {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+        opacity 700ms ease 220ms,
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 220ms;
+}
+
+.hook-stats {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+        opacity 700ms ease 440ms,
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 440ms;
+}
+
+.scene-hook .scroll-cue {
+    opacity: 0;
+}
+
+.scene-hook.scene-in .hook-text,
+.scene-hook.scene-in .hook-sub,
+.scene-hook.scene-in .hook-profit,
+.scene-hook.scene-in .hook-stats {
+    opacity: 1;
+    transform: none;
+}
+
+.scene-hook.scene-in .scroll-cue {
+    opacity: 1;
+    transition:
+        color 200ms ease,
+        border-color 200ms ease,
+        opacity 500ms ease 680ms;
+}
+
+@media (max-width: 480px) {
+    .hook-inner {
+        padding: 0 20px;
+    }
+    .hook-line1,
+    .hook-line2 {
+        font-size: clamp(26px, 9vw, 48px);
+    }
+}

@@ -1,72 +1,63 @@
-# Bonario Impact Report
+# Báo cáo Phát triển & Tác động Hệ thống Nội bộ Bonario
 
-Static report nội bộ để trình bày tác động vận hành của 11 hệ thống Bonario.
+Chào mừng bạn đến với trang báo cáo tương tác trực quan (cinematic report) trình bày hành trình phát triển và tác động vận hành thực tế của các hệ thống phần mềm nội bộ tại **Bonario**.
 
-Repo hiện tại không phải dashboard CRUD kiểu cũ. Bản đang dùng là một report
-cinematic 4 scene viết bằng HTML/CSS/vanilla JS, mở trực tiếp trong browser.
+Trang web này được xây dựng như một câu chuyện kể bằng số liệu xác thực (data-driven story), chứng minh giá trị thực tế của các công cụ công nghệ thông tin đối với các hoạt động vận hành hàng ngày của công ty.
 
-## Current Structure
+---
 
-- `scene-0`: hook mở đầu.
-- `scene-1`: counter output + usage signals từ log/database/Cloudflare.
-- `scene-2`: system map 7 nhóm nghiệp vụ, click mở side panel chi tiết.
-- `scene-3`: close statement + roadmap.
-- Dot navigation chỉ hiện từ scene 2 trở đi.
-- `impactEvidence` đã được nối vào UI để hiện source/proof thay vì nằm chết trong data.
+## 🎯 Mục tiêu của Báo cáo
 
-## Run
+Báo cáo tổng hợp số liệu vận hành từ ngày **22/09/2025** đến **tháng 5/2026** nhằm mục đích:
+*   **Minh bạch hóa số liệu:** Cung cấp bằng chứng thực tế từ log truy cập hệ thống, cơ sở dữ liệu Odoo, Docker và Cloudflare để chứng minh các công cụ đang được sử dụng thực tế bởi các phòng ban.
+*   **Đo lường hiệu quả đầu tư (ROI):** So sánh chi phí nội bộ tự xây dựng so với chi phí thuê ngoài, từ đó ước tính tỷ lệ sinh lời thực tế của từng dự án phần mềm.
+*   **Định hình lộ trình cải tiến:** Nhìn lại điểm mạnh, điểm yếu của từng hệ thống và đưa ra kế hoạch hành động cụ thể để cải tiến quy trình nghiệp vụ.
 
-Mở [index.html](./index.html) trực tiếp trong browser.
+---
 
-Không cần `npm install`.
+## 📖 Cấu trúc Nội dung của Website
 
-## Files
+Giao diện trang web được thiết kế theo cấu trúc cuộn dọc mượt mà gồm 4 màn (Scene) chính nối tiếp nhau:
 
-- `index.html`: shell static.
-- `app.js`: render 4 scene, interaction, side panel, counter animation.
-- `styles.css`: toàn bộ layout, motion, responsive styling.
-- `data/impact-projects.js`: narrative ngắn cho 11 project đang đưa lên report.
-- `data/impact-evidence.js`: bằng chứng verified, usage signals, adoption, runtime.
-- `data/projects.js`: narrative dài hơn theo từng project, hiện chưa phải nguồn render chính.
-- `*.md`: hồ sơ từng project, plan, script trình bày, review prompt.
+### 🎬 Scene 0: Khởi đầu & Tổng quan
+*   **Nội dung:** Màn chào đón mở đầu với hiệu ứng bầu trời hạt (canvas sparkles) và con số **11 Projects** đại diện cho 11 hệ thống sản xuất đã được deploy thành công và đang hoạt động.
 
-## Data Contract
+### 📊 Scene 1: Bằng chứng Vận hành (Verified Evidence)
+Trình bày các con số thực tế thu thập từ cơ sở dữ liệu và hệ thống giám sát để chứng minh độ hiệu quả của ứng dụng:
+*   **Quy mô sử dụng:** Tra cứu giá và tồn kho nhanh (hơn 1.800 lượt tương tác), tính định mức sản xuất rèm cửa tự động (hơn 250 lượt yêu cầu).
+*   **Bảo mật & Hạ tầng:** Định tuyến an toàn hơn 6.300 lượt truy cập qua Cloudflare Tunnel.
+*   **Tác động ROI:** Ước tính ROI tổng hợp thực tế đạt **+860%** dựa trên thời gian thao tác thủ công được cắt giảm.
+*   **Lưu trữ số hóa:** Kho chứng từ lưu trữ trực tuyến hơn 980 hóa đơn và VAT dạng PDF.
 
-### `window.impactProjects`
+### 🗺️ Scene 2: Bản đồ Hệ thống & Chi tiết Nghiệp vụ
+Bản đồ phân loại 11 dự án phần mềm thành **7 nhóm nghiệp vụ chính**. Khi người dùng click vào từng nhóm, một bảng thông tin chi tiết (Side Panel) sẽ hiện ra để mô tả:
+1.  **Nhóm 1: Tra cứu tồn kho & Giá bán ORD**
+    *   *Dự án:* Bonario Stock Management, ORD Price Lookup.
+    *   *Nội dung:* Giúp bộ phận Sales tra cứu tồn kho real-time và hỗ trợ tra giá nhanh qua AI Chat.
+2.  **Nhóm 2: Bonario Hub**
+    *   *Dự án:* Bonario Product Hub.
+    *   *Nội dung:* Trung tâm đồng bộ dữ liệu sản phẩm, BOM (công thức sản xuất) Odoo và theo dõi lịch sử chỉnh sửa giá vốn/BOM.
+3.  **Nhóm 3: Công cụ tính định mức Rèm Cửa**
+    *   *Dự án:* Calculate Curtain Size.
+    *   *Nội dung:* Tự động hóa tính toán khổ vải, kích thước và sơ đồ cắt cho xưởng sản xuất.
+4.  **Nhóm 4: In nhãn (Label) & Kho chứng từ**
+    *   *Dự án:* In Label PDF, Bills Archive Server.
+    *   *Nội dung:* Hỗ trợ kho in nhãn dán mã vạch và tạo server lưu trữ chứng từ VAT truy cập qua mạng LAN nội bộ.
+5.  **Nhóm 5: Tự động hóa chia việc (Round Robin)**
+    *   *Dự án:* OP Round Robin.
+    *   *Nội dung:* Python worker tự động gán OP phụ trách xử lý đơn hàng/hóa đơn trên Odoo.
+6.  **Nhóm 6: Hạ tầng Server nội bộ**
+    *   *Dự án:* Visual Brief Builder, Tunnel Master, Action Local Bridge.
+    *   *Nội dung:* Giải pháp mạng bảo mật kết nối local server lên Cloudflare và đồng bộ hóa file chứng từ.
+7.  **Nhóm 7: Tự động hóa luồng đơn hàng (Workflow)**
+    *   *Dự án:* Auto Workflow.
+    *   *Nội dung:* Tự động hóa quá trình mua hàng và đẩy trạng thái đơn hàng (Order State) lên Odoo.
 
-Nguồn chính cho UI story.
+*(Mỗi dự án đều đi kèm bảng phân tích P&L chi tiết, thời gian triển khai, so sánh chi phí thị trường, ROI ước tính, cùng danh sách điểm mạnh/điểm yếu thực tế).*
 
-Expected fields:
-
-- `id`
-- `name`
-- `chapter`
-- `hook`
-- `problem`
-- `built`
-- `verifiedMetrics[]`
-
-### `window.impactEvidence`
-
-Nguồn proof/evidence.
-
-Expected sections:
-
-- `period`
-- `companyScale[]`: hiện dùng làm usage signal cards để giữ tương thích với app runtime.
-- `repoRelevantOdoo[]`: Odoo aggregates còn giữ vì liên quan trực tiếp repo, không render thành usage card chính.
-- `runtime[]`
-- `adoption{}`
-- `costModel`
-- `roleEquivalents[]`
-
-### `window.reportProjects`
-
-Dataset narrative chi tiết hơn theo từng project. Hữu ích cho sync nội dung,
-nhưng app hiện tại không render dataset này ra scene chính.
-
-## Notes
-
-- Số liệu plan/script phải bám `data/impact-evidence.js` và `data/impact-projects.js`.
-- Nếu refresh số Odoo/Docker, cập nhật data trước rồi mới sửa script/presentation.
-- Không đưa secret, customer line data, hoặc credential vào report.
+### 🔮 Scene 3: Lộ trình Phát triển (Roadmap) & Hành trình Cá nhân
+*   **Roadmap Cải tiến:** Kế hoạch hành động cụ thể chia theo các cột mốc:
+    *   *30 ngày đầu:* Ổn định hệ thống, lập danh sách vận hành và viết tài liệu hướng dẫn cơ bản.
+    *   *31-60 ngày:* Chuẩn hóa quy trình làm việc cho các phòng ban, thu thập feedback thực tế.
+    *   *61-90 ngày:* Nâng cấp kỹ thuật, tối ưu hóa database và lập kế hoạch mở rộng.
+*   **Hành trình cá nhân (Story Arc):** Câu chuyện từ một kỹ sư tập sự chưa từng deploy thực tế (GPA 2.03) đến khi gia nhập Bonario, được hướng dẫn về Odoo, tiếp cận AI và tự thiết kế, triển khai thành công 11 hệ thống production hoạt động ổn định.

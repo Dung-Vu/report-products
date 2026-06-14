@@ -1,0 +1,51 @@
+[
+  {
+    "cat": "Backend",
+    "items": [
+      "Python · Flask · FastAPI",
+      "Node.js · Express",
+      "Odoo XML-RPC",
+      "APScheduler"
+    ]
+  },
+  {
+    "cat": "Frontend",
+    "items": [
+      "React 18",
+      "Vanilla JS",
+      "Recharts"
+    ]
+  },
+  {
+    "cat": "Database",
+    "items": [
+      "PostgreSQL",
+      "SQLite",
+      "Odoo ORM"
+    ]
+  },
+  {
+    "cat": "Infra",
+    "items": [
+      "Docker · Compose",
+      "Nginx",
+      "Cloudflare Tunnel"
+    ]
+  },
+  {
+    "cat": "Xử lý file",
+    "items": [
+      "pandas · openpyxl",
+      "PyMuPDF · OCR"
+    ]
+  },
+  {
+    "cat": "Tích hợp",
+    "items": [
+      "Shopify Webhook",
+      "Zalo ZNS API",
+      "Telegram Bot",
+      "WebSocket"
+    ]
+  }
+]

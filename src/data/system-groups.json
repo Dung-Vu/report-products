@@ -1,0 +1,91 @@
+[
+  {
+    "id": "stock-price-ord",
+    "label": "Stock onhand - Giá Product Ordinaire",
+    "eyebrow": "01 · Sales / Stock",
+    "summary": "Tra tồn kho và giá ORD từ một nguồn dữ liệu rõ ràng",
+    "projectIds": ["bonario-stock-management", "ord-price-lookup"],
+    "accent": "#0369a1"
+  },
+  {
+    "id": "bonario-hub",
+    "label": "Bonario Hub",
+    "eyebrow": "02 · Product Ops",
+    "summary": "Hub trung tâm cho dữ liệu sản phẩm Bonario: checker, BOM, bảng giá, mô tả, audit log và daily scan. Bao gồm checklist tạo sản phẩm mới với đầy đủ BOM, cost, giá bán, vendor và description.",
+    "projectIds": ["bonario-product-hub"],
+    "accent": "#2563eb"
+  },
+  {
+    "id": "curtain-tools",
+    "label": "Công cụ tính toán cho Rèm Cửa",
+    "eyebrow": "03 · Production",
+    "summary": "Tính vải, kích thước rèm, xử lý Excel/PDF sản xuất và xuất layout cho xưởng tiết kiệm thời gian cho OP xử lý đơn hàng rèm.",
+    "projectIds": ["calculate-curtain-size"],
+    "accent": "#0891b2"
+  },
+  {
+    "id": "odoo-pdf-documents",
+    "label": "Công cụ in Label nhập xuất hàng hóa",
+    "eyebrow": "04 · Documents",
+    "summary": "In label PDF cho phiếu nhập kho, tra cứu phiếu và QC batch kết nối trực tiếp dữ liệu Odoo.",
+    "projectIds": ["bills-server", "in-label-pdf"],
+    "accent": "#7c3aed"
+  },
+  {
+    "id": "sc-op-in-charge",
+    "label": "Phân công OP Inchare tự động",
+    "eyebrow": "05 · SC Ops",
+    "summary": "Phân công OP in charge tự động, giảm thao tác chia việc thủ công và giúp trách nhiệm xử lý rõ ràng hơn.",
+    "projectIds": ["op-round-robin"],
+    "accent": "#be123c"
+  },
+  {
+    "id": "local-server-infra",
+    "label": "Build hạ tầng: biến máy tính thành server",
+    "eyebrow": "06 · Platform",
+    "summary": "Đưa các app nội bộ lên domain riêng bằng máy tính sẵn có, giúp truy cập ổn định hơn mà không cần thuê server ngoài.",
+    "projectIds": ["tunnel-master", "action-local-bridge"],
+    "countLabel": "2 lớp hạ tầng",
+    "accent": "#334155"
+  },
+  {
+    "id": "marketing-image-gen",
+    "label": "Công cụ gen hình ảnh cho MKT qua Codex",
+    "eyebrow": "07 · Marketing AI",
+    "summary": "Chuẩn hóa cách tạo brief hình AI để marketing ra ảnh nhanh hơn, đúng brand hơn và ít phụ thuộc vào kỹ năng prompt của từng người.",
+    "projectIds": ["visual-brief-builder"],
+    "accent": "#c026d3"
+  },
+  {
+    "id": "odoo-product-creation",
+    "label": "Đồng bộ & clean dữ liệu sản phẩm Bonario",
+    "eyebrow": "08 · Product Data",
+    "summary": "Làm sạch và chuẩn hóa ~16.000 sản phẩm Bonario từ dữ liệu thô của nhà cung cấp: tên gốc, khổ vải, bảng giá và pricelist cho Odoo.",
+    "projectIds": ["bonario-product-hub"],
+    "accent": "#2563eb"
+  },
+  {
+    "id": "internal-order-tracking",
+    "label": "Tracking order internal",
+    "eyebrow": "09 · Order Tracking",
+    "summary": "Theo dõi tiến độ đơn cho khách hàng và cho Sales, dựa trên Order State trong báo giá để biết đơn đang ở bước nào.",
+    "projectIds": ["auto-workflow"],
+    "accent": "#ea580c"
+  },
+  {
+    "id": "rfid",
+    "label": "RFID",
+    "eyebrow": "10 · Warehouse",
+    "summary": "Định hướng đối soát RFID cho kho: ghi nhận, reconcile và giảm lệch tồn khi hàng di chuyển qua nhiều bước.",
+    "projectIds": ["auto-workflow", "bonario-stock-management"],
+    "accent": "#0284c7"
+  },
+  {
+    "id": "stock-escalation",
+    "label": "Thông báo thông tin insight từ Odoo vào Teams",
+    "eyebrow": "11 · Alerting",
+    "summary": "Đẩy thông báo insight hàng tồn, discontinue và cảnh báo từ Odoo vào Teams để các phòng ban xử lý kịp thời.",
+    "projectIds": ["auto-workflow", "bonario-product-hub"],
+    "accent": "#dc2626"
+  }
+]

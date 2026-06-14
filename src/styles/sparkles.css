@@ -1,0 +1,121 @@
+/* ── SPARKLES HERO SECTION OVERRIDES ────────────────────────────────────── */
+.scene-hook {
+    background: #000000 !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.scene-hook::before {
+    display: none !important; /* disable old gradient background glow */
+}
+
+.sparkles-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    z-index: 2;
+}
+
+.sparkles-title {
+    margin: 0;
+    font-size: clamp(48px, 9vw, 110px) !important;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15em;
+}
+
+.sparkles-num {
+    color: #ffffff;
+}
+
+.sparkles-txt {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.sparkles-container-box {
+    position: relative;
+    width: min(100%, 640px);
+    height: 160px;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+#sparkles-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.sparkles-radial-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse 350px 200px at top center,
+        transparent 20%,
+        #000000 100%
+    );
+    pointer-events: none;
+    z-index: 3;
+}
+
+.sparkles-gradient-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: 4;
+}
+
+.sparkles-gradient-line-1 {
+    background: linear-gradient(to right, transparent, #6366f1, transparent);
+    height: 2px;
+    width: 75%;
+    filter: blur(4px);
+}
+
+.sparkles-gradient-line-2 {
+    background: linear-gradient(to right, transparent, #6366f1, transparent);
+    height: 1px;
+    width: 75%;
+}
+
+.sparkles-gradient-line-3 {
+    background: linear-gradient(to right, transparent, #0ea5e9, transparent);
+    height: 5px;
+    width: 25%;
+    filter: blur(4px);
+}
+
+.sparkles-gradient-line-4 {
+    background: linear-gradient(to right, transparent, #0ea5e9, transparent);
+    height: 1px;
+    width: 25%;
+}
+
+.scene-hook .scroll-cue {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.6;
+    transition: opacity 300ms ease;
+    z-index: 10;
+}
+
+.scene-hook .scroll-cue:hover {
+    opacity: 1;
+}

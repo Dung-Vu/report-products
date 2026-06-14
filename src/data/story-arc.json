@@ -1,0 +1,38 @@
+[
+  {
+    "year": "2019–05/2024",
+    "label": "Kỹ sư CNTT, GPA 2.03",
+    "note": "5 năm học lý thuyết. GPA 2.03. Chưa một lần deploy thật."
+  },
+  {
+    "year": "06/2024–08/2025",
+    "label": "Gap · chuẩn bị du học",
+    "note": "14 tháng dừng lại — không viết code, cân nhắc đi học tiếp."
+  },
+  {
+    "year": "22/09/2025",
+    "label": "Vào Bonario · thử việc",
+    "note": "Anh Hà tận tình hướng dẫn hệ thống Odoo, tạo cơ hội phát triển và tiếp cận sâu AI."
+  },
+  {
+    "year": "Tháng 10/2025",
+    "label": "Deploy đầu tiên",
+    "note": "Lần đầu code thật sự chạy trên production — ORD Price Lookup. React · Flask · PostgreSQL."
+  },
+  {
+    "year": "Tháng 11–12/2025",
+    "label": "Automation stack",
+    "note": "Không ai giao — tự đề xuất, tự xây. Webhook, scheduler daily, Telegram bot."
+  },
+  {
+    "year": "Tháng 1–3/2026",
+    "label": "Infrastructure layer",
+    "note": "Tự thiết kế từ đầu. Docker stack, Cloudflare Tunnel, archive chứng từ."
+  },
+  {
+    "year": "Tháng 5/2026",
+    "label": "11 hệ thống production",
+    "note": "Odoo · Docker · PostgreSQL · Verified.",
+    "highlight": true
+  }
+]

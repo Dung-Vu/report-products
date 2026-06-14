@@ -1,0 +1,20 @@
+[
+  {
+    "value": 11,
+    "suffix": "",
+    "label": "Projects",
+    "sub": "Đã triển khai và đang hoạt động"
+  },
+  {
+    "value": 8,
+    "suffix": " tháng",
+    "label": "Timeline triển khai",
+    "sub": "Từ 22/09/2025 đến 05/2026"
+  },
+  {
+    "value": 6305,
+    "suffix": "",
+    "label": "Số lượt sử dụng các công cụ",
+    "sub": "Cloudflare Analytics · 6 subdomain · Sep 2025 – May 2026"
+  }
+]

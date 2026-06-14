@@ -1,0 +1,220 @@
+{
+  "bonario-stock-management": {
+    "title": "Stock Onhand Management",
+    "timeline": "Được xây dựng và hoàn thiện trong vòng 2 ngày.",
+    "people": {
+      "intro": "Hoàn thiện bởi 2 người:",
+      "items": [
+        "Dũng xây dựng repo và xử lý logic hoàn chỉnh.",
+        "Anh Hà cải thiện giao diện."
+      ]
+    },
+    "pnl": "Cost nội bộ: 2 ngày công và chi phí AI, tổng chi phí hết 1,2 triệu VND. P&L không tạo doanh thu trực tiếp nhưng giảm sai sót lệch tồn, giảm thời gian hỏi kho và rút ngắn quy trình nhận thông tin.",
+    "marketCost": "If hired externally for equivalent production-grade: Backend ~8 weeks, Frontend ~8 weeks, DevOps ~2.5 weeks. VN reference costs: Senior Full-stack Lead $4,000, Frontend Dev Mid $2,400, DevOps part-time $1,125. Total $7,525 (~198,321,188 VND).",
+    "roi": "Trước app, kiểm kho mất 3 ngày với 2 nhân sự. Sau app, còn 2 ngày với 1 nhân sự, tiết kiệm 4 ngày công tương đương khoảng 2 triệu VND. Tra cứu tồn kho mỗi lần giảm khoảng 15 phút; 1.359 request từ lúc app hoạt động tương đương khoảng 14 ngày công, khoảng 7 triệu VND.App đã duy trì 3 tháng, phần kiểm kho tiết kiệm khoảng 12 ngày công, tương đương 6 triệu VND; cộng với 7 triệu VND tiết kiệm tra cứu, tổng lợi ích khoảng 13 triệu VND. ROI ước tính: 1.083,3%.",
+    "strengths": [
+      "Dữ liệu real-time.",
+      "Kiểm kho hàng tháng không phụ thuộc vào phòng BIS để xuất số lượng tồn.",
+      "Check được sản phẩm đó có thực sự tồn hay đang dính đơn, điểm mà khi check Odoo thủ công nhân sự kho dễ bỏ sót."
+    ],
+    "weaknesses": [
+      "Vẫn đang trong quá trình phát triển.",
+      "Cần tiếp tục scale thêm để bao phủ nhiều tình huống vận hành hơn."
+    ],
+    "description": "Hệ thống tra cứu tồn kho và kiểm kho nội bộ, thay luồng hỏi đáp thủ công và file rời. Giúp tiết kiệm thời gian và nắm bắt thông tin nhanh chóng trong quá trình giao tiếp với khách hàng."
+  },
+  "ord-price-lookup": {
+    "title": "ORD Price Lookup",
+    "timeline": "30/12/2025 - 08/05/2026: triển khai tra cứu giá ORD, quản trị sản phẩm bảng giá, phân quyền và audit usage.",
+    "people": {
+      "intro": "Sales là nhóm dùng chính; SC/admin quản trị dữ liệu; AI chat sử dụng dữ liệu để hỗ trợ trả lời nhanh hơn."
+    },
+    "pnl": "Cost chủ yếu là thời gian phát triển và PostgreSQL nội bộ. P&L nằm ở giảm thời gian tra Excel, giảm sai giá và giảm phụ thuộc vào một file giá duy nhất.",
+    "roi": "478 lượt tra giá đã ghi nhận; ROI đến từ tốc độ phản hồi Sales và việc dữ liệu giá có một nguồn tham chiếu ổn định.",
+    "strengths": [
+      "Có số usage rõ: 103 lượt từ Sales và 375 từ AI chat.",
+      "Dữ liệu giá chuyển dần khỏi Excel sang PostgreSQL.",
+      "Có phân quyền sale/sc/admin và import/export."
+    ],
+    "weaknesses": [
+      "Cần quy trình cập nhật dữ liệu đều để bảng giá không bị cũ.",
+      "Chưa quy đổi được ROI thành VND nếu chưa có log thời gian tiết kiệm trên từng lượt tra."
+    ],
+    "description": "Công cụ tra cứu và quản trị giá Product Ordinaire, giúp Sales và SC tìm giá nhanh, có quyền truy cập rõ ràng và có lịch sử để kiểm chứng dữ liệu sử dụng."
+  },
+  "bonario-product-hub": {
+    "title": "Bonario Product Hub",
+    "timeline": "Từ Q4/2025 đến 05/2026: xây hub dữ liệu sản phẩm, daily scan, BOM automation, pricelist tools và audit log.",
+    "people": {
+      "intro": "Product Ops, SC và người phụ trách dữ liệu Odoo dùng trực tiếp; quản lý hưởng lợi từ báo cáo lỗi tự động."
+    },
+    "pnl": "Cost là thời gian build hub và vận hành Odoo integration. P&L nằm ở giảm lỗi dữ liệu sản phẩm, giảm kiểm tra thủ công và giảm chi phí sửa sai sau khi đã bán/sản xuất.",
+    "roi": "6,677 sản phẩm, 3,540 BOM và 50 lần chạy tự động không hỏng là tín hiệu ROI chính: một hệ thống kiểm soát dữ liệu thay cho việc mở Odoo check tay.",
+    "strengths": [
+      "Daily scan tự động, có lịch sử chạy.",
+      "Bao phủ many điểm dữ liệu: BOM, cost, pricelist, description.",
+      "Có audit log cho thao tác dữ liệu quan trọng."
+    ],
+    "weaknesses": [
+      "Phụ thuộc chất lượng dữ liệu Odoo gốc.",
+      "Cần tiếp tục tách lỗi thật/sai cảnh báo để giảm noise cho người dùng."
+    ],
+    "description": "Bonario Product Hub là lớp vận hành dữ liệu sản phẩm trên Odoo, gom kiểm tra, sửa, theo dõi và tự động hóa các bước dữ liệu sản phẩm vào một hub nội bộ."
+  },
+  "in-label-pdf": {
+    "title": "In Label PDF",
+    "timeline": "Q4/2025 - 05/2026: triển khai in label PDF, QC batch và báo cáo nhập kho kết nối dữ liệu Odoo.",
+    "people": {
+      "intro": "Warehouse/QC là nhóm dùng chính; admin vận hành hưởng lợi khi phiếu và batch có lịch sử rõ hơn."
+    },
+    "pnl": "Cost phát triển thấp do dùng hạ tầng nội bộ. P&L đến từ giảm thao tác lấy dữ liệu Odoo, in label tay và tổng hợp QC thủ công.",
+    "roi": "7+ batch QC và 10 sản phẩm trong batch gần nhất cho thấy luồng đã xử lý nghiệp vụ thật, không chỉ demo.",
+    "strengths": [
+      "Kết nối trực tiếp Odoo để giảm nhập lại dữ liệu.",
+      "Có lịch sử batch và báo cáo.",
+      "Phù hợp nghiệp vụ kho cần thao tác nhanh."
+    ],
+    "weaknesses": [
+      "Cần thêm thống kê sử dụng theo ngày/tháng để chứng minh adoption mạnh hơn.",
+      "Nếu format Odoo thay đổi, phần in PDF cần được kiểm tra lại."
+    ],
+    "description": "Công cụ in label và xử lý QC batch nhập kho, biến dữ liệu phiếu trong Odoo thành PDF/luồng thao tác dùng được cho kho."
+  },
+  "auto-workflow": {
+    "title": "Auto Workflow",
+    "timeline": "Tháng 11/2025 - 05/2026: gom webhook, scheduler, ZNS refresh, Telegram alert và các luồng tự động vào một hub Flask.",
+    "people": {
+      "intro": "Ops, Sales, CS và người quản trị automation hưởng lợi; hệ thống chạy nền thay cho thao tác nhắc việc thủ công."
+    },
+    "pnl": "Cost chính là thời gian phát triển và maintenance. P&L nằm ở việc giảm lỗi quên chạy task, giảm chi phí dùng automation rời rạc và giảm thời gian debug.",
+    "roi": "9 webhook live, 50/50 scheduler thành công và ZNS tự refresh hằng ngày là ROI về độ ổn định vận hành.",
+    "strengths": [
+      "Tập trung nhiều automation vào một hub dễ kiểm soát.",
+      "Có scheduler và webhook chạy thật.",
+      "Có tích hợp Telegram/ZNS cho thông báo và token refresh."
+    ],
+    "weaknesses": [
+      "Cần dashboard health chi tiết hơn để người khác tự kiểm tra.",
+      "Khi số workflow tăng, cần chuẩn hóa logging và retry policy."
+    ],
+    "description": "Auto Workflow là hub tự động hóa nội bộ, xử lý webhook, scheduler và thông báo để những tác vụ lặp lại không còn phụ thuộc vào trí nhớ của từng người."
+  },
+  "op-round-robin": {
+    "title": "OP Round Robin",
+    "timeline": "Từ cuối 2025 đến 05/2026: triển khai worker gán OP, xử lý bill/VAT và liên kết lưu PDF chứng từ.",
+    "people": {
+      "intro": "Back Office, OP và admin chứng từ là nhóm hưởng lợi trực tiếp."
+    },
+    "pnl": "Cost là worker nội bộ và thời gian bảo trì. P&L đến từ giảm thao tác chia OP, đặt tên/lưu chứng từ và xử lý cuối tháng.",
+    "roi": "2,720 hóa đơn Odoo và 983 PDF trong kho chứng từ cho thấy automation chạm vào khối lượng chứng từ đáng kể.",
+    "strengths": [
+      "Tự động hóa đúng phần việc lặp lại và dễ sai.",
+      "Có liên kết với kho PDF để truy cập qua web.",
+      "Giảm phụ thuộc thao tác cuối tháng."
+    ],
+    "weaknesses": [
+      "Cần thêm log số lần gán OP để đo adoption rõ hơn.",
+      "Phụ thuộc cấu trúc dữ liệu Odoo và quy ước lưu file."
+    ],
+    "description": "Worker tự động cho back office, tập trung vào phân bổ OP, xử lý bill/VAT và lưu chứng từ để giảm thao tác thủ công."
+  },
+  "bills-server": {
+    "title": "Bills Archive Server",
+    "timeline": "1 buổi để triển khai toàn bộ script và setup automation.",
+    "people": {
+      "intro": "2 người:",
+      "items": [
+        "Uyên đưa ra ý tưởng triển khai.",
+        "Dũng viết scripts và xử lý ổn định workflow automation."
+      ]
+    },
+    "pnl": "Cost khoảng 250k cho 1 buổi triển khai. P&L nằm ở việc giảm thao tác thủ công, đảm bảo tính chính xác và đúng format kế toán.",
+    "roi": "Xử lý 983 chứng từ VAT trong 4 tháng, rút ngắn khối lượng thao tác thủ công từ khoảng 1 tháng xuống còn 1 buổi chiều. ROI ước tính +4.700%.",
+    "strengths": [
+      "Giảm mạnh thao tác thủ công khi xử lý chứng từ VAT.",
+      "Đầu ra đúng format kế toán, dễ kiểm soát và đối chiếu.",
+      "Chứng từ được gom thành folder hoàn chỉnh, thuận tiện cho triển khai thực tế."
+    ],
+    "weaknesses": [
+      "Cần kiểm soát quyền truy cập nếu mở rộng ra nhiều người.",
+      "Chưa phải document management đầy đủ như search metadata sâu."
+    ],
+    "description": "Bills Server là lớp web phục vụ kho PDF chứng từ, giúp mở và chia sẻ tài liệu qua trình duyệt thay vì truy cập folder local."
+  },
+  "calculate-curtain-size": {
+    "title": "Curtain Size Calculator",
+    "timeline": "Q4/2025 - 05/2026: xây web tính rèm, xử lý Excel/PDF sản xuất và xuất layout BON.",
+    "people": {
+      "intro": "SC và production là nhóm dùng chính; người xử lý file sản xuất giảm thao tác tính tay."
+    },
+    "pnl": "Cost là thời gian build và thư viện xử lý file. P&L đến từ giảm lỗi tính vải/kích thước và giảm thời gian chuyển đổi file sản xuất.",
+    "roi": "250 lượt sử dụng và 5 file sản xuất xử lý gần nhất là tín hiệu ROI về adoption thực tế.",
+    "strengths": [
+      "Giải quyết bài toán nghiệp vụ có công thức phức tạp.",
+      "Xử lý cả form, Excel và PDF.",
+      "Output phục vụ trực tiếp cho xưởng/sản xuất."
+    ],
+    "weaknesses": [
+      "Cần test kỹ khi format file đầu vào thay đổi.",
+      "ROI tiền mặt cần thêm dữ liệu thời gian tiết kiệm trên mỗi file."
+    ],
+    "description": "Công cụ tính kích thước rèm và lượng vải, hỗ trợ xử lý file sản xuất hàng loạt để giảm sai sót khi tính tay."
+  },
+  "visual-brief-builder": {
+    "title": "Visual Brief Builder",
+    "timeline": "Q1-Q2/2026: xây dựng luồng tạo brief hình AI cho marketing, từ chọn mục đích hình, phong cách, tỷ lệ đến chỉnh lại yêu cầu.",
+    "people": {
+      "intro": "Anh Hà triển khai toàn bộ project. Dũng support build Docker, connect subdomain và bảo trì hệ thống."
+    },
+    "pnl": "Cost thấp vì tận dụng hạ tầng hiện có. P&L đến từ giảm vòng lặp brief sai, giảm lệch brand tone và tiết kiệm thời gian chuẩn bị prompt.",
+    "roi": "ROI hiện nằm ở quy trình: marketing có cách làm thống nhất hơn, giảm phụ thuộc vào kỹ năng prompt cá nhân và giảm thời gian sửa brief.",
+    "strengths": [
+      "Dễ dùng cho người không chuyên prompt.",
+      "Chuẩn hóa mục đích hình, tone, tỷ lệ và reference trong cùng một form.",
+      "Phù hợp mở rộng thành workflow creative nội bộ cho marketing."
+    ],
+    "weaknesses": [
+      "Chưa có số usage định lượng mạnh.",
+      "Chất lượng ảnh vẫn phụ thuộc reference đầu vào và engine tạo ảnh."
+    ],
+    "description": "Công cụ chuẩn hóa brief hình AI, giúp marketing tạo yêu cầu hình ảnh nhất quán hơn với brand và giảm thời gian thử prompt thủ công."
+  },
+  "tunnel-master": {
+    "title": "Tunnel Master",
+    "timeline": "Q1/2026 - 05/2026: đưa nhiều app nội bộ lên domain riêng để người dùng truy cập dễ hơn.",
+    "people": {
+      "intro": "Nhóm vận hành và các bộ phận dùng app nội bộ là người hưởng lợi trực tiếp."
+    },
+    "pnl": "Cost vận hành thấp vì tận dụng máy tính sẵn có. P&L nằm ở việc giảm nhu cầu thuê server riêng và giảm rủi ro mở port trực tiếp.",
+    "roi": "6+ app nội bộ đã có domain và 6.305 lượt truy cập qua subdomain cho thấy hạ tầng đã phục vụ nhu cầu thật.",
+    "strengths": [
+      "Không cần mở port trực tiếp trên mạng công ty.",
+      "Các app nội bộ có domain dễ nhớ và dễ chia sẻ hơn.",
+      "Dễ thêm app mới khi công ty cần mở rộng công cụ nội bộ."
+    ],
+    "weaknesses": [
+      "Phụ thuộc máy chủ nội bộ, máy tắt thì app không truy cập được.",
+      "Cần thêm cảnh báo sớm khi đường truy cập bị lỗi."
+    ],
+    "description": "Cổng truy cập app nội bộ giúp biến máy tính sẵn có thành nơi phục vụ nhiều app qua domain riêng, dễ dùng hơn cho các phòng ban."
+  },
+  "action-local-bridge": {
+    "title": "Action Local Bridge",
+    "timeline": "Q1/2026: tạo cầu nối riêng để Action Product truy cập ổn định qua domain nội bộ.",
+    "people": {
+      "intro": "Người vận hành Action Product và người dùng app hưởng lợi trực tiếp."
+    },
+    "pnl": "Cost gần như chỉ là thời gian setup. P&L nằm ở việc giảm rủi ro khi đưa app live mà không phải sửa app chính.",
+    "roi": "ROI nằm ở việc app có đường truy cập ổn định hơn, thay đổi hạ tầng không ảnh hưởng logic nghiệp vụ.",
+    "strengths": [
+      "Giữ đường truy cập cho Action Product ổn định hơn.",
+      "Không phải sửa logic app chính khi đổi cách truy cập.",
+      "Dễ thay thế hoặc điều chỉnh khi hạ tầng thay đổi."
+    ],
+    "weaknesses": [
+      "Giá trị chính là hỗ trợ app Action Product, không phải sản phẩm độc lập.",
+      "Cần tài liệu vận hành rõ để người khác tiếp quản dễ hơn."
+    ],
+    "description": "Cầu nối cho Action Product giúp app chạy sau domain nội bộ ổn định hơn, giảm rủi ro khi thay đổi hạ tầng truy cập."
+  }
+}
