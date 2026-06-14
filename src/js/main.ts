@@ -14,6 +14,8 @@ import { escapeHtml } from "./utils";
 
 let sparklesCleanup: (() => void) | null = null;
 let sparklesLoading = false;
+let pathsCleanup: (() => void) | null = null;
+let pathsLoading = false;
 let globalEventsBound = false;
 let isInitialLoad = true;
 
@@ -144,20 +146,31 @@ function renderHome(app: HTMLElement, route: Route, resetScroll = true): void {
             firstScene.classList.add("scene-in");
         }
 
-        // Dynamic import for sparkles.ts inside main.ts so it is only loaded on the homepage scene
+        // Dynamic import for sparkles.ts and paths-canvas.ts inside main.ts so they are only loaded on the homepage scene
         sparklesLoading = true;
+        pathsLoading = true;
         try {
-            const { initSparkles } = await import("./sparkles");
-            if (sparklesLoading) {
+            const [sparklesMod, pathsMod] = await Promise.all([
+                import("./sparkles"),
+                import("./paths-canvas")
+            ]);
+            if (sparklesLoading && sparklesMod) {
                 if (sparklesCleanup) {
                     sparklesCleanup();
                 }
-                sparklesCleanup = initSparkles();
+                sparklesCleanup = sparklesMod.initSparkles();
+            }
+            if (pathsLoading && pathsMod) {
+                if (pathsCleanup) {
+                    pathsCleanup();
+                }
+                pathsCleanup = pathsMod.initPathsCanvas();
             }
         } catch (error) {
-            console.error("Failed to load sparkles dynamically:", error);
+            console.error("Failed to load dynamic canvas modules:", error);
         } finally {
             sparklesLoading = false;
+            pathsLoading = false;
         }
 
         if (route.scrollToScene !== undefined) {
@@ -179,6 +192,12 @@ function renderApp(resetScroll = true): void {
         sparklesCleanup = null;
     }
     sparklesLoading = false;
+
+    if (pathsCleanup) {
+        pathsCleanup();
+        pathsCleanup = null;
+    }
+    pathsLoading = false;
 
     const state = AppStore.getState();
     if (state.error) {

@@ -33,6 +33,7 @@ export function buildHookScene(): string {
 export function buildCounterScene(): string {
     return `
   <section class="scene scene-scale" id="scene-2" aria-label="Quy mô vận hành">
+    <canvas id="paths-canvas" aria-hidden="true"></canvas>
     <div class="scale-inner">
       ${buildEvidenceScale()}
     </div>

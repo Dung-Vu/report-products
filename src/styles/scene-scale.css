@@ -1,4 +1,6 @@
 .scene-scale {
+    position: relative;
+    overflow: hidden;
     background:
         radial-gradient(
             ellipse 60% 40% at 50% -10%,
@@ -20,6 +22,8 @@
 .scale-inner {
     width: min(1200px, calc(100% - 48px));
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .scale-header {
@@ -364,4 +368,17 @@
     .counter-large .counter-num {
         font-size: clamp(42px, 13vw, 64px);
     }
+}
+
+/* ── BACKGROUND PATHS ── */
+#paths-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    display: block;
+    opacity: 0.25;
+    color: var(--accent);
 }

@@ -104,10 +104,13 @@ export function buildEvidenceScale(): string {
         columnItems: (CompanyScaleItem | OdooRepoItem)[],
     ): string => {
         if (!columnItems.length) return "";
-        let displayItems = [...columnItems];
-        while (displayItems.length < 4) {
-            displayItems = displayItems.concat(columnItems);
+        let baseItems = [...columnItems];
+        // Ensure there are enough items to fill the viewport height
+        while (baseItems.length < 4) {
+            baseItems = baseItems.concat(columnItems);
         }
+        // Duplicate the list to guarantee a seamless infinite scroll loop
+        const displayItems = [...baseItems, ...baseItems];
         return displayItems.map(renderCard).join("");
     };
 
