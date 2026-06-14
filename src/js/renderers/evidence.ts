@@ -48,17 +48,17 @@ export function buildEvidenceScale(): string {
       <div class="evidence-strip-body-inner">
         <div class="evidence-scroll-container">
           <div class="evidence-scroll-column col-1">
-            <div class="evidence-scroll-inner scroll-slow">
+            <div class="evidence-scroll-inner">
               ${skeletonCards.slice(0, 2).join("")}
             </div>
           </div>
           <div class="evidence-scroll-column col-2">
-            <div class="evidence-scroll-inner scroll-fast">
+            <div class="evidence-scroll-inner">
               ${skeletonCards.slice(2, 3).join("")}
             </div>
           </div>
           <div class="evidence-scroll-column col-3">
-            <div class="evidence-scroll-inner scroll-medium">
+            <div class="evidence-scroll-inner">
               ${skeletonCards.slice(3).join("")}
             </div>
           </div>
@@ -104,14 +104,7 @@ export function buildEvidenceScale(): string {
         columnItems: (CompanyScaleItem | OdooRepoItem)[],
     ): string => {
         if (!columnItems.length) return "";
-        let baseItems = [...columnItems];
-        // Ensure there are enough items to fill the viewport height
-        while (baseItems.length < 4) {
-            baseItems = baseItems.concat(columnItems);
-        }
-        // Duplicate the list to guarantee a seamless infinite scroll loop
-        const displayItems = [...baseItems, ...baseItems];
-        return displayItems.map(renderCard).join("");
+        return columnItems.map(renderCard).join("");
     };
 
     return `
@@ -131,17 +124,17 @@ export function buildEvidenceScale(): string {
       <div class="evidence-strip-body-inner">
         <div class="evidence-scroll-container">
           <div class="evidence-scroll-column col-1">
-            <div class="evidence-scroll-inner scroll-slow">
+            <div class="evidence-scroll-inner">
               ${renderColumn(col1)}
             </div>
           </div>
           <div class="evidence-scroll-column col-2">
-            <div class="evidence-scroll-inner scroll-fast">
+            <div class="evidence-scroll-inner">
               ${renderColumn(col2)}
             </div>
           </div>
           <div class="evidence-scroll-column col-3">
-            <div class="evidence-scroll-inner scroll-medium">
+            <div class="evidence-scroll-inner">
               ${renderColumn(col3)}
             </div>
           </div>

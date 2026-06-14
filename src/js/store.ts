@@ -83,6 +83,7 @@ class AppStoreClass {
 
     public async loadData(): Promise<void> {
         try {
+            const fetchOptions = { cache: "no-store" } as const;
             const [
                 projectsRes,
                 evidenceRes,
@@ -93,35 +94,35 @@ class AppStoreClass {
                 roadmapRes,
                 storyArcRes,
             ] = await Promise.all([
-                fetch("./src/data/impact-projects.json").then((r) => {
+                fetch("./src/data/impact-projects.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),
-                fetch("./src/data/impact-evidence.json").then((r) => {
+                fetch("./src/data/impact-evidence.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),
-                fetch("./src/data/system-groups.json").then((r) => {
+                fetch("./src/data/system-groups.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),
-                fetch("./src/data/project-profiles.json").then((r) => {
+                fetch("./src/data/project-profiles.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),
-                fetch("./src/data/hook-counters.json").then((r) => {
+                fetch("./src/data/hook-counters.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),
-                fetch("./src/data/tech-stack.json").then((r) => {
+                fetch("./src/data/tech-stack.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),
-                fetch("./src/data/roadmap.json").then((r) => {
+                fetch("./src/data/roadmap.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),
-                fetch("./src/data/story-arc.json").then((r) => {
+                fetch("./src/data/story-arc.json", fetchOptions).then((r) => {
                     if (!r.ok) throw new Error(`HTTP error ${r.status}`);
                     return r.json();
                 }),

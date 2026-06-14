@@ -107,19 +107,34 @@
 .project-route {
     min-height: 100svh;
     padding: 34px 0 82px;
-    background:
-        radial-gradient(
-            circle at 18% 0%,
-            rgba(37, 99, 235, 0.12),
-            transparent 32%
-        ),
-        linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.92),
-            rgba(239, 244, 242, 0.96) 44%,
-            #edf3f0
-        ),
-        var(--bg);
+    background: #ffffff;
+    position: relative;
+    z-index: 1;
+}
+
+/* Grid Background */
+.project-route::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+        linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* Soft Yellow Glow */
+.project-route::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle at center, #FFF991 0%, transparent 70%);
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+    pointer-events: none;
 }
 
 .project-route-shell {

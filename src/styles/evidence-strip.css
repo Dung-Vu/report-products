@@ -227,39 +227,13 @@
     }
 }
 
-/* ── EVIDENCE INFINITE SCROLL COLUMNS ────────────────────────────────────── */
+/* ── EVIDENCE STATIC COLUMNS ────────────────────────────────────────────── */
 .evidence-scroll-container {
     display: flex;
     justify-content: center;
     gap: 24px;
     margin-top: 24px;
-    height: 480px;
-    overflow: hidden;
     position: relative;
-}
-
-.evidence-scroll-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(to bottom, #000000 0%, transparent 100%);
-    z-index: 3;
-    pointer-events: none;
-}
-
-.evidence-scroll-container::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(to top, #000000 0%, transparent 100%);
-    z-index: 3;
-    pointer-events: none;
 }
 
 .evidence-scroll-column {
@@ -275,40 +249,6 @@
     flex-direction: column;
     gap: 16px;
     padding-bottom: 16px;
-}
-
-.evidence-scroll-inner.scroll-slow {
-    /* animation: scroll-vertical 24s linear infinite; */
-}
-
-.evidence-scroll-inner.scroll-medium {
-    /* animation: scroll-vertical 24s linear infinite; */
-}
-
-.evidence-scroll-inner.scroll-fast {
-    /* animation: scroll-vertical-reverse 18s linear infinite; */
-}
-
-.evidence-scroll-inner:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scroll-vertical {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(0, -50%, 0);
-    }
-}
-
-@keyframes scroll-vertical-reverse {
-    0% {
-        transform: translate3d(0, -50%, 0);
-    }
-    100% {
-        transform: translate3d(0, 0, 0);
-    }
 }
 
 /* Responsive columns matching the React sample */

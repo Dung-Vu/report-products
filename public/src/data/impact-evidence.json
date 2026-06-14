@@ -51,16 +51,6 @@
       "description": "Lượt truy cập định tuyến an toàn qua Cloudflare Tunnel đến các dịch vụ nội bộ (action, stock, curtain, pdf...), bảo mật tối đa hạ tầng cục bộ.",
       "source": "Cloudflare Analytics · dữ liệu 15/05/2026",
       "confidence": "verified"
-    },
-    {
-      "id": "adoption-cron-success",
-      "label": "Tự động hóa chạy nền (Crons)",
-      "value": 50,
-      "unit": "runs",
-      "display": "50/50",
-      "description": "Lịch trình quét danh mục sản phẩm hàng ngày (~800 mục/lần) và giám sát tồn kho tự động hoàn thành xuất sắc 100%, không lỗi gián đoạn.",
-      "source": "Log lịch sử tác vụ hệ thống · kiểm tra 15/05/2026",
-      "confidence": "verified"
     }
   ],
   "repoRelevantOdoo": [
@@ -75,16 +65,6 @@
       "confidence": "verified"
     },
     {
-      "id": "boms-created",
-      "label": "Định mức nguyên vật liệu (BOM)",
-      "value": 3540,
-      "unit": "records",
-      "display": "3,540",
-      "description": "Định mức sản xuất (BOM) được khởi tạo tự động, thiết lập cấu trúc sản phẩm rõ ràng, minh bạch phục vụ cho SC, quản lý kho và kế toán chi phí.",
-      "source": "Đếm trực tiếp từ Odoo · kiểm tra 15/05/2026",
-      "confidence": "verified"
-    },
-    {
       "id": "vendor-bills",
       "label": "Tự động hóa chứng từ VAT",
       "value": 983,
@@ -92,16 +72,6 @@
       "display": "983",
       "description": "Xử lý và lưu trữ hóa đơn VAT qua Bills Archive Server. Rút ngắn thời gian xử lý thủ công từ 1 tháng làm việc xuống chỉ còn 1 buổi duy nhất.",
       "source": "Project 04 · Bills Archive Server",
-      "confidence": "verified"
-    },
-    {
-      "id": "price-lookup-queries",
-      "label": "Nhân viên Sales tra giá",
-      "value": 478,
-      "unit": "queries",
-      "display": "478",
-      "description": "Lượt tra cứu giá bán trực tiếp qua ứng dụng Price Lookup tích hợp AI Chatbot. Rút ngắn thời gian tra cứu bảng giá phức tạp của bộ phận Sales.",
-      "source": "Log tra cứu Price Lookup · kiểm tra 15/05/2026",
       "confidence": "verified"
     }
   ],
