@@ -278,15 +278,15 @@
 }
 
 .evidence-scroll-inner.scroll-slow {
-    animation: scroll-vertical 24s linear infinite;
+    /* animation: scroll-vertical 24s linear infinite; */
 }
 
 .evidence-scroll-inner.scroll-medium {
-    animation: scroll-vertical 24s linear infinite; /* symmetrical speed and direction to column 1 */
+    /* animation: scroll-vertical 24s linear infinite; */
 }
 
 .evidence-scroll-inner.scroll-fast {
-    animation: scroll-vertical-reverse 18s linear infinite; /* central column reverse scrolls, faster */
+    /* animation: scroll-vertical-reverse 18s linear infinite; */
 }
 
 .evidence-scroll-inner:hover {
