@@ -1,38 +1,38 @@
 [
   {
-    "year": "2019–05/2024",
-    "label": "Kỹ sư CNTT, GPA 2.03",
-    "note": "5 năm học lý thuyết. GPA 2.03. Chưa một lần deploy thật."
+    "year": "2019 – 05/2024",
+    "label": "Tốt nghiệp Kỹ sư CNTT (GPA: 2.03)",
+    "note": "5 năm tích lũy lý thuyết nền tảng tại giảng đường đại học với GPA 2.03 nhưng chưa từng đưa sản phẩm thực tế nào lên môi trường vận hành (production)."
   },
   {
-    "year": "06/2024–08/2025",
-    "label": "Gap · chuẩn bị du học",
-    "note": "14 tháng dừng lại — không viết code, cân nhắc đi học tiếp."
+    "year": "06/2024 – 08/2025",
+    "label": "Giai đoạn chuyển giao & Chuẩn bị du học",
+    "note": "14 tháng tạm dừng hoạt động lập trình chuyên nghiệp để định hình hướng đi và cân nhắc kế hoạch học tập nâng cao."
   },
   {
     "year": "22/09/2025",
-    "label": "Vào Bonario · thử việc",
-    "note": "Anh Hà tận tình hướng dẫn hệ thống Odoo, tạo cơ hội phát triển và tiếp cận sâu AI."
+    "label": "Gia nhập Bonario & Thử việc",
+    "note": "Trưởng nhóm Hà trực tiếp hướng dẫn, giúp tiếp cận sâu hệ thống ERP Odoo, đồng thời tạo cơ hội tự chủ phát triển và nghiên cứu ứng dụng Trí tuệ nhân tạo (AI)."
   },
   {
     "year": "Tháng 10/2025",
-    "label": "Deploy đầu tiên",
-    "note": "Lần đầu code thật sự chạy trên production — ORD Price Lookup. React · Flask · PostgreSQL."
+    "label": "Sản phẩm đầu tiên lên môi trường vận hành",
+    "note": "Đánh dấu cột mốc lần đầu tiên phát triển thành công và đưa hệ thống ORD Price Lookup vào hoạt động thực tế. Xây dựng dựa trên React, Flask và PostgreSQL."
   },
   {
-    "year": "Tháng 11–12/2025",
-    "label": "Automation stack",
-    "note": "Không ai giao — tự đề xuất, tự xây. Webhook, scheduler daily, Telegram bot."
+    "year": "Tháng 11 – 12/2025",
+    "label": "Xây dựng hệ thống tự động hóa vận hành",
+    "note": "Chủ động đề xuất ý tưởng và tự thiết kế toàn bộ giải pháp: kết nối webhook thời gian thực, thiết lập bộ lập lịch chạy hàng ngày (daily scheduler) và triển khai bot Telegram cảnh báo sự cố."
   },
   {
-    "year": "Tháng 1–3/2026",
-    "label": "Infrastructure layer",
-    "note": "Tự thiết kế từ đầu. Docker stack, Cloudflare Tunnel, archive chứng từ."
+    "year": "Tháng 01 – 03/2026",
+    "label": "Thiết lập hạ tầng hệ thống",
+    "note": "Tự chủ nghiên cứu và xây dựng toàn diện: triển khai Docker stack, cấu hình định tuyến bảo mật qua Cloudflare Tunnel và số hóa kho lưu trữ chứng từ nội bộ."
   },
   {
     "year": "Tháng 5/2026",
-    "label": "11 hệ thống production",
-    "note": "Odoo · Docker · PostgreSQL · Verified.",
+    "label": "Vận hành 11 hệ thống thực tế",
+    "note": "Quản lý và duy trì ổn định 11 ứng dụng trên môi trường thực tế, tích hợp chặt chẽ với Odoo, Docker và PostgreSQL, đã được kiểm chứng hiệu quả vận hành.",
     "highlight": true
   }
 ]

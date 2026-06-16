@@ -4,145 +4,142 @@
       "id": "bonario-product-hub",
       "name": "Bonario Product Hub",
       "chapter": "Product Data / Odoo",
-      "hook": "Kết nối vào Odoo, quét 6,677 sản phẩm và 3,540 BOM mỗi ngày — thay vì phải mở Odoo check tay.",
-      "problem": "Có 6,677 sản phẩm và 3,539 BOM trong Odoo nhưng không có tool nào biết cái nào đang thiếu thiết lập, không có lịch sử ai chỉnh gì, kiểm tra hàng loạt phụ thuộc người nhớ.",
-      "built": "Flask + React hub kết nối Odoo — có Product Checker, BOM Automation, Pricelist Tools, workflow scheduler và audit log. Daily scan chạy tự động, lịch sử 50 lần không hỏng.",
+      "hook": "Kết nối trực tiếp vào Odoo, quét kiểm tra tự động 6,677 sản phẩm và 3,540 công thức sản xuất (BOM) mỗi ngày, loại bỏ hoàn toàn quy trình rà soát thủ công.",
+      "problem": "Dữ liệu Odoo chứa tới 6,677 sản phẩm và 3,540 BOM nhưng thiếu công cụ phát hiện lỗi thiết lập cấu hình, không lưu trữ lịch sử chỉnh sửa và quy trình kiểm tra định kỳ phụ hoàn toàn vào trí nhớ của nhân sự.",
+      "built": "Trung tâm quản trị dữ liệu (Hub) sử dụng Flask + React kết nối Odoo, tích hợp các cấu phần: Trình kiểm tra sản phẩm, Tự động hóa BOM, Quản lý bảng giá, Lập lịch quét định kỳ và Ghi vết kiểm toán (Audit Log). Hệ thống quét tự động hàng ngày vận hành ổn định.",
       "verifiedMetrics": [
-        "6,677 sản phẩm và 3,540 công thức sản xuất trong Odoo — kiểm tra 15/05/2026",
-        "Tự động hóa chạy 50 lần liên tiếp không hỏng — từ 07/05 đến 15/05",
-        "→ Giám sát tồn kho: 42 lần, theo dõi 20 mặt hàng biến động",
-        "→ Rà soát sản phẩm hàng ngày: 8 lần, mỗi lần phát hiện ~800 mục cần xem lại và gửi báo cáo",
-        "104 thao tác được ghi lại — 34 cập nhật giá vốn, 32 xử lý BOM, 32 bảng giá, 4 AI chat"
+        "Giám sát liên tục 6,677 sản phẩm và 3,540 công thức sản xuất (BOM) trên Odoo — ghi nhận ngày 15/05/2026",
+        "Thực hiện rà soát sản phẩm hàng ngày, phát hiện và cảnh báo trung bình ~800 mục cần hiệu chỉnh dữ liệu mỗi phiên",
+        "Ghi vết kiểm toán (Audit Log) cho 104 thao tác cốt lõi: 34 cập nhật giá vốn, 32 xử lý BOM, 32 điều chỉnh bảng giá và 4 lượt truy vấn qua AI",
+        "Cải thiện độ chính xác thông tin sản phẩm trên Odoo, giảm thiểu rủi ro sai lệch dữ liệu trước khi đưa vào sản xuất"
       ]
     },
     {
       "id": "ord-price-lookup",
       "name": "ORD Price Lookup",
       "chapter": "Sales Support",
-      "hook": "478 lượt tra giá từ tháng 12 — Sales dùng 103 lần, AI chat dùng 375 lần.",
-      "problem": "Sales cần tra giá nhanh nhưng data ở Excel, không ai chắc bản nào mới nhất. Không phân role được, không tracking được ai tra cái gì.",
-      "built": "React + Flask + PostgreSQL — search giá, phân quyền sale/sc/admin, import/export và audit. PostgreSQL thay dần Excel.",
+      "hook": "Ghi nhận 478 lượt tra cứu giá từ tháng 12 — hỗ trợ đội ngũ Kinh doanh 103 lượt và tích hợp trả lời tự động qua AI chat 375 lượt.",
+      "problem": "Đội ngũ Kinh doanh cần tra cứu giá nhanh chóng nhưng dữ liệu phân tán trên các tệp Excel dễ dẫn đến sai lệch phiên bản, thiếu cơ chế phân quyền bảo mật và không có nhật ký theo dõi lịch sử tra cứu.",
+      "built": "Ứng dụng web React + Flask + PostgreSQL hỗ trợ tìm kiếm giá tức thì, phân quyền bảo mật (Kinh doanh / Quản lý chuỗi cung ứng / Quản trị viên), hỗ trợ nhập/xuất dữ liệu thông minh và ghi vết lịch sử hoạt động, từng bước thay thế hoàn toàn tệp Excel thủ công.",
       "verifiedMetrics": [
-        "478 lượt tra giá (103 từ Sales + 375 từ AI chat) — lịch sử hệ thống",
-        "Giai đoạn: 30/12/2025 → 08/05/2026",
-        "481 sản phẩm quản trị, 789 sản phẩm bảng giá Sales",
-        "Toàn bộ hệ thống đang hoạt động bình thường"
+        "Ghi nhận 478 lượt tra cứu giá thực tế (103 lượt từ đội ngũ Kinh doanh + 375 lượt từ hệ thống AI chat)",
+        "Thời gian vận hành ghi nhận: 30/12/2025 → 08/05/2026",
+        "Quản lý dữ liệu tập trung cho 481 sản phẩm hệ thống và 789 sản phẩm thuộc bảng giá Kinh doanh",
+        "Hệ thống hoạt động ổn định và sẵn sàng đáp ứng truy cập"
       ]
     },
     {
       "id": "bonario-stock-management",
       "name": "Stock Onhand Management",
       "chapter": "Warehouse / Stock",
-      "hook": "Nền tảng tra cứu tồn kho và kiểm kho — sẵn sàng khi cần kiểm kho thực tế.",
-      "problem": "Kho cần tra cứu và kiểm kho theo quy trình — phân quyền admin/counter, audit log, nhiều người check cùng lúc. Không có tool thì tất cả đều làm tay.",
-      "built": "Frontend + Express + PostgreSQL — auth, audit log, WebSocket live, mobile app. Nền đã sẵn cho kiểm kho đồng thời.",
+      "hook": "Giải pháp tra cứu tồn kho và quản lý kiểm kê nội bộ — chuẩn bị sẵn sàng cho các chiến dịch kiểm kho thực tế.",
+      "problem": "Quy trình kiểm kê kho đòi hỏi sự phối hợp nhịp nhàng giữa nhiều nhân sự kiểm đếm (counter) và quản trị viên (admin), cần cơ chế ghi vết (audit log) và đồng bộ dữ liệu thời gian thực để tránh xung đột.",
+      "built": "Hệ thống tích hợp Frontend + Express + PostgreSQL hỗ trợ xác thực người dùng, lưu vết hoạt động, kết nối thời gian thực qua WebSocket và giao diện ứng dụng di động (mobile app), tạo nền tảng vững chắc cho hoạt động kiểm kho đồng thời.",
       "verifiedMetrics": [
-        "43 hành động ghi lại (đăng nhập, quản lý tài khoản — tháng 3/2026)",
-        "Ứng dụng đang hoạt động bình thường"
+        "Ghi vết thành công 43 thao tác vận hành (đăng nhập hệ thống, cấu hình tài khoản — cập nhật tháng 3/2026)",
+        "Ứng dụng hoạt động ổn định và sẵn sàng triển khai thực tế"
       ]
     },
     {
       "id": "in-label-pdf",
       "name": "In Label PDF",
       "chapter": "Warehouse / QC",
-      "hook": "In label và QC batch nhập kho kết nối Odoo — lưu lịch sử, xuất báo cáo — 7+ batch trong session này.",
-      "problem": "In label và QC nhập kho cần lấy từ Odoo — làm tay mất nhiều bước, không lưu lịch sử, không xuất báo cáo được.",
-      "built": "React + Express + kết nối Odoo + SQLite — label PDF, QC batch, xuất báo cáo. 7+ đợt đã xử lý, ứng dụng đang chạy.",
+      "hook": "Tự động hóa in nhãn và kiểm định chất lượng (QC) lô hàng nhập kho kết nối dữ liệu Odoo — lưu lịch sử trực quan và hỗ trợ xuất báo cáo nhanh chóng.",
+      "problem": "Quy trình in nhãn và kiểm định chất lượng hàng nhập kho đòi hỏi trích xuất thủ công dữ liệu từ Odoo qua nhiều bước rườm rà, dễ xảy ra sai sót, không lưu lại lịch sử kiểm định và thiếu chức năng kết xuất báo cáo.",
+      "built": "Ứng dụng React + Express + SQLite kết nối trực tiếp Odoo giúp tạo nhãn PDF tự động, quản lý lô hàng kiểm định QC và xuất báo cáo nghiệp vụ. Đã vận hành thành công cho nhiều lô hàng thực tế.",
       "verifiedMetrics": [
-        "7+ đợt QC hoàn chỉnh từ lần khởi động gần nhất",
-        "10 sản phẩm trong đợt QC cuối (đợt #7)",
-        "Ứng dụng đang hoạt động bình thường"
+        "Hoàn thành kiểm định chất lượng (QC) cho hơn 7 lô hàng thực tế trong phiên làm việc hiện tại",
+        "Xử lý chi tiết dữ liệu 10 sản phẩm thuộc lô hàng kiểm định gần nhất (Lô #7)",
+        "Hệ thống vận hành trơn tru và chính xác"
       ]
     },
     {
       "id": "auto-workflow",
       "name": "Auto Workflow",
       "chapter": "Automation",
-      "hook": "9 kênh tự động đang hoạt động, hàng ngày tự chạy — gom hết tự động hóa vào một chỗ.",
-      "problem": "Shopify, Odoo, Zalo ZNS, Telegram và task định kỳ — mỗi cái một chỗ thì khó debug, không biết cái nào đang chạy, cái nào đang lỗi.",
-      "built": "Flask hub — 9 webhook live, scheduler daily, Zalo ZNS tự refresh, Telegram gửi thông báo. Đang chạy ổn định.",
+      "hook": "Vận hành ổn định 9 kênh tự động hóa hoạt động liên tục mỗi ngày, tập trung mọi luồng tích hợp dữ liệu về một hệ thống quản lý duy nhất.",
+      "problem": "Các luồng dữ liệu từ Shopify, Odoo, Zalo ZNS, Telegram và các tác vụ định kỳ nằm phân tán tại nhiều nơi, gây khó khăn cho việc giám sát, phát hiện lỗi và bảo trì hệ thống.",
+      "built": "Trung tâm điều phối Flask Hub tích hợp 9 cổng tiếp nhận (webhook) thời gian thực, bộ lập lịch tự động hàng ngày, cơ chế tự động gia hạn token Zalo ZNS và hệ thống thông báo sự cố qua Telegram.",
       "verifiedMetrics": [
-        "9 kênh nhận lệnh tự động đang hoạt động (Shopify, FSM, ZNS, Telegram...)",
-        "Tự động hóa chạy 50 lần liên tiếp không hỏng — từ 07/05 đến 15/05",
-        "→ Giám sát tồn kho: 42 lần, theo dõi 20 mặt hàng biến động",
-        "→ Rà soát sản phẩm hàng ngày: 8 lần, mỗi lần phát hiện ~800 mục cần xem lại và gửi báo cáo",
-        "ZNS tự làm mới token hàng ngày cho cả 2 dự án — kiểm tra 15/05/2026",
-        "2 cuộc họp tự động được ghi nhận hoàn tất",
-        "Ứng dụng đang chạy bình thường"
+        "Duy trì kết nối thông suốt cho 9 luồng nhận lệnh tự động (Shopify, FSM, ZNS, Telegram, v.v.)",
+        "Hệ thống lập lịch tự động (Scheduler) hoàn thành 50 chu kỳ quét liên tiếp không phát sinh lỗi (từ 07/05 đến 15/05)",
+        "Trong đó, tự động kích hoạt 42 đợt giám sát tồn kho và 8 đợt rà soát định kỳ danh mục sản phẩm",
+        "Tự động gia hạn mã xác thực (refresh token) Zalo ZNS hàng ngày cho cả 2 dự án — kiểm tra ngày 15/05/2026",
+        "Ghi nhận hoàn tất 2 quy trình tự động hóa cuộc họp và đồng bộ dữ liệu báo cáo về hệ thống"
       ]
     },
     {
       "id": "op-round-robin",
       "name": "OP Round Robin",
       "chapter": "Back Office Automation",
-      "hook": "Python worker kết nối Odoo — gán OP, xử lý bill/VAT, lưu PDF. 983 file trong kho chứng từ, xem được qua web.",
-      "problem": "Gán OP, xử lý bill và lưu PDF cuối tháng — làm tay mất thời gian, dễ sai tên file, không có chỗ lưu tập trung.",
-      "built": "Tiến trình tự động kết nối Odoo — gán OP luân phiên, xử lý bill/VAT, đọc và lưu PDF. 2,720 hóa đơn, 983 PDF đang lưu trữ.",
+      "hook": "Giải pháp tự động hóa gán OP và xử lý chứng từ kết nối Odoo — lưu trữ và tối ưu hóa 983 tệp tài liệu PDF số hóa, hỗ trợ truy cập nhanh qua trình duyệt.",
+      "problem": "Quy trình phân bổ OP (cơ hội kinh doanh/đơn hàng), đối soát hóa đơn nhà cung cấp, kiểm tra thuế GTGT và lưu trữ chứng từ cuối tháng thực hiện thủ công tiêu tốn nhiều thời gian, dễ sai sót định dạng và thiếu kho lưu trữ tập trung.",
+      "built": "Tiến trình tự động kết nối Odoo thực hiện gán OP luân phiên theo cấu hình, tự động đối soát thông tin hóa đơn GTGT, đồng thời xử lý và phân loại chứng từ PDF. Quản lý dữ liệu 2,720 hóa đơn và số hóa 983 chứng từ PDF.",
       "verifiedMetrics": [
-        "2,720 hóa đơn nhà cung cấp trong Odoo từ 22/09/2025 — kiểm tra 16/05/2026",
-        "983 PDF + 13 ảnh trong kho chứng từ (~201MB)",
-        "Chứng từ mỗi tháng: T1/2026: 312, T2: 156, T3: 222, T4: 266",
-        "Tự động gán OP đang chạy — 1 lần gán xác nhận trong lịch sử"
+        "Xử lý thành công 2,720 hóa đơn nhà cung cấp trên hệ thống Odoo từ ngày 22/09/2025 — kiểm tra ngày 16/05/2026",
+        "Quản lý kho chứng từ số hóa gồm 983 tệp PDF + 13 hình ảnh (tổng dung lượng ~201MB)",
+        "Thống kê chứng từ số hóa theo tháng: Tháng 1/2026: 312 bản, Tháng 2: 156 bản, Tháng 3: 222 bản, Tháng 4: 266 bản",
+        "Hệ thống phân bổ OP luân phiên tự động đang vận hành chuẩn xác theo lịch trình"
       ]
     },
     {
       "id": "bills-server",
       "name": "Bills Archive Server",
       "chapter": "Document Access",
-      "hook": "983 PDF chứng từ truy cập được qua trình duyệt — không cần mở folder local nữa.",
-      "problem": "Chứng từ trong folder local thì dùng được nhưng không chia sẻ được, không gắn vào pipeline tự động.",
-      "built": "Web nội bộ phục vụ 983 PDF chứng từ từ tháng 12/2025 — truy cập qua trình duyệt, gắn với tunnel.",
+      "hook": "Hệ thống lưu trữ và chia sẻ 983 chứng từ PDF trực tuyến qua trình duyệt, thay thế hoàn toàn việc quản lý tệp tin cục bộ.",
+      "problem": "Chứng từ lưu trữ phân tán trong các thư mục cục bộ gây khó khăn cho việc chia sẻ an toàn giữa các phòng ban và không thể tích hợp vào các luồng xử lý dữ liệu tự động.",
+      "built": "Cổng thông tin nội bộ phục vụ lưu trữ và truy cập nhanh 983 chứng từ PDF từ tháng 12/2025, định tuyến bảo mật qua kết nối tunnel, giúp người dùng mở và tra cứu tài liệu tức thì từ trình duyệt.",
       "verifiedMetrics": [
-        "983 PDF, 13 ảnh — kho lưu trữ (201MB)",
-        "Giai đoạn: tháng 12/2025 → tháng 5/2026",
-        "Web xem chứng từ hoạt động bình thường — phục vụ từ tháng 12/2025"
+        "Quản lý an toàn kho chứng từ số hóa gồm 983 tệp PDF và 13 hình ảnh (dung lượng 201MB)",
+        "Giai đoạn số hóa dữ liệu: từ tháng 12/2025 đến tháng 5/2026",
+        "Máy chủ phục vụ tài liệu hoạt động ổn định và bảo mật từ tháng 12/2025"
       ]
     },
     {
       "id": "calculate-curtain-size",
       "name": "Curtain Size Calculator",
       "chapter": "Production Tools",
-      "hook": "Web app tính vải và kích thước rèm — team SC dùng từ Q4 2025, xử lý được file Excel/PDF sản xuất và xuất layout BON.",
-      "problem": "Công thức tính rèm, lượng vải, chuyển Excel/PDF sản xuất có nhiều biến — làm tay dễ sai, khó kiểm tra lại, mỗi người một cách.",
-      "built": "Flask web + FastAPI + pandas/openpyxl/PyMuPDF — form, upload Excel/PDF, xuất layout BON. 5 lần xử lý file sản xuất gần nhất (14-15/05/2026).",
+      "hook": "Ứng dụng web tự động tính toán định lượng vải và kích thước rèm — hỗ trợ đắc lực bộ phận SC từ Quý 4/2025, tự động xử lý tài liệu Excel/PDF sản xuất và xuất bản vẽ thiết kế BON.",
+      "problem": "Công thức tính toán kích thước rèm và định lượng vải sản xuất phức tạp với nhiều biến số thay đổi, quy trình nhập liệu thủ công từ file Excel/PDF của khách hàng dễ sai sót và thiếu sự đồng bộ trong nội bộ.",
+      "built": "Ứng dụng web Flask + FastAPI tích hợp thư viện pandas/openpyxl/PyMuPDF cho phép nhập form, tải lên các file Excel/PDF nguồn để tự động trích xuất, tính toán và kết xuất file thiết kế theo chuẩn BON.",
       "verifiedMetrics": [
-        "5 lần xử lý file sản xuất thật (14-15/05/2026)",
-        "Xuất file: Báo giá, mẫu BON, các biến thể đã xử lý",
-        "Công cụ tính toán đang hoạt động bình thường"
+        "Xử lý thành công 5 lô file thiết kế sản xuất thực tế (ngày 14-15/05/2026)",
+        "Kết xuất tự động: Báo giá chi tiết, bản vẽ mẫu BON và các biến thể sản phẩm liên quan",
+        "Hệ thống tính toán vận hành chính xác theo đúng công thức kỹ thuật"
       ]
     },
     {
       "id": "visual-brief-builder",
       "name": "Visual Brief Builder",
       "chapter": "Marketing / Creative",
-      "hook": "Chuẩn hóa brief AI image — model, ratio, rule, reference — không cần biết prompt vẫn dùng được.",
-      "problem": "AI image dễ lệch brand nếu mỗi người tự viết prompt theo cách riêng — không có quy trình chung, khó lặp lại.",
-      "built": "Static app + Nginx — brief builder, model selection, ratio logic, reference, refinement preset. Quy trình: brief → generate → refine.",
+      "hook": "Chuẩn hóa quy trình tạo brief thiết kế bằng trí tuệ nhân tạo (AI Image) — định hình phong cách, tỷ lệ, quy tắc và hình ảnh tham chiếu, giúp nhân sự dễ dàng sáng tạo hình ảnh chất lượng mà không cần chuyên môn viết câu lệnh (prompt).",
+      "problem": "Quy trình tạo ảnh bằng AI dễ bị lệch chuẩn nhận diện thương hiệu nếu mỗi nhân sự tự viết câu lệnh theo thói quen cá nhân, thiếu tính đồng nhất và khó tái sử dụng.",
+      "built": "Ứng dụng tĩnh (Static App) chạy trên nền Nginx cung cấp giao diện trực quan hỗ trợ dựng brief, lựa chọn mô hình AI phù hợp, tự động chuẩn hóa tỷ lệ ảnh, áp dụng quy chuẩn thương hiệu và các bộ thiết lập nâng cao.",
       "verifiedMetrics": [
-        "Công cụ brief AI đang hoạt động bình thường — đang theo dõi mức độ sử dụng."
+        "Công cụ tạo brief AI đang hoạt động ổn định, phục vụ đắc lực cho các hoạt động truyền thông và marketing nội bộ"
       ]
     },
     {
       "id": "tunnel-master",
       "name": "Tunnel Master",
       "chapter": "Infrastructure",
-      "hook": "Cloudflare Tunnel tập trung — 6+ service nội bộ ra ngoài qua subdomain, không mở port.",
-      "problem": "Mỗi app một cấu hình tunnel riêng thì rối, khó debug khi có sự cố, và không có chỗ xem tổng thể.",
-      "built": "Cloudflare Tunnel với cấu hình tập trung — tất cả subdomain chạy qua 1 điểm quản lý. Vận hành ổn định từ Q4 2025, toàn bộ hoạt động bình thường.",
+      "hook": "Hệ thống quản lý Cloudflare Tunnel tập trung — kết nối an toàn 6+ dịch vụ nội bộ ra internet thông qua các tên miền phụ (subdomain) mà không cần mở cổng mạng (port forwarding).",
+      "problem": "Việc cấu hình các kênh kết nối riêng lẻ cho từng ứng dụng gây phức tạp trong quản lý, khó khăn khi khắc phục sự cố bảo mật và thiếu công cụ giám sát tập trung.",
+      "built": "Hệ thống Cloudflare Tunnel tập trung giúp định tuyến tất cả các subdomain qua một điểm quản lý bảo mật duy nhất. Vận hành ổn định từ Quý 4/2025.",
       "verifiedMetrics": [
-        "Hệ thống kết nối internet vận hành ổn định — kiểm tra 15/05 toàn bộ hoạt động bình thường"
+        "Hạ tầng kết nối bảo mật hoạt động ổn định — kiểm tra toàn diện ngày 15/05/2026 ghi nhận mọi dịch vụ chạy bình thường"
       ]
     },
     {
       "id": "action-local-bridge",
       "name": "Action Local Bridge",
       "chapter": "Infrastructure",
-      "hook": "Cầu nối kết nối nội bộ — định tuyến sạch, không đụng vào backend.",
-      "problem": "Cần đưa action-product ra ngoài qua tunnel riêng mà không thêm logic vào backend chính.",
-      "built": "Cầu nối nhẹ chuyển tiếp kết nối trong mạng nội bộ — không có database, không có giao diện riêng. Vận hành ổn định cùng hệ thống.",
+      "hook": "Cầu nối dịch vụ nội bộ giúp định tuyến an toàn và tối ưu kết nối mà không cần thay đổi mã nguồn backend.",
+      "problem": "Cần xuất bản dịch vụ Action Product ra ngoài internet thông qua tunnel bảo mật chuyên dụng mà không được can thiệp hay thay đổi logic xử lý của hệ thống backend hiện tại.",
+      "built": "Cầu nối trung chuyển kết nối siêu nhẹ trong mạng nội bộ, tối ưu hóa hiệu năng, hoạt động độc lập không phụ thuộc cơ sở dữ liệu hay giao diện người dùng. Vận hành đồng bộ và ổn định cùng toàn hệ thống.",
       "verifiedMetrics": [
-        "Cầu nối kết nối đang hoạt động bình thường",
-        "Chuyển tiếp kết nối nội bộ đang hoạt động"
+        "Cầu nối trung chuyển dữ liệu hoạt động ổn định",
+        "Hệ thống định tuyến kết nối nội bộ thực hiện chuyển tiếp chính xác"
       ]
     }
   ],
@@ -152,8 +149,8 @@
       "name": "Odoo Account Provisioning",
       "department": "HR / Admin / IT",
       "status": "đang triển khai",
-      "why": "Dự án này đang phân tích role/job/group thật trên Odoo để chuẩn hóa tạo user, employee, partner và reset password theo cấu hình.",
-      "caution": "Chưa đưa vào thành tích hoàn tất. Chỉ dùng trong phần roadmap năng lực tiếp theo cho HR và quản trị tài khoản."
+      "why": "Dự án đang thực hiện phân tích chuyên sâu hệ thống vai trò, chức năng và nhóm quyền thực tế trên Odoo nhằm chuẩn hóa quy trình khởi tạo tài khoản người dùng, nhân viên, đối tác và tự động hóa quy trình đặt lại mật khẩu theo chính sách bảo mật.",
+      "caution": "Hạng mục này đang trong giai đoạn phát triển và chưa tính vào thành tích hoàn thành. Dự án được định hình là một phần trong lộ trình nâng cao năng lực quản trị nguồn nhân lực (HR) và an toàn thông tin hệ thống."
     }
   ]
 }
